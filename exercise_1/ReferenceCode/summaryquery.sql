@@ -1,0 +1,1 @@
+create table summarytable as select u.userid,u.firstname,u.location,w.refererurl from userdata_lab u,weblog_lab w where u.userid = w.userid ;
