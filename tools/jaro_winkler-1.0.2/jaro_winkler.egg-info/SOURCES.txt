@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+jaro/__init__.py
+jaro/all_tests.py
+jaro/compare_jaro.py
+jaro/compare_strcmp95.py
+jaro/jaro.py
+jaro/jaro_tests.py
+jaro/strcmp95.c
+jaro/strcmp95.py
+jaro/typo_tables.py
+jaro_winkler.egg-info/PKG-INFO
+jaro_winkler.egg-info/SOURCES.txt
+jaro_winkler.egg-info/dependency_links.txt
+jaro_winkler.egg-info/top_level.txt
