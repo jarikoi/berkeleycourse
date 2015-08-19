@@ -1,0 +1,2 @@
+streamparse # always required for streamparse projects
+tweepy # required for tapping into tweet source
