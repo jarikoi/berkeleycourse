@@ -14,7 +14,7 @@ class WordCounter(Bolt):
         word = tup.values[0]
 
         # Increment the word count in redis 
-        self.redis.zincrby("words", word)
+        self.redis.zincrby("wordcount", word)
 
         # increase the word count locally
         self.counts[word] += 1
