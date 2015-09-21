@@ -1,0 +1,162 @@
++++TESTING LOG+++++
+logout
+
+Connection to ec2-54-166-43-7.compute-1.amazonaws.com closed.
+AparajeetasMBP2:Downloads aparajeetadas1$ ssh -i 3i.pem root@ec2-54-166-43-7.compute-1.amazonaws.com
+Last login: Mon Sep 21 20:20:38 2015 from 99.185.41.3
+     ___   _        __   __   ____            __    
+    / _ \ (_)___ _ / /  / /_ / __/____ ___ _ / /___ 
+   / , _// // _ `// _ \/ __/_\ \ / __// _ `// // -_)
+  /_/|_|/_/ \_, //_//_/\__//___/ \__/ \_,_//_/ \__/ 
+           /___/                                                 
+                                              
+Welcome to a virtual machine image brought to you by RightScale!
+
+
+[root@ip-10-235-18-217 ~]# hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j.properties
+WARNING: Hive CLI is deprecated and migration to Beeline is recommended.
+hive> show tables;
+OK
+web_session_log
+web_session_log_bucket
+web_session_log_bucket1
+web_session_log_partitioned
+web_session_log_partitioned1
+web_session_log_partitioned2
+Time taken: 1.006 seconds, Fetched: 6 row(s)
+hive> describe web_session_log;
+OK
+datetime            	varchar(500)        	                    
+userid              	varchar(500)        	                    
+sessionid           	varchar(500)        	                    
+productid           	varchar(500)        	                    
+refererurl          	varchar(500)        	                    
+Time taken: 0.878 seconds, Fetched: 5 row(s)
+hive> select max(datetime), min(datetime) from web_session_log;
+Query ID = root_20150921220000_378fac8d-87cd-48a8-8464-6ac2c852e34a
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-09-21 22:01:01,563 Stage-1 map = 0%,  reduce = 0%
+2015-09-21 22:01:04,608 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_local1790900237_0001
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+date	1999-12-31 20:31:30
+Time taken: 7.016 seconds, Fetched: 1 row(s)
+hive> select max(datetime)  from web_session_log;
+Query ID = root_20150921220101_7b095bbb-7d0e-41e6-ac0e-b129ddc477d4
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-09-21 22:01:46,495 Stage-1 map = 0%,  reduce = 0%
+2015-09-21 22:01:49,507 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_local470200751_0002
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+date
+Time taken: 5.279 seconds, Fetched: 1 row(s)
+hive> select min(datetime)  from web_session_log;
+Query ID = root_20150921220202_867e3ffc-6f79-41ef-8b36-2c750727235a
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-09-21 22:02:02,349 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_local236378737_0003
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+1999-12-31 20:31:30
+Time taken: 1.845 seconds, Fetched: 1 row(s)
+hive> select count(*) from web_session_log;
+Query ID = root_20150921220202_d92eb1f5-81f9-455d-8233-27ecd3af5c5a
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-09-21 22:02:57,683 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_local1248871966_0004
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+40002
+Time taken: 1.608 seconds, Fetched: 1 row(s)
+hive> select count(userid) from web_session_log;
+Query ID = root_20150921220303_dc0527cd-154f-41ec-b3c4-1dc3b0626f68
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-09-21 22:03:36,348 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_local1622487466_0005
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+40002
+Time taken: 1.73 seconds, Fetched: 1 row(s)
+hive> select distinct count(userid) from web_session_log;
+FAILED: SemanticException [Error 10128]: Line 1:16 Not yet supported place for UDAF 'count'
+hive> select count(distinct userid) from web_session_log;
+Query ID = root_20150921220303_b64a1f51-bfea-4b0e-b0a9-0707c5f135b3
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-09-21 22:04:00,893 Stage-1 map = 0%,  reduce = 0%
+2015-09-21 22:04:02,913 Stage-1 map = 100%,  reduce = 0%
+2015-09-21 22:04:04,941 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_local153031639_0006
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+15338
+Time taken: 5.81 seconds, Fetched: 1 row(s)

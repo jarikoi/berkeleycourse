@@ -1,0 +1,123 @@
+[root@ip-10-235-18-217 ~]# hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j.properties
+WARNING: Hive CLI is deprecated and migration to Beeline is recommended.
+hive> CREATE TABLE Web_Session_Log_Partitioned 
+    > (
+    > DATETIME varchar(500), USERID varchar(500), SESSIONID varchar(500),
+    > PRODUCTID varchar(500), REFERERURL varchar(500))
+    > COMMENT 'This is the Twitter streaming data'
+    > PARTITIONED BY(DT STRING)
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY '\t' 
+    > STORED AS TEXTFILE;
+OK
+Time taken: 1.727 seconds
+hive> FROM Web_Session_Log 
+    > INSERT OVERWRITE TABLE Web_Session_Log_Partitioned PARTITION                           (DT="2014-01-02 00:00:06 GMT") SELECT *;
+Query ID = root_20150921211919_fb575311-6ef7-492d-8f89-bb41e1d2d2cf
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+Job running in-process (local Hadoop)
+2015-09-21 21:19:22,285 Stage-1 map = 0%,  reduce = 0%
+2015-09-21 21:19:24,310 Stage-1 map = 100%,  reduce = 0%
+Ended Job = job_local156680631_0001
+Stage-4 is selected by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Stage-5 is filtered out by condition resolver.
+Moving data to: file:/user/hive/warehouse/web_session_log_partitioned/dt=2014-01-02 00%3A00%3A06 GMT/.hive-staging_hive_2015-09-21_21-19-17_301_3446815570773697760-1/-ext-10000
+Loading data to table default.web_session_log_partitioned partition (dt=2014-01-02 00:00:06 GMT)
+Partition default.web_session_log_partitioned{dt=2014-01-02 00:00:06 GMT} stats: [numFiles=1, numRows=40002, totalSize=5152990, rawDataSize=5112988]
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+Time taken: 8.98 seconds
+hive> CREATE TABLE Web_Session_Log_Bucket 
+    >     (DATETIME varchar(500), 
+    >     USERID varchar(500), 
+    >     SESSIONID varchar(500), 
+    >     PRODUCTID varchar(500), 
+    >     REFERERURL varchar(500))
+    >     COMMENT 'This is the Web Session Log data' PARTITIONED BY( PRDID STRING)
+    >     CLUSTERED BY(USERID) INTO 2 BUCKETS ROW FORMAT DELIMITED
+    >     FIELDS TERMINATED BY '\t'
+    > STORED AS TEXTFILE;
+OK
+Time taken: 0.112 seconds
+hive> 
+    > set hive.enforce.bucketing = true;
+hive> 
+    > FROM Web_Session_Log -- the table you created in your previous lab
+    > INSERT OVERWRITE TABLE Web_Session_Log_Bucket PARTITION (PRDID="/product/MT65XF2YA")    
+    > SELECT *;
+Query ID = root_20150921211919_5b6bb436-9b19-4483-9ba9-5b2cbdd1931b
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 2
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-09-21 21:19:41,965 Stage-1 map = 0%,  reduce = 0%
+2015-09-21 21:19:47,012 Stage-1 map = 100%,  reduce = 0%
+2015-09-21 21:19:49,058 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_local796177397_0002
+Loading data to table default.web_session_log_bucket partition (prdid=/product/MT65XF2YA)
+Partition default.web_session_log_bucket{prdid=/product/MT65XF2YA} stats: [numFiles=2, numRows=40002, totalSize=5152990, rawDataSize=5112988]
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+Time taken: 10.05 seconds
+hive> describe Web_Session_Log; 
+OK
+datetime            	varchar(500)        	                    
+userid              	varchar(500)        	                    
+sessionid           	varchar(500)        	                    
+productid           	varchar(500)        	                    
+refererurl          	varchar(500)        	                    
+Time taken: 0.161 seconds, Fetched: 5 row(s)
+hive> describe formatted Web_Session_Log; 
+OK
+# col_name            	data_type           	comment             
+	 	 
+datetime            	varchar(500)        	                    
+userid              	varchar(500)        	                    
+sessionid           	varchar(500)        	                    
+productid           	varchar(500)        	                    
+refererurl          	varchar(500)        	                    
+	 	 
+# Detailed Table Information	 	 
+Database:           	default             	 
+Owner:              	root                	 
+CreateTime:         	Mon Sep 21 20:23:45 UTC 2015	 
+LastAccessTime:     	UNKNOWN             	 
+Protect Mode:       	None                	 
+Retention:          	0                   	 
+Location:           	file:/user/hive/warehouse/web_session_log	 
+Table Type:         	MANAGED_TABLE       	 
+Table Parameters:	 	 
+	COLUMN_STATS_ACCURATE	true                
+	numFiles            	1                   
+	numRows             	0                   
+	rawDataSize         	0                   
+	totalSize           	5192992             
+	transient_lastDdlTime	1442867176          
+	 	 
+# Storage Information	 	 
+SerDe Library:      	org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe	 
+InputFormat:        	org.apache.hadoop.mapred.TextInputFormat	 
+OutputFormat:       	org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat	 
+Compressed:         	No                  	 
+Num Buckets:        	-1                  	 
+Bucket Columns:     	[]                  	 
+Sort Columns:       	[]                  	 
+Storage Desc Params:	 	 
+	field.delim         	\t                  
+	serialization.format	\t                  
+Time taken: 0.152 seconds, Fetched: 36 row(s)
