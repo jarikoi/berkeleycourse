@@ -1,11 +1,11 @@
 time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type
-2015-07-02T23:16:03.000Z,56.7152,-155.4884,5.4,3.6,ml,,,,1.08,ak,ak11640129,2015-07-03T07:18:40.420Z,"99km N of Chirikof Island, Alaska",earthquake
+2015-07-02T23:16:03.000Z,56.7152,-155.4884,5.4,3.6,ml,,,,1.08,ak,ak11640129,2015-07-03T07:18:40.420Z,"99km N of Chirikof Island, Alaksa",earthquake
 2015-07-02T22:40:35.240Z,36.8015,-97.7167,5,3,mb_lg,,46,0.185,0.29,us,us10002n4d,2015-07-02T23:00:27.055Z,"1km ESE of Medford, Oklahoma",earthquake
 2015-07-02T22:31:28.190Z,-23.0587,-14.0431,10,4.8,mb,,99,30.883,0.62,us,us10002n4f,2015-07-03T06:34:01.780Z,"Southern Mid-Atlantic Ridge",earthquake
 2015-07-02T19:38:39.760Z,32.981,-115.5813333,11.718,3.57,ml,67,63,0.0571,0.23,ci,ci37196663,2015-07-02T20:42:21.720Z,"5km W of Brawley, California",earthquake
 2015-07-02T19:22:44.570Z,-32.2014,-177.9748,35,5,mb,,69,2.947,0.91,us,us10002n2x,2015-07-03T03:25:11.833Z,"122km SE of L'Esperance Rock, New Zealand",earthquake
 2015-07-02T19:06:28.220Z,-32.4952,-176.4412,37.72,4.9,mb,,234,3.483,0.97,us,us10002n2l,2015-07-03T03:09:00.277Z,"260km ESE of L'Esperance Rock, New Zealand",earthquake
-2015-07-02T18:24:55.000Z,51.548,-175.7676,40.6,4.1,ml,,,,0.75,ak,ak11639972,2015-07-03T02:27:38.059Z,"71km ESE of Adak, Alaska",earthquake
+2015-07-02T18:24:55.000Z,51.548,-175.7676,40.6,4.1,ml,,,,0.75,ak,ak11639972,2015-07-03T02:27:38.059Z,"71km ESE of Adak, alaska",earthquake
 2015-07-02T15:06:46.000Z,55.9723,-156.1441,41.2,3.3,ml,,,,0.86,ak,ak11639884,2015-07-02T23:09:14.453Z,"36km WNW of Chirikof Island, Alaska",earthquake
 2015-07-02T15:01:10.650Z,-5.9841,147.335,82.79,5.3,mb,,69,3.403,0.7,us,us10002n0i,2015-07-02T21:12:34.405Z,"90km NNE of Lae, Papua New Guinea",earthquake
 2015-07-02T13:36:20.770Z,11.8668,142.4645,45,4.6,mb,,137,22.475,0.62,us,us10002n0a,2015-07-02T21:38:58.880Z,"285km WSW of Merizo Village, Guam",earthquake
@@ -16,10 +16,10 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-07-02T06:05:46.840Z,38.5198,141.8613,61.57,4.6,mb,,133,1.065,1.01,us,us10002mym,2015-07-02T12:55:55.168Z,"50km ENE of Ishinomaki, Japan",earthquake
 2015-07-02T04:03:45.700Z,19.0249,-66.365,40,3.2,Md,14,230.4,0.56593863,0.31,pr,pr15183001,2015-07-02T12:06:24.867Z,"61km N of Brenas, Puerto Rico",earthquake
 2015-07-02T03:37:41.200Z,18.5076,-68.657,135,3.4,Md,9,342,1.12379242,0.1,pr,pr15183002,2015-07-02T11:40:16.262Z,"8km NNE of San Rafael del Yuma, Dominican Republic",earthquake
-2015-07-02T02:18:27.000Z,60.9657,-147.4064,23.8,3.7,ml,,,,0.55,ak,ak11639524,2015-07-02T03:01:09.571Z,"60km WSW of Valdez, Alaska",earthquake
+2015-07-02T02:18:27.000Z,60.9657,-147.4064,23.8,3.7,ml,,,,0.55,ak,ak11639524,2015-07-02T03:01:09.571Z,"60km WSW of Valdez, alaska",earthquake
 2015-07-02T01:56:11.220Z,27.749,85.2992,10,4.2,mb,,120,0.039,0.96,us,us10002mxq,2015-07-02T09:42:31.008Z,"5km NNW of Kathmandu, Nepal",earthquake
 2015-07-02T01:35:49.100Z,19.6,-67.8811,44,3.4,Md,7,327.6,1.34118472,0.18,pr,pr15183000,2015-07-02T09:38:31.557Z,"125km NNE of Punta Cana, Dominican Republic",earthquake
-2015-07-01T23:20:13.000Z,56.1872,-153.5558,12,4.3,ml,,,,0.71,ak,ak11639423,2015-07-02T21:15:08.040Z,"118km S of Larsen Bay, Alaska",earthquake
+2015-07-01T23:20:13.000Z,56.1872,-153.5558,12,4.3,ml,,,,0.71,ak,ak11639423,2015-07-02T21:15:08.040Z,"118km S of Larsen Bay, alaska",earthquake
 2015-07-01T21:59:53.860Z,36.0803,-97.4545,2.23,3,mb_lg,,65,0.283,0.29,us,us10002mx3,2015-07-02T02:21:52.713Z,"18km NE of Crescent, Oklahoma",earthquake
 2015-07-01T19:35:21.050Z,-10.9949,162.5624,8.95,5.8,mwb,,40,3.002,1.04,us,us10002mw0,2015-07-02T13:57:30.000Z,"92km SE of Kirakira, Solomon Islands",earthquake
 2015-07-01T18:32:52.880Z,44.1173,-66.2896,5,3.4,mb_lg,,168,1.024,0.63,us,us10002mvh,2015-07-03T01:58:21.111Z,"34km NNW of Yarmouth, Canada",earthquake
@@ -28,17 +28,17 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-07-01T15:05:20.060Z,-26.1956,-11.5677,10,4.9,mb,,62,27.739,0.83,us,us10002mtk,2015-07-01T23:08:04.740Z,"Southern Mid-Atlantic Ridge",earthquake
 2015-07-01T14:44:45.800Z,19.5575,-64.3766,78,3.1,Md,5,313.2,1.06001204,0.07,pr,pr15182005,2015-07-01T22:47:25.364Z,"128km N of Road Town, British Virgin Islands",earthquake
 2015-07-01T14:30:21.690Z,-52.2123,159.6073,10,5.7,mb,,53,2.323,0.99,us,usd0005u42,2015-07-02T13:57:28.000Z,"256km N of Macquarie Island, Australia",earthquake
-2015-07-01T12:15:29.000Z,60.2437,-153.2407,137.5,3.1,ml,,,,0.7,ak,ak11639060,2015-07-01T20:18:03.604Z,"38km SW of Redoubt Volcano, Alaska",earthquake
-2015-07-01T07:48:30.000Z,63.0999,-150.8821,135.5,3,ml,,,,0.45,ak,ak11638978,2015-07-01T20:00:48.852Z,"95km NNW of Talkeetna, Alaska",earthquake
+2015-07-01T12:15:29.000Z,60.2437,-153.2407,137.5,3.1,ml,,,,0.7,ak,ak11639060,2015-07-01T20:18:03.604Z,"38km SW of Redoubt Volcano, Alska",earthquake
+2015-07-01T07:48:30.000Z,63.0999,-150.8821,135.5,3,ml,,,,0.45,ak,ak11638978,2015-07-01T20:00:48.852Z,"95km NNW of Talkeetna, alaska",earthquake
 2015-07-01T06:54:59.070Z,-13.0201,169.2641,640.98,4.5,mb,,59,7.953,0.82,us,us10002mra,2015-07-01T14:57:35.354Z,"208km ENE of Sola, Vanuatu",earthquake
 2015-07-01T05:55:25.020Z,6.8452,-73.0401,137.87,4.6,mb,,59,0.946,1.06,us,us10002mr1,2015-07-01T06:29:54.605Z,"15km S of Piedecuesta, Colombia",earthquake
-2015-07-01T04:03:37.000Z,58.0945,-153.7615,60.8,3.6,ml,,,,0.89,ak,ak11638923,2015-07-01T19:44:53.160Z,"63km NNE of Larsen Bay, Alaska",earthquake
+2015-07-01T04:03:37.000Z,58.0945,-153.7615,60.8,3.6,ml,,,,0.89,ak,ak11638923,2015-07-01T19:44:53.160Z,"63km NNE of Larsen Bay, Alaka",earthquake
 2015-07-01T03:16:50.580Z,44.0031,148.7023,47.4,4.5,mb,,168,4.404,1.4,us,us10002mqg,2015-07-01T11:19:28.696Z,"151km SSE of Kuril'sk, Russia",earthquake
 2015-07-01T02:41:31.050Z,21.6417,143.0623,299.63,4.4,mb,,64,5.488,0.71,us,us10002mq0,2015-07-01T10:44:08.715Z,"226km WNW of Farallon de Pajaros, Northern Mariana Islands",earthquake
 2015-07-01T02:25:42.730Z,63.8806,-23.0399,10,4.5,mb,,68,1.146,0.95,us,us10002mpu,2015-07-01T02:52:42.717Z,"23km SW of Sandgerdi, Iceland",earthquake
 2015-07-01T02:23:58.800Z,63.9922,-23.2531,10,4.4,mb,,143,1.13,0.96,us,us10002mq6,2015-07-01T10:26:40.520Z,"27km W of Sandgerdi, Iceland",earthquake
 2015-07-01T00:44:50.290Z,-23.9383,-66.8112,206.06,4,mb,,54,2.338,0.99,us,us10002mpq,2015-07-01T08:47:26.096Z,"58km WNW of San Antonio de los Cobres, Argentina",earthquake
-2015-07-01T00:07:23.000Z,63.0805,-150.97,129,3.3,ml,,,,0.59,ak,ak11638868,2015-07-01T08:10:01.178Z,"95km NNW of Talkeetna, Alaska",earthquake
+2015-07-01T00:07:23.000Z,63.0805,-150.97,129,3.3,ml,,,,0.59,ak,ak11638868,2015-07-01T08:10:01.178Z,"95km NNW of Talkeetna, Alaa",earthquake
 2015-06-30T22:14:34.510Z,-21.2153,169.8895,35,4.8,mb,,113,2.513,0.8,us,us10002mnw,2015-07-01T06:17:03.128Z,"195km SSE of Isangel, Vanuatu",earthquake
 2015-06-30T21:47:44.320Z,32.354,-115.208,26.059,3.24,ml,20,178,0.1049,0.29,ci,ci37194935,2015-07-01T14:59:49.993Z,"1km W of Delta, B.C., MX",earthquake
 2015-06-30T15:42:54.680Z,42.1474,-85.0482,5,3.3,mb_lg,,33,0.501,0.34,us,us10002mly,2015-07-03T03:36:27.180Z,"11km NE of Union City, Michigan",earthquake
@@ -71,13 +71,13 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-29T14:14:07.930Z,0.3154,123.924,218.59,4.4,mb,,147,1.773,0.93,us,us10002mcg,2015-06-29T22:17:03.796Z,"10km SW of Molibagu, Indonesia",earthquake
 2015-06-29T13:55:20.400Z,-17.4755,167.8831,33.91,4.9,mb,,187,3.34,0.94,us,us10002mca,2015-06-29T21:58:03.846Z,"54km WNW of Port-Vila, Vanuatu",earthquake
 2015-06-29T13:52:33.620Z,53.5736,163.2931,35.89,4.4,mb,,140,2.84,0.85,us,us10002mcd,2015-06-29T21:55:09.502Z,"251km SW of Nikol'skoye, Russia",earthquake
-2015-06-29T13:23:01.520Z,32.56,-90.0704,5,3.2,mb_lg,,51,0.509,0.45,us,us10002mc3,2015-07-01T12:27:39.420Z,"6km SSW of Canton, Mississippi",earthquake
+2015-06-29T13:23:01.520Z,32.56,-90.0704,5,3.2,mb_lg,,51,0.509,0.45,us,us10002mc3,2015-07-01T12:27:39.420Z,"6km SSW of Canotn, Mississippi",earthquake
 2015-06-29T10:13:01.000Z,57.4929,-154.1531,56.7,4.5,ml,,,,0.91,ak,ak11637738,2015-06-29T14:08:47.238Z,"11km WSW of Larsen Bay, Alaska",earthquake
 2015-06-29T09:09:15.610Z,-16.0151,-74.2109,23.72,5.5,mb,,92,4.377,1.06,us,us10002mb3,2015-07-01T20:59:24.000Z,"77km SSE of Acari, Peru",earthquake
 2015-06-29T09:01:15.100Z,19.127,-64.7125,38,3,Md,10,262.8,0.69709266,0.18,pr,pr15180003,2015-06-29T17:05:08.647Z,"79km N of Road Town, British Virgin Islands",earthquake
 2015-06-29T08:47:48.300Z,19.135,-64.6785,41,3.2,Md,13,266.4,0.69170277,0.14,pr,pr15180002,2015-06-29T16:50:25.680Z,"79km N of Road Town, British Virgin Islands",earthquake
 2015-06-29T06:30:38.560Z,4.6579,127.4573,123.33,4.5,mb,,161,3.038,0.69,us,us10002mae,2015-06-29T14:33:05.938Z,"235km ESE of Sarangani, Philippines",earthquake
-2015-06-29T06:08:42.550Z,36.733,-117.2486667,2.714,3.26,ml,25,53,0.2193,0.18,ci,ci37193303,2015-06-30T21:28:52.926Z,"17km NNW of Stovepipe Wells, California",earthquake
+2015-06-29T06:08:42.550Z,36.733,-117.2486667,2.714,3.26,ml,25,53,0.2193,0.18,ci,ci37193303,2015-06-30T21:28:52.926Z,"17km NNW of Stovepipe Wells, Calfiornia",earthquake
 2015-06-29T04:46:39.850Z,-24.3063,-67.1255,166.31,4.1,mb,,39,2.351,1.23,us,us10002ma3,2015-06-29T12:49:17.506Z,"82km W of San Antonio de los Cobres, Argentina",earthquake
 2015-06-29T04:15:14.880Z,19.9455,-70.3697,10,4.2,mb,,77,0.616,1.28,us,us10002ma0,2015-06-29T12:17:54.916Z,"22km N of Cabarete, Dominican Republic",earthquake
 2015-06-29T04:12:38.360Z,36.8997,-97.8208,4.17,3.2,mb_lg,,23,0.151,0.63,us,us10002m9z,2015-06-29T08:22:54.642Z,"12km NW of Medford, Oklahoma",earthquake
@@ -95,7 +95,7 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-28T12:53:49.940Z,-32.2164,-178.0186,10,5.2,mb,,74,2.962,1.31,us,us10002m7a,2015-06-28T20:56:23.455Z,"120km SE of L'Esperance Rock, New Zealand",earthquake
 2015-06-28T12:36:30.000Z,60.6421,-151.9833,79.1,3.4,ml,,,,0.84,ak,ak11636373,2015-06-28T21:01:38.401Z,"38km W of Nikiski, Alaska",earthquake
 2015-06-28T11:37:41.140Z,-8.391,116.0147,10,4.3,mb,,134,1.844,0.6,us,us10002m94,2015-06-30T11:43:34.723Z,"9km W of Karangsubagan, Indonesia",earthquake
-2015-06-28T09:15:03.350Z,47.391,-70.0837,9.52,3.3,mb_lg,,180,0.769,0.33,us,us10002m6v,2015-06-28T21:33:25.741Z,"5km NNW of La Pocatiere, Canada",earthquake
+2015-06-28T09:15:03.350Z,47.391,-70.0837,9.52,3.3,mb_lg,,180,0.769,0.33,us,us10002m6v,2015-06-28T21:33:25.741Z,"5km NNW of La Pocatiere, Candaa",earthquake
 2015-06-28T08:54:47.480Z,19.3125,-155.2041667,8.88,3.2,ml,52,102,0.03663,0.09,hv,hv60968306,2015-06-28T21:54:09.601Z,"13km SSE of Volcano, Hawaii",earthquake
 2015-06-28T08:10:10.480Z,19.335,-155.2093333,8.55,5.2,ml,63,74,0.03902,0.09,hv,hv60968241,2015-07-02T08:59:52.588Z,"13km S of Volcano, Hawaii",earthquake
 2015-06-28T02:09:18.000Z,63.3236,-150.5339,139.1,3.1,ml,,,,0.37,ak,ak11635963,2015-06-28T10:11:44.685Z,"79km W of Cantwell, Alaska",earthquake
@@ -214,7 +214,7 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-22T16:37:50.270Z,-7.0146,105.3069,47.53,4.9,mb,,171,2.545,0.68,us,us10002kwp,2015-06-22T20:16:44.004Z,"42km WSW of Tugu Hilir, Indonesia",earthquake
 2015-06-22T15:50:58.920Z,29.5031,131.3631,22.68,4.1,mb,,165,2.148,0.62,us,us10002kw5,2015-06-22T23:53:30.525Z,"140km SSE of Nishinoomote, Japan",earthquake
 2015-06-22T15:35:17.040Z,41.5213,142.1033,58.72,4.9,mb,,83,0.93,0.81,us,us10002kvz,2015-06-23T10:38:26.794Z,"78km ENE of Mutsu, Japan",earthquake
-2015-06-22T11:42:05.540Z,-21.7724,-68.476,175.47,4.9,mb,,35,0.712,0.72,us,us10002ku9,2015-06-22T19:44:48.531Z,"90km NNE of Calama, Chile",earthquake
+2015-06-22T11:42:05.540Z,-21.7724,-68.476,175.47,4.9,mb,,35,0.712,0.72,us,us10002ku9,2015-06-22T19:44:48.531Z,"90km NNE of Claama, Chile",earthquake
 2015-06-22T09:13:40.870Z,-33.8174,-70.3002,104.08,4.5,mb,,58,0.367,0.59,us,us10002kts,2015-06-23T19:45:18.797Z,"34km SE of Puente Alto, Chile",earthquake
 2015-06-22T05:16:20.270Z,36.5737,70.8871,200.17,4.2,mb,,106,0.604,0.89,us,us10002kt7,2015-06-22T13:18:57.276Z,"32km S of Jarm, Afghanistan",earthquake
 2015-06-22T05:04:52.900Z,17.7693,-68.3927,66,3.1,Md,7,277.2,0.74021179,0.63,pr,pr15173003,2015-06-22T13:07:20.734Z,"71km SSE of Boca de Yuma, Dominican Republic",earthquake
@@ -289,7 +289,7 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-19T08:09:53.540Z,26.9338,143.8314,10,5.3,mb,,121,1.478,0.78,us,us10002k6u,2015-06-19T16:12:35.016Z,"161km E of Chichi-shima, Japan",earthquake
 2015-06-19T07:54:32.000Z,63.5525,-147.7652,3,3,ml,,,,0.69,ak,ak11629454,2015-06-26T01:00:48.388Z,"61km ENE of Cantwell, Alaska",earthquake
 2015-06-19T03:18:58.380Z,44.5719,148.2461,69.06,4.7,mb,,139,4.508,0.83,us,us10002k5y,2015-06-19T11:21:24.965Z,"78km SSE of Kuril'sk, Russia",earthquake
-2015-06-19T02:24:37.000Z,63.2741,-150.5183,133.7,3.3,ml,,,,0.56,ak,ak11629374,2015-06-26T01:00:06.251Z,"79km W of Cantwell, Alaska",earthquake
+2015-06-19T02:24:37.000Z,63.2741,-150.5183,133.7,3.3,ml,,,,0.56,ak,ak11629374,2015-06-26T01:00:06.251Z,"79km W of Cnatwell, Alaska",earthquake
 2015-06-19T02:03:47.200Z,51.9024,-179.9834,110.45,4.7,mb,,130,0.69,1.41,us,us10002k5e,2015-07-02T00:05:38.509Z,"29km E of Semisopochnoi Island, Alaska",earthquake
 2015-06-19T01:52:50.630Z,-4.4019,143.3275,122.07,4.5,mb,,83,4.663,0.81,us,us10002k58,2015-06-19T09:55:26.459Z,"56km ESE of Ambunti, Papua New Guinea",earthquake
 2015-06-19T01:30:14.000Z,51.6024,-175.2517,27.2,3.6,ml,,,,0.4,ak,ak11629348,2015-06-26T01:00:28.882Z,"97km SW of Atka, Alaska",earthquake
@@ -339,11 +339,11 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-17T01:35:07.940Z,31.4715,-115.4921667,6,3.14,ml,6,116,0.4257,0.22,ci,ci37401784,2015-06-17T17:04:48.723Z,"89km SSW of Alberto Oviedo Mota, B.C., MX",earthquake
 2015-06-17T00:29:59.050Z,27.9426,85.4981,10,4.3,mb,,77,0.28,1.34,us,us20002qj4,2015-07-01T23:18:26.196Z,"25km N of Nagarkot, Nepal",earthquake
 2015-06-17T00:13:20.150Z,27.7172,85.2959,7.03,4,mb,,167,0.018,0.81,us,us20002qj3,2015-07-01T23:11:03.764Z,"2km NW of Kathmandu, Nepal",earthquake
-2015-06-16T23:52:29.000Z,62.114,-123.998,15,4.1,mb,,,,1.19,us,us20002qit,2015-07-01T22:53:02.726Z,"129km SSW of Wrigley, Canada",earthquake
+2015-06-16T23:52:29.000Z,62.114,-123.998,15,4.1,mb,,,,1.19,us,us20002qit,2015-07-01T22:53:02.726Z,"129km SSW of Wrigley, Cnaada",earthquake
 2015-06-16T23:51:03.680Z,-6.6045,121.4272,14.08,4.2,mb,,91,2.172,1.34,us,us20002qiv,2015-07-01T22:46:40.966Z,"181km SW of Baubau, Indonesia",earthquake
 2015-06-16T23:46:04.240Z,-37.3764,52.1804,10,4.4,mb,,85,16.015,0.79,us,us10002ml6,2015-07-01T22:42:27.391Z,"South Indian Ocean",earthquake
 2015-06-16T23:34:09.110Z,-5.4553,146.2718,135.65,4.3,mb,,78,3.561,1.02,us,us20002qiq,2015-07-02T00:45:51.791Z,"58km ESE of Madang, Papua New Guinea",earthquake
-2015-06-16T21:22:45.580Z,38.3905,-119.3853333,4.06,3.17,ml,80,81,0.121,0.11,nc,nc72467186,2015-06-17T05:25:23.770Z,"20km NW of Bridgeport, California",earthquake
+2015-06-16T21:22:45.580Z,38.3905,-119.3853333,4.06,3.17,ml,80,81,0.121,0.11,nc,nc72467186,2015-06-17T05:25:23.770Z,"20km NW of Bridgeport, Caliofrnia",earthquake
 2015-06-16T19:57:04.390Z,35.6806,140.8211,47.91,4.3,mb,,157,0.75,0.56,us,us20002qfv,2015-06-17T15:34:13.203Z,"5km S of Hasaki, Japan",earthquake
 2015-06-16T17:49:40.850Z,-6.4691,129.9961,159.03,4.5,mb,,100,1.982,0.75,us,us20002qds,2015-06-17T13:36:17.726Z,"219km NW of Saumlaki, Indonesia",earthquake
 2015-06-16T16:25:06.260Z,7.5015,125.7531,52.31,4.4,mb,,117,0.462,0.66,us,us20002qcq,2015-06-17T00:27:41.115Z,"0km ENE of New Leyte, Philippines",earthquake
@@ -353,7 +353,7 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-16T14:46:33.000Z,-32.427,-68.772,136,4.5,mb,,,,1.5,us,us20002qat,2015-06-16T22:49:00.698Z,"51km N of Mendoza, Argentina",earthquake
 2015-06-16T14:44:30.790Z,45.8595,151.9575,35.25,4.6,mb,,173,6.454,0.55,us,us20002qaw,2015-06-16T22:47:14.217Z,"Kuril Islands",earthquake
 2015-06-16T14:16:33.000Z,56.6517,-158.7261,4.8,3.6,ml,,,,0.83,ak,ak11626832,2015-06-26T06:28:23.265Z,"44km N of Chignik Lake, Alaska",earthquake
-2015-06-16T14:13:29.120Z,37.4788333,-118.8225,6.54,3.15,ml,37,76,0.1111,0.05,nc,nc72467021,2015-06-17T02:38:55.137Z,"23km SE of Mammoth Lakes, California",earthquake
+2015-06-16T14:13:29.120Z,37.4788333,-118.8225,6.54,3.15,ml,37,76,0.1111,0.05,nc,nc72467021,2015-06-17T02:38:55.137Z,"23km SE of Mammoth Lakes, Califronia",earthquake
 2015-06-16T13:14:25.730Z,15.9128,-93.3379,108.21,4.8,mb,,121,1.211,0.81,us,us20002q9z,2015-06-16T19:10:25.409Z,"21km ENE of Tres Picos, Mexico",earthquake
 2015-06-16T08:57:17.120Z,19.6189,-70.2961,10,4.3,mb,,77,0.449,0.98,us,us20002q8i,2015-06-16T22:31:54.112Z,"1km SW of Gaspar Hernandez, Dominican Republic",earthquake
 2015-06-16T07:51:02.060Z,-17.246,-66.3122,129.42,3.1,ml,,128,1.985,0.43,us,us20002qgl,2015-06-16T21:33:03.606Z,"22km NW of Cochabamba, Bolivia",earthquake
@@ -399,7 +399,7 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-14T21:54:15.210Z,-11.397,163.2131,43.98,4.7,mb,,83,3.755,0.85,us,us20002psn,2015-06-15T05:56:55.622Z,"175km SE of Kirakira, Solomon Islands",earthquake
 2015-06-14T19:58:50.810Z,2.5506,128.4364,233.72,4.6,mb,,162,2.065,0.64,us,us20002pse,2015-06-15T04:01:32.858Z,"102km NNE of Tobelo, Indonesia",earthquake
 2015-06-14T19:10:43.800Z,36.2859,-97.5324,5,3.6,mb_lg,,61,0.424,0.35,us,us20002prz,2015-06-15T14:30:58.593Z,"21km W of Perry, Oklahoma",earthquake
-2015-06-14T18:34:52.280Z,35.7216667,-117.599,9.66,3.63,ml,42,42,0.09388,0.16,ci,ci37400032,2015-06-18T07:38:27.866Z,"13km NNE of Ridgecrest, California",earthquake
+2015-06-14T18:34:52.280Z,35.7216667,-117.599,9.66,3.63,ml,42,42,0.09388,0.16,ci,ci37400032,2015-06-18T07:38:27.866Z,"13km NNE of Ridgecrest, Cailfornia",earthquake
 2015-06-14T18:17:08.980Z,36.2871,-97.5233,5,4,mwr,,61,0.43,0.29,us,us20002prt,2015-06-14T22:37:38.825Z,"21km W of Perry, Oklahoma",earthquake
 2015-06-14T13:12:22.320Z,36.5227,70.2426,203.94,4.1,mb,,126,0.658,0.92,us,us20002pr0,2015-06-14T21:14:55.538Z,"34km E of Farkhar, Afghanistan",earthquake
 2015-06-14T11:49:16.260Z,-11.4187,163.3566,34.18,4.4,mb,,115,3.888,0.57,us,us10002lxd,2015-07-03T08:48:39.391Z,"189km SE of Kirakira, Solomon Islands",earthquake
@@ -420,7 +420,7 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-14T01:42:00.000Z,-32.925,-71.38,46.7,3.7,ml,,,,0.56,us,us20002q4g,2015-06-16T00:23:12.284Z,"11km WSW of Quillota, Chile",earthquake
 2015-06-14T01:02:06.970Z,44.4166,140.4856,254.38,4,mb,,54,1.543,0.55,us,us20002pp6,2015-06-14T09:04:35.268Z,"99km SW of Rishiri Town, Japan",earthquake
 2015-06-14T00:10:25.000Z,54.4183,-161.9911,10,3.2,ml,,,,0.57,ak,ak11625436,2015-06-22T21:48:48.910Z,"97km SSE of Cold Bay, Alaska",earthquake
-2015-06-13T23:57:53.250Z,54.2331,-116.6275,10,4,mb,,136,5.45,0.69,us,us20002pp4,2015-06-14T08:00:21.349Z,"21km SSE of Fox Creek, Canada",earthquake
+2015-06-13T23:57:53.250Z,54.2331,-116.6275,10,4,mb,,136,5.45,0.69,us,us20002pp4,2015-06-14T08:00:21.349Z,"21km SSE of Fox Creek, Candaa",earthquake
 2015-06-13T23:45:44.650Z,-0.2713,124.4433,68.19,5,mb,,38,1.838,0.89,us,us20002pnz,2015-06-14T07:48:26.455Z,"88km SE of Molibagu, Indonesia",earthquake
 2015-06-13T22:59:13.000Z,53.7928,-166.3831,77.6,3.2,ml,,,,0.34,ak,ak11625417,2015-06-18T00:34:04.639Z,"13km SE of Unalaska, Alaska",earthquake
 2015-06-13T22:38:34.070Z,45.2943,141.9995,300.3,4.2,mb,,58,1.249,1.2,us,us20002pnv,2015-06-14T06:41:37.527Z,"16km ESE of Makubetsu, Japan",earthquake
@@ -521,11 +521,11 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 2015-06-10T16:15:46.180Z,39.6101,143.4228,31.57,4,mb,,151,2.41,0.84,us,us20002nne,2015-06-24T05:10:18.544Z,"126km E of Miyako, Japan",earthquake
 2015-06-10T15:57:52.460Z,5.7705,127.029,115.97,4.1,mb,,125,4.976,0.85,us,us10002kv1,2015-06-24T05:04:04.352Z,"114km SE of Pondaguitan, Philippines",earthquake
 2015-06-10T15:46:47.250Z,-3.6942,152.1739,10,5,mb,,90,0.493,1.01,us,us20002nn2,2015-06-24T04:52:03.816Z,"28km W of Namatanai, Papua New Guinea",earthquake
-2015-06-10T15:33:58.070Z,-22.4531,-68.6265,127.6,4.1,mb,,41,0.307,0.85,us,us20002nns,2015-06-24T04:39:37.337Z,"31km E of Calama, Chile",earthquake
+2015-06-10T15:33:58.070Z,-22.4531,-68.6265,127.6,4.1,mb,,41,0.307,0.85,us,us20002nns,2015-06-24T04:39:37.337Z,"31km E of calama, Chile",earthquake
 2015-06-10T15:33:50.000Z,56.6539,-156.4111,69.3,3.3,ml,,,,0.8,ak,ak11622703,2015-06-24T04:25:01.040Z,"104km NNW of Chirikof Island, Alaska",earthquake
 2015-06-10T15:17:59.430Z,-50.6218,-72.2806,16.97,4.2,mb,,150,0.65,0.95,us,us10002kv0,2015-06-24T04:14:12.890Z,"31km S of El Calafate, Argentina",earthquake
 2015-06-10T15:06:41.600Z,-20.5509,-71.0464,8.29,4.1,mwr,,112,0.811,0.92,us,us20002nq1,2015-06-24T04:06:42.430Z,"101km WSW of Iquique, Chile",earthquake
-2015-06-10T13:52:08.840Z,-22.4612,-68.434,124,6,mww,,19,0.466,0.91,us,us20002nkt,2015-06-11T19:33:14.733Z,"51km E of Calama, Chile",earthquake
+2015-06-10T13:52:08.840Z,-22.4612,-68.434,124,6,mww,,19,0.466,0.91,us,us20002nkt,2015-06-11T19:33:14.733Z,"51km E of calama, Chile",earthquake
 2015-06-10T13:42:29.250Z,-24.4594,-67.0458,177.42,4.6,mb,,26,2.416,1.01,us,us20002nkm,2015-06-10T21:45:29.041Z,"78km WSW of San Antonio de los Cobres, Argentina",earthquake
 2015-06-10T13:14:30.000Z,56.4981,-156.6899,71.4,3.7,ml,,,,0.7,ak,ak11622594,2015-06-16T21:28:07.766Z,"100km NW of Chirikof Island, Alaska",earthquake
 2015-06-10T13:05:08.940Z,36.288,-97.518,8,3.4,mwr,,,,0.45,us,us20002nk3,2015-06-11T20:18:18.155Z,"20km W of Perry, Oklahoma",earthquake
