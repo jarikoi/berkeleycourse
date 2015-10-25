@@ -1,0 +1,26 @@
+Grade the sections as follows:
+
+1) correct folder structure: 1 point
+
+Section 1: Loading and modeling:
+2) load_data_lake.sh file present, 1 point
+3) load_data_lake.sh runs without errors, 5 points
+4) load_data_lake.sh places 2 or more files in HDFS, 5 points
+5) hive_base_ddl.sql file present, 1 point
+6) 2 or more tables created in hive_base_ddl, 3 points
+7) hive_base_ddl.sql runs without error, creates all defined tables: 6 points
+8) ER diagram present: 5 points
+Total points in this section: 26
+
+Section 2: Transforming
+9) One file per entity in the ER diagram: 3 points, max 3
+10) Each file runs correctly (as sql or python): 3 points per file, max 9
+11) Each file creates a table that matches the entity in the ER diagram: 5 points per file, max 15
+Total points in this section: 27
+
+Section 3: Investigations
+12) text and executable files per question: 1 point per file, 8 max
+13) each executable runs correctly and produces output: 3 points each, 12 points max
+14) each text file contains the same output as the executable produces
+AND the rationale for the answer is sound: 3 points each, 12 max
+Total points in this section: 32

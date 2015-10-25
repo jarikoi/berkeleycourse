@@ -1,0 +1,11 @@
+import numpy as np
+hospitals = sqlContext.read.parquet("/user/hive/warehouse/hospital")
+print "hospitals", hospitals.count()
+procs = sqlContext.read.parquet("/user/hive/warehouse/procedures")
+print "procs", procs.count()
+surveys = sqlContext.read.parquet("/user/hive/warehouse/surveys")
+print "surveys", surveys.count()
+avg_proc_score = procs.groupBy(procs.providerid).avg("relative_score").withColumnRenamed("avg(relative_score)","proc_score")
+avg_survey_score = surveys.groupBy(surveys.providerid).avg("base_score").withColumnRenamed("avg(base_score)","surv_score")
+procs_and_surveys = avg_proc_score.join(avg_survey_score, "providerid")
+print procs_and_surveys.corr("proc_score", "surv_score")
