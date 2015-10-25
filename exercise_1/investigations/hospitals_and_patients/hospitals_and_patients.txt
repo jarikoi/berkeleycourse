@@ -1,0 +1,7 @@
+A simple Pearson's correlation between average hospital procedure score and
+average hospital survey score should give us an indication if these are
+strongly linked.
+
+Computing Pearson's we find a value of: 0.0968424687727
+This suggests that there is not a strong correlation between survey responses
+and overall quality of procedures at a hospital.

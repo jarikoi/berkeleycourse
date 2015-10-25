@@ -1,0 +1,14 @@
+We can assume that variance for each procedure across the whole dataset
+is a reasonable measure for procedure variability across hospitals.
+
+measureid	measurename	variance
+AMI_7a	Fibrinolytic Therapy Received Within 30 Minutes Of Hospital Arrival	0.06617877025082881
+STK_4	Thrombolytic Therapy	0.048198665882944344
+OP_23	Head CT results	0.047718888614639125
+OP_2	Fibrinolytic Therapy Received Within 30 Minutes of ED Arrival	0.032574632352941175
+IMM_3_FAC_ADHPCT	Healthcare workers given influenza vaccination	0.026725866979161725
+VTE_5	Warfarin therapy discharge instructions	0.026578796126890944
+VTE_1	Venous thromboembolism prophylaxis	0.023278828961700797
+STK_8	Stroke Education	0.01963715324087369
+OP_3b	Median Time to Transfer to Another Facility for Acute Coronary Intervention	0.017793056998247497
+CAC_3	Home Management Plan of Care Document	0.016177604166666675
