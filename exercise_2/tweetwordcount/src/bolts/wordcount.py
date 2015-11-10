@@ -2,7 +2,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from collections import Counter
 from streamparse.bolt import Bolt
-from redis import StrictRedis
+
 
 
 class WordCounter(Bolt):
@@ -14,8 +14,12 @@ class WordCounter(Bolt):
     def process(self, tup):
         word = tup.values[0]
 
-        # Increment the word count in redis
-        self.redis.zincrby("tweetwordcount", word)
+        # Write codes to increment the word count in Postgres
+        # Use psycopg to interact with Postgres
+        # Database name: Tcount 
+        # Table name: Tweetwordcount 
+        # you need to create both the database and the table in advance.
+        
 
         # Increment the local count
         self.counts[word] += 1
