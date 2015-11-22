@@ -37,7 +37,7 @@ conn.commit()
 #Update
 #Assuming you are passing the tuple (uWord, uCount) as an argument
 cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount)")
-conn.commit
+conn.commit()
 
 #Select
 cur.execute("SELECT word, count from Tweetwordcount")
@@ -45,6 +45,6 @@ records = cur.fetchall()
 for rec in records:
    print "word = ", rec[0]
    print "count = ", rec[1], "\n"
-conn.commit
+conn.commit()
 
 conn.close()
