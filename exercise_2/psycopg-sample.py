@@ -36,7 +36,7 @@ conn.commit()
 
 #Update
 #Assuming you are passing the tuple (uWord, uCount) as an argument
-cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount)")
+cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
 conn.commit()
 
 #Select
