@@ -1,10 +1,8 @@
-import sys
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 sc = SparkContext(appName="PythonStreamingStatefulNetworkWordCount")
 ssc = StreamingContext(sc, 1)
-jari koisterssc.checkpoint("checkpoint")
-initialStateRDD = sc.parallelize([(u'hello', 1), (u'world', 1)])
+ssc.checkpoint("checkpoint")
 def updateFunc(new_values, last_sum):
         return sum(new_values) + (last_sum or 0)
 lines = ssc.socketTextStream("localhost", 9999)
