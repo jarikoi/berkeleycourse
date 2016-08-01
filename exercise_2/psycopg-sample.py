@@ -7,7 +7,7 @@
 
 import psycopg2
 
-conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
+conn = psycopg2.connect(database="postgres", user="postgres", password="pass", host="localhost", port="5432")
 
 #Create the Database
 
@@ -15,6 +15,7 @@ try:
     cur = conn.cursor()
     cur.execute("CREATE DATABASE Tcount")
     cur.close()
+    conn.commit()
     conn.close()
 except:
     print "Could not create Tcount"​
