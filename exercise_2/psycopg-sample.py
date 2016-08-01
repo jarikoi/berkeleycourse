@@ -20,7 +20,9 @@ try:
 except:
     print "Could not create Tcount"​
 
+#Connecting to Tcount
 
+conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
 
 #Create a Table
 #The first step is to create a cursor. 
