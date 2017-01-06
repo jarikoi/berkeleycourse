@@ -81,11 +81,13 @@ Load the data using the `\i` command. Starting a line with `\i` runs `.sql` scri
   \i pagila-0.10.1/pagila-data.sql
   ```
 8. Check to see if it worked:
+
   At this point the data should be loaded. 
   Examine the database schema by typing:
   ```bash
   \dt
   ```
+  
 Examine the schema of a table using the `\d` command
   ```bash
   \d <table name>
