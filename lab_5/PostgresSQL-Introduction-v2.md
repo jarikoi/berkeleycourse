@@ -35,61 +35,73 @@ We need to setup an EC2 instance and make sure that PostgreSQL is up and running
   ```
   
 4. If not, change your current path to /data directory
-```bash
-cd /data
-``` 
+  ```bash
+  cd /data
+  ``` 
 and start Postgres 
-```bash
-/data/start_postgres.sh
-```
+  ```bash
+  /data/start_postgres.sh
+  ```
 
 ## Step 2. Getting the Data
   
 1. We need some data in order to create a database, schema and, ultimately, query. The data we'll consider is a toy dataset called "DVD rental".
   
 2. Navigate to the /data directory on your AWS instance and download the Pagila data as follows:
-```bash
-wget -O pagila.zip http://pgfoundry.org/frs/download.php/1719/pagila-0.10.1.zip
-```
+  ```bash
+  wget -O pagila.zip http://pgfoundry.org/frs/download.php/1719/pagila-0.10.1.zip
+  ```
 
 3. Unzip the data: 
-```bash
-unzip pagila.zip
-```
+  ```bash 
+  unzip pagila.zip
+  ```
 
 4. Connecting to the PostgreSQL instance:
   Log into postgres as the postgres user: 
-  ```psql -U postgres```
+  ```bash
+  psql -U postgres
+  ```
 
 5. Create a database:
-```create database dvdrental;```
+  ```bash
+  create database dvdrental;
+  ```
 
 6. Connect to the database:
-```\c dvdrental```
+  ```bash
+  \c dvdrental
+  ```
 
 7. Import the data:
 Load the data using the `\i` command. Starting a line with `\i` runs `.sql` scripts in Postgres.
-  ```
+  ```bash
   \i pagila-0.10.1/pagila-schema.sql
   \i pagila-0.10.1/pagila-insert-data.sql
   \i pagila-0.10.1/pagila-data.sql
   ```
 8. Check to see if it worked:
-At this point the data should be loaded. 
-Examine the database schema by typing:
-```\dt```
+  At this point the data should be loaded. 
+  Examine the database schema by typing:
+  ```bash
+  \dt
+  ```
 Examine the schema of a table using the `\d` command
-```\d <table name>```
+  ```bash
+  \d <table name>
+  ```
 
 > Question 1: What is the output of \dt?
 
 > Question 2: What is the schema for the customer table?
 
 
-##Step 3. Running Queries and Understanding EXPLAIN plans
+## Step 3. Running Queries and Understanding EXPLAIN plans
 
 We want to understand not only what queries we can issue against data, but also how that query maps to an execution plan. For each of the following sections, run the queries provided, and generate their explain plans using: 
-```EXPLAIN <sql query here>```
+  ```bash
+  EXPLAIN <sql query here>
+  ```
 
 Run the following simple queries, then generate their explain plans.
 
