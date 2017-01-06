@@ -88,7 +88,7 @@ Load the data using the `\i` command. Starting a line with `\i` runs `.sql` scri
   \dt
   ```
   
-Examine the schema of a table using the `\d` command
+  Examine the schema of a table using the `\d` command
   ```bash
   \d <table name>
   ```
@@ -108,9 +108,9 @@ We want to understand not only what queries we can issue against data, but also 
 Run the following simple queries, then generate their explain plans.
 
 1. **Projection:**
-```sql
-   SELECT customer_id, first_name, last_name FROM customer;
-```
+  ```sql
+  SELECT customer_id, first_name, last_name FROM customer;
+  ```
 1. **Projection and Selection #1:**
   ```sql
   SELECT customer_id,
