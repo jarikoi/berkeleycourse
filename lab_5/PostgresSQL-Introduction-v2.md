@@ -33,7 +33,9 @@ We need to setup an EC2 instance and make sure that PostgreSQL is up and running
   ```ps auxw | grep postgres```
   
 4. If not, change your current path to /data directory
-```cd /data``` 
+```bash
+cd /data
+``` 
 and start Postgres 
 ```/data/start_postgres.sh```
 
