@@ -30,26 +30,32 @@ We need to setup an EC2 instance and make sure that PostgreSQL is up and running
 2. Attach your EBS volume from Lab 2. Note that PostgreSQL should be installed after you finish step 3.4 of Lab 2
   
 3. Check whether PostgreSQL is up and running: 
-  ```ps auxw | grep postgres```
+  ```bash
+  ps auxw | grep postgres
+  ```
   
 4. If not, change your current path to /data directory
 ```bash
 cd /data
 ``` 
 and start Postgres 
-```/data/start_postgres.sh```
+```bash
+/data/start_postgres.sh
+```
 
-##Step 2. Getting the Data
+## Step 2. Getting the Data
   
 1. We need some data in order to create a database, schema and, ultimately, query. The data we'll consider is a toy dataset called "DVD rental".
   
 2. Navigate to the /data directory on your AWS instance and download the Pagila data as follows:
-```
+```bash
 wget -O pagila.zip http://pgfoundry.org/frs/download.php/1719/pagila-0.10.1.zip
 ```
 
 3. Unzip the data: 
-```unzip pagila.zip```
+```bash
+unzip pagila.zip
+```
 
 4. Connecting to the PostgreSQL instance:
   Log into postgres as the postgres user: 
