@@ -108,10 +108,12 @@ We want to understand not only what queries we can issue against data, but also 
 Run the following simple queries, then generate their explain plans.
 
 1. **Projection:**
+
   ```sql
   SELECT customer_id, first_name, last_name FROM customer;
   ```
 1. **Projection and Selection #1:**
+
   ```sql
   SELECT customer_id,
          amount,
@@ -120,7 +122,9 @@ Run the following simple queries, then generate their explain plans.
   WHERE amount <= 1
     OR amount >= 8;
   ```
+  
 1. **Projection and Selection #2:**
+
 ```sql
 SELECT customer_id,
        payment_id,
