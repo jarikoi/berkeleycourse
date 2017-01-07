@@ -134,8 +134,9 @@ WHERE amount BETWEEN 5 AND 9;
 ```
 > Question 3: What similarities do you see in the explain plains for these 3 queries?
 
-1. **Merging Data: UNIONs:**
+4. **Merging Data: UNIONs:**
 Run the following 2 statements: 
+
 Union of 2 tables:
   ```sql
   SELECT u.customer_id,
@@ -158,22 +159,24 @@ Partition a Table:
   ```
 > Question 4: What is the difference between the plans for the Partitioned table and the union query? Why do you think this difference exists?
 
-1. **Merging Data: JOINs:**
-```sql
-SELECT customer.customer_id,
-       first_name,
-       last_name,
-       email,
-       amount,
-       payment_date
-FROM customer
-INNER JOIN payment ON payment.customer_id = customer.customer_id;
-```
+5. **Merging Data: JOINs:**
+  ```sql
+  SELECT customer.customer_id,
+         first_name,
+         last_name,
+         email,
+         amount,
+         payment_date
+  FROM customer
+  INNER JOIN payment ON payment.customer_id = customer.customer_id;
+  ```
 > Question 5: What join algorithm is used for the inner join?
 
-1. Finally, disconnect from postgres:
-```\q```
+6. Finally, disconnect from postgres:
+  ```bash
+  \q
+  ```
 
-##Submissions
+## Submissions
 
 Submit your answers to the questions through ISVC as a text file, docx file, or PDF.
