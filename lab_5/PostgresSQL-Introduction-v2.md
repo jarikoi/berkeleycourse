@@ -1,4 +1,4 @@
-#MIDS W205
+# MIDS W205
 
 | **Lab #** | 5 | **Lab Title** | Working with Relational Databases |
 |---|---|---|---|
@@ -6,7 +6,7 @@
 | **Last Updated** | 2/14/16 | **Expected duration** | 60 min |
 
 
-##Introduction, Resources
+## Introduction, Resources
 
 While our initial investigations have dealt with Hive and SparkSQL, often as a Data Scientist, you will encounter relational databases like PostgreSQL. In this lab, we will learn about the following:
 
