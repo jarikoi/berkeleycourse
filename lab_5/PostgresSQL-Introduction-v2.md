@@ -125,19 +125,19 @@ Run the following simple queries, then generate their explain plans.
   
 1. **Projection and Selection #2:**
 
-```sql
-SELECT customer_id,
-       payment_id,
-       amount
-FROM payment
-WHERE amount BETWEEN 5 AND 9;
-```
-> Question 3: What similarities do you see in the explain plains for these 3 queries?
+  ```sql
+  SELECT customer_id,
+         payment_id,
+         amount
+  FROM payment
+  WHERE amount BETWEEN 5 AND 9;
+  ```
+  > Question 3: What similarities do you see in the explain plains for these 3 queries?
 
 4. **Merging Data: UNIONs:**
-Run the following 2 statements: 
+  Run the following 2 statements: 
 
-Union of 2 tables:
+  Union of 2 tables:
   ```sql
   SELECT u.customer_id,
          sum(u.amount)
@@ -149,7 +149,7 @@ Union of 2 tables:
   WHERE u.payment_date <= '2007-02-01 00:00:00'::TIMESTAMP WITHOUT time ZONE
   GROUP BY u.customer_id ;
   ```
-Partition a Table:
+  Partition a Table:
   ```sql
   SELECT customer_id,
   sum(amount)
@@ -157,7 +157,7 @@ Partition a Table:
   WHERE payment_date <= '2007-02-01 00:00:00'::TIMESTAMP WITHOUT time ZONE
   GROUP BY customer_id ;
   ```
-> Question 4: What is the difference between the plans for the Partitioned table and the union query? Why do you think this difference exists?
+  > Question 4: What is the difference between the plans for the Partitioned table and the union query? Why do you think this difference exists?
 
 5. **Merging Data: JOINs:**
   ```sql
