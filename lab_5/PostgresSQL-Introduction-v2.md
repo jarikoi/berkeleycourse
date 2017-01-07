@@ -40,7 +40,7 @@ We need to setup an EC2 instance and make sure that PostgreSQL is up and running
   ``` 
 and start Postgres 
   ```bash
-  /data/start_postgres.sh
+  start_postgres.sh
   ```
 
 ## Step 2. Getting the Data
