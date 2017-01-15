@@ -53,9 +53,9 @@ lab. If you have problems, you can skip the Spark SQL CLI portion (Step
 5 and Step 6), but you still need to try the programmatic way of using
 Spark SQL shown in Step 7.
 
-+--------------------------------------+--------------------------------------+
-| **Resource**                         | **What**                             |
-+======================================+======================================+
+
+**Resource**                           | **What**    
+---------------------------------------|----------------------------------------
 | Spark download (for your own         | http://spark.apache.org/downloads.ht |
 | installation)                        | ml                                   |
 +--------------------------------------+--------------------------------------+
