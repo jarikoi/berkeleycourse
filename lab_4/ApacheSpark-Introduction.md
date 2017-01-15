@@ -1,7 +1,13 @@
-  **Lab \#**              4         **Lab Title**           An Introduction to Apache Spark and Spark SQL.
-  ----------------------- --------- ----------------------- --------------------------------------------------
-  **Related Module(s)**   6         **Goal**                Get you started on Spark, Pyspark, and Spark SQL
-  **Last Updated**        9/29/15   **Expected duration**   60-90 minutes
+
+##Lab #              4       
+
+##An Introduction to Apache Spark and Spark SQL.
+
+- Related Module(s):  6
+- Goal:  Get you started on Spark, Pyspark, and Spark SQL
+- Last Updated:  1/7/16
+- Expected duration:  60-90 minutes
+
 
 Introduction
 ============
