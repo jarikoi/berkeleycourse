@@ -1,7 +1,13 @@
-  **Lab \#**              4         **Lab Title**           An Introduction to Apache Spark and Spark SQL.
-  ----------------------- --------- ----------------------- --------------------------------------------------
-  **Related Module(s)**   6         **Goal**                Get you started on Spark, Pyspark, and Spark SQL
-  **Last Updated**        9/29/15   **Expected duration**   60-90 minutes
+
+##Lab #              4       
+
+##An Introduction to Apache Spark and Spark SQL.
+
+- Related Module(s):  6
+- Goal:  Get you started on Spark, Pyspark, and Spark SQL
+- Last Updated:  1/7/16
+- Expected duration:  60-90 minutes
+
 
 Introduction
 ============
@@ -19,8 +25,7 @@ built on top of it. There is a framework for querying structured data
 streaming), a machine-learning framework, and so on. In this lab you
 will be learning about basic RDDs as well as about Spark SQL.
 
-> ![](media/image1.png){width="5.013888888888889in"
-> height="2.4305555555555554in"}
+![Spark Stack](/images/Picture1.png?raw=true)
 
 Spark SQL assumes that data are structured according to a relational
 model, which enables us to use SQL to query the data. It provides a
@@ -105,25 +110,26 @@ shell.
 
 Echo your SPARK\_HOME environment variable to see where your Spark is
 installed.
-
-\$ echo \$SPARK\_HOME
+```
+$ echo $SPARK_HOME
+```
 
 You should see something like the below. Observe that this may differ
 depending on were you are running this lab.
-
-\$ echo \$SPARK\_HOME
-
+```
+$ echo $SPARK_HOME
 /user/lib/spark
-
+```
 Navigate to that directory, and examine the contents.
+```
+$ cd $SPARK_HOME
 
-\$ cd \$SPARK\_HOME
-
-\$ ls
+$ ls
 
 CHANGES.txt NOTICE README.md bin data ec2 lib python
 
 LICENSE R RELEASE conf derby.log examples old sbin
+```
 
 If you look in bin you will see spark-shell, pyspark, and other tools
 for running and managing Spark.
@@ -131,13 +137,13 @@ for running and managing Spark.
 In your shell profile (often .bash\_profile), you may see the following
 lines that indicate that the Spark commands are in your shell execution
 path.
-
+```
 export SPARK=/usr/lib/spark
 
-export SPARK\_HOME=\$SPARK
+export SPARK_HOME=$SPARK
 
-export PATH=\$SPARK/bin:\$PATH
-
+export PATH=$SPARK/bin:$PATH
+```
 You can confirm that your shell can find them by running the Unix/Linux
 that command.
 
