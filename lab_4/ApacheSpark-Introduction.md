@@ -111,25 +111,26 @@ shell.
 
 Echo your SPARK\_HOME environment variable to see where your Spark is
 installed.
-
-\$ echo \$SPARK\_HOME
+```
+$ echo $SPARK_HOME
+```
 
 You should see something like the below. Observe that this may differ
 depending on were you are running this lab.
-
-\$ echo \$SPARK\_HOME
-
+```
+$ echo $SPARK_HOME
 /user/lib/spark
-
+```
 Navigate to that directory, and examine the contents.
+```
+$ cd $SPARK_HOME
 
-\$ cd \$SPARK\_HOME
-
-\$ ls
+$ ls
 
 CHANGES.txt NOTICE README.md bin data ec2 lib python
 
 LICENSE R RELEASE conf derby.log examples old sbin
+```
 
 If you look in bin you will see spark-shell, pyspark, and other tools
 for running and managing Spark.
@@ -137,13 +138,13 @@ for running and managing Spark.
 In your shell profile (often .bash\_profile), you may see the following
 lines that indicate that the Spark commands are in your shell execution
 path.
-
+```
 export SPARK=/usr/lib/spark
 
-export SPARK\_HOME=\$SPARK
+export SPARK_HOME=$SPARK
 
-export PATH=\$SPARK/bin:\$PATH
-
+export PATH=$SPARK/bin:$PATH
+```
 You can confirm that your shell can find them by running the Unix/Linux
 that command.
 
