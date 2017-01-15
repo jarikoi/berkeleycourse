@@ -25,7 +25,7 @@ built on top of it. There is a framework for querying structured data
 streaming), a machine-learning framework, and so on. In this lab you
 will be learning about basic RDDs as well as about Spark SQL.
 
-![Spark Stack](/images/lab_4/Picture1.png?raw=true)
+![Spark Stack](/blob/master/images/lab_4/Picture1.png?raw=true)
 
 Spark SQL assumes that data are structured according to a relational
 model, which enables us to use SQL to query the data. It provides a
@@ -62,7 +62,7 @@ https://spark.apache.org/docs/1.1.0/sql-programming-guide.html | Guide for using
 https://spark.apache.org/docs/latest/sql-programming-guide.html#running-the-spark-sql-cli| Guide to Spark SQL CLI Shell.
 https://spark.apache.org/docs/0.9.0/python-programming-guide.html | Python Spark programming guide. For operations on RDD’s see the Scala programming guide.
 https://spark.apache.org/docs/0.9.0/scala-programming-guide.html |This is the scala programming guide. Look here for transformations and actions on Spark RDD’s.
-http://spark.apache.org/docs/ latest/api/scala/index.html#org.apache.spark.SparkContext | Programming guide for the Spark Context object. Here you can find actions available on the Spark Contexts.
+http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkContext | Programming guide for the Spark Context object. Here you can find actions available on the Spark Contexts.
 
 
 <span id="h.o59uwx6sscy1" class="anchor"></span>
