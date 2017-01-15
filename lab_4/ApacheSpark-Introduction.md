@@ -25,8 +25,7 @@ built on top of it. There is a framework for querying structured data
 streaming), a machine-learning framework, and so on. In this lab you
 will be learning about basic RDDs as well as about Spark SQL.
 
-> ![](media/image1.png){width="5.013888888888889in"
-> height="2.4305555555555554in"}
+![](images/Picture1.png){width="5.013888888888889in" height="2.4305555555555554in"}
 
 Spark SQL assumes that data are structured according to a relational
 model, which enables us to use SQL to query the data. It provides a
