@@ -57,39 +57,13 @@ Spark SQL shown in Step 7.
 **Resource**                           | **What**    
 ---------------------------------------|--------------------------------------
 Spark download (for your own installation) | http://spark.apache.org/downloads.html 
-                                                           
----------------------------------------|--------------------------------------
-| http://spark.apache.org/docs/\       | This guide shows each of the         |
-| latest/programming-guide.html        | features in each of Spark’s          |
-|                                      | supported languages. It is easiest   |
-|                                      | to follow if you launch Spark’s      |
-|                                      | interactive shell.                   |
-|                                      |                                      |
-|                                      | This guide includes references to    |
-|                                      | the basic commands you can perform   |
-|                                      | on RDDs, such as filter records,     |
-|                                      | count records, and join of datasets. |
----------------------------------------|--------------------------------------
-| https://spark.apache.org/docs/1.1.0/ | Guide for using Spark SQL            |
-| sql-programming-guide.html           | programmatically.                    |
----------------------------------------|--------------------------------------
-| https://spark.apache.org/docs/\      | Guide to Spark SQL CLI Shell.        |
-| latest/sql-programming-guide.html\#r |                                      |
-| unning-the-spark-sql-cli             |                                      |
----------------------------------------|--------------------------------------
-| https://spark.apache.org/docs/0.9.0/ | Python Spark programming guide. For  |
-| python-programming-guide.html        | operations on RDD’s see the Scala    |
-|                                      | programming guide.                   |
----------------------------------------|--------------------------------------
-| https://spark.apache.org/docs/0.9.0/ | This is the scala programming guide. |
-| scala-programming-guide.html         | Look here for transformations and    |
-|                                      | actions on Spark RDD’s.              |
----------------------------------------|--------------------------------------
-| http://spark.apache.org/docs/\       | Programming guide for the Spark      |
-| latest/api/scala/index.html\#org.apa | Context object. Here you can find    |
-| che.spark.SparkContext               | actions available on the Spark       |
-|                                      | Contexts.                            |
----------------------------------------|--------------------------------------
+http://spark.apache.org/docs/latest/programming-guide.html | This guide shows each of the features in each of Spark’s supported languages. It is easiest to follow if you launch Spark’s interactive shell. This guide includes references to the basic commands you can perform on RDDs, such as filter records, count records, and join of datasets.
+https://spark.apache.org/docs/1.1.0/sql-programming-guide.html | Guide for using Spark SQL programmatically.
+https://spark.apache.org/docs/latest/sql-programming-guide.html#running-the-spark-sql-cli| Guide to Spark SQL CLI Shell.
+https://spark.apache.org/docs/0.9.0/python-programming-guide.html | Python Spark programming guide. For operations on RDD’s see the Scala programming guide.
+https://spark.apache.org/docs/0.9.0/scala-programming-guide.html |This is the scala programming guide. Look here for transformations and actions on Spark RDD’s.
+http://spark.apache.org/docs/ latest/api/scala/index.html#org.apache.spark.SparkContext | Programming guide for the Spark Context object. Here you can find actions available on the Spark Contexts.
+
 
 <span id="h.o59uwx6sscy1" class="anchor"></span>
 
