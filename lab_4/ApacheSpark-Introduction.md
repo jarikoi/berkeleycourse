@@ -54,8 +54,8 @@ lab. If you have problems, you can skip the Spark SQL CLI portion (Step
 Spark SQL shown in Step 7.
 
 
-**Resource**                           | **What**    
----------------------------------------|--------------------------------------
+**Resource**                  | **What**    
+------------------------------|------------------------------------------------
 Spark download (for your own installation) | http://spark.apache.org/downloads.html 
 http://spark.apache.org/docs/latest/programming-guide.html | This guide shows each of the features in each of Spark’s supported languages. It is easiest to follow if you launch Spark’s interactive shell. This guide includes references to the basic commands you can perform on RDDs, such as filter records, count records, and join of datasets.
 https://spark.apache.org/docs/1.1.0/sql-programming-guide.html | Guide for using Spark SQL programmatically.
