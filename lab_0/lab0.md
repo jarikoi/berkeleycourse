@@ -1,8 +1,13 @@
-# MIDS W205
+# MIDS W205 : Lab 0
+  
+|                      |        |                     |                                                  |
+|----------------------|--------|---------------------|--------------------------------------------------|
+| *Lab*                | 0      | *Lab Title*         | A Brief Introduction to Linux and Debugging   |
+| *Related Modules(s)* | -      | *Goal*              | Get you started on Linux, Python etc. |
+| *Last Updated*       | 1/7/17 | *Expected Duration* | 60-90 minutes                                    |
 
-##Lab #              0     
 
-## A Brief Introduction to Linux and Debugging
+## Introduction
 
 In this optional lab we will go over some basics of a Linux system and coding in python and applications based on Java such as Hadoop and Spark. It is highly recommended if you don't use Linux in your day-to-day work that you review this lab.
 
