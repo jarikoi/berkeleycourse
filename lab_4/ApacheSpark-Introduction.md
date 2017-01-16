@@ -84,7 +84,7 @@ manageable chunks to upload it. Your instructor may provide you with an
 alternative way of getting the same dataset.
 
 First, if an example starts with the “\$” prompt, it is run in the Linux
-shell. If it starts with the “&gt;&gt;&gt;” prompt, it is run in pyspark
+shell. If it starts with the “>>>” prompt, it is run in pyspark
 shell.
 
 Echo your SPARK\_HOME environment variable to see where your Spark is
@@ -173,7 +173,7 @@ concatenate the split files into one file. The original file was a
 compressed CSV file, so we name it appropriately. Next we uncompress it
 to get the original CSV file.
 ```
-$ cat x* &gt; Crimes_-_2001_to_present.csv.gz
+$ cat x* > Crimes_-_2001_to_present.csv.gz
 
 $ gunzip Crimes_-_2001_to_present.csv.gz
 ```
@@ -248,20 +248,20 @@ In the pyspark shell you can use Python instructions and create RDDs.
 You can also apply operations on RDDs. Create a Python variable with
 some value using the following command (this is plain old Python):
 ```
-&gt;&gt;&gt; x = \[1,2,3,4,5,6,7,8,9\];
+>>> x = \[1,2,3,4,5,6,7,8,9\];
 
-&gt;&gt;&gt; print x
+>>> print x
 
 \[1, 2, 3, 4, 5, 6, 7, 8, 9\]
 
-&gt;&gt;&gt; len(x)
+>>> len(x)
 
 9
 ```
 A Spark context is the “object” you use to refer to the Spark cluster.
 Type sc to verify you have one already in your Python shell:
 ```
-&gt;&gt;&gt; sc
+>>> sc
 
 &lt;pyspark.context.SparkContext object at 0x1063b3410&gt;
 ```
@@ -269,9 +269,9 @@ So far you have used only Python statements and checked that you have a
 Spark context. You can use the Spark context to create a Spark RDD from
 Python data using the command parallelize.
 ```
-&gt;&gt;&gt; distData = sc.parallelize(x);
+>>> distData = sc.parallelize(x);
 
-&gt;&gt;&gt; print distData;
+>>> print distData;
 
 ParallelCollectionRDD\[0\] at parallelize at PythonRDD.scala:391
 ```
@@ -285,9 +285,9 @@ an RDD you need to use RDD actions. You can find a list of available
 actions in the programming guide. To count the elements, you use the
 count() action. Try the following:
 ```
-&gt;&gt;&gt; nx=distData.count()
+>>> nx=distData.count()
 
-&gt;&gt;&gt; print nx
+>>> print nx
 
 9
 ```
@@ -343,21 +343,21 @@ the file from there.
 
 Print the number of lines in this RDD using the following command:
 ```
-&gt;&gt;&gt; print crimedata.count()
+>>> print crimedata.count()
 
 5862796
 
-&gt;&gt;&gt;
+>>>
 ```
 As you can see there are almost 6 million records, so it took a few seconds to count them.
 
 You can get the first element of the RDD with the first operation:
 ```
-&gt;&gt;&gt; crimedata.first()
+>>> crimedata.first()
 ```
 You can get the *n* first elements with the operation take(n):
 ```
-&gt;&gt;&gt; crimedata.take(10)
+>>> crimedata.take(10)
 ```
 As you see the data include the header information. Removing the header
 from the RDD is not straightforward because the RDD is immutable by
@@ -365,7 +365,7 @@ design. One way to remove the header is to create a new RDD and to
 filter out the first row. An example of one of the many ways to do this
 follows:
 ```
-&gt;&gt;&gt; noHeaderCrimedata = crimedata.zipWithIndex().filter(lambda
+>>> noHeaderCrimedata = crimedata.zipWithIndex().filter(lambda
 (row,index): index &gt; 0).keys()
 ```
 It is a quite a processing-heavy way of doing it, but as we mentioned,
@@ -376,21 +376,21 @@ things more efficiently.
 Print the first line to verify that the header is gone, and count the
 lines to ensure the number seems correct.
 ```
-&gt;&gt;&gt; noHeaderCrimedata.first()
+>>> noHeaderCrimedata.first()
 
-&gt;&gt;&gt; noHeaderCrimedata.count()
+>>> noHeaderCrimedata.count()
 ```
 Here is a more Python-like way of doing the same task that may be easier
 to understand. We first define a Python function in our Python Spark
 shell using the following line:
 ```
-&gt;&gt;&gt; def remove\_header(itr\_index, itr): return
+>>> def remove\_header(itr\_index, itr): return
 iter(list(itr)\[1:\]) if itr\_index == 0 else itr
 ```
 We then execute a mapPartitionWithIndex operation, passing that function
 as an argument.
 ```
-&gt;&gt;&gt; noHeaderCrimeData2 =
+>>> noHeaderCrimeData2 =
 crimedata.mapPartitionsWithIndex(remove\_header)
 ```
 Print the first line and the count to make sure they are correct.
@@ -415,14 +415,14 @@ that included that word.
 ```
 narcoticsCrimes = noHeaderCrimedata.filter(lambda x: "NARCOTICS" in x)
 
-&gt;&gt;&gt; narcoticsCrimes.count()
+>>> narcoticsCrimes.count()
 
 663712
 ```
 It appears that 663,712 crimes are related to narcotics. Use take(n) to
 check that the data seems good. For example:
 ```
-&gt;&gt;&gt; narcoticsCrimes.take(20)
+>>> narcoticsCrimes.take(20)
 ```
 The RDD we have is just long strings. The fact that fields are comma
 separated does not mean anything to the Spark RDD. If we want to perform
@@ -432,16 +432,16 @@ operation splits each record as an array using the Python operation
 split. It then creates a new RDD where each row is an array of strings
 as opposed to one long string.
 ```
-&gt;&gt;&gt; narcoticsCrimeRecords = narcoticsCrimes.map(lambda r :
+>>> narcoticsCrimeRecords = narcoticsCrimes.map(lambda r :
 r.split(","))
 ```
 You can see the first array record using
 ```
-&gt;&gt;&gt; narcoticsCrimeRecords.first()
+>>> narcoticsCrimeRecords.first()
 ```
 You can verify that you still have the same number of rows using
 ```
-&gt;&gt;&gt; narcoticsCrimeRecords.count()
+>>> narcoticsCrimeRecords.count()
 ```
 ###What You Should Have Learned
 
@@ -462,37 +462,37 @@ of elements of various types.
 You can create a new RDD consisting of tuples using the following
 operation:
 ```
-&gt;&gt;&gt; narcoticsCrimeTuples = narcoticsCrimes.map(lambda x:
+>>> narcoticsCrimeTuples = narcoticsCrimes.map(lambda x:
 (x.split(",")\[0\], x))
 ```
 You can check that the number of tuples is the same as the number of
 records in the data.
 ```
-&gt;&gt;&gt; narcoticsCrimeTuples.count()
+>>> narcoticsCrimeTuples.count()
 ```
 This operation takes the first element and makes it a key, and the rest
 of the row becomes the value part of the tuple. You can examine the
 tuple using the following operation:
 ```
-&gt;&gt;&gt; narcoticsCrimeTuples.first()
+>>> narcoticsCrimeTuples.first()
 ```
 And you can check it out using these RDD and Python functions.
 
 Get the first tuple:
 ```
-&gt;&gt;&gt; firstTuple=narcoticsCrimeTuples.first()
+>>> firstTuple=narcoticsCrimeTuples.first()
 ```
 How many elements do you have in the tuple?
 ```
-&gt;&gt;&gt; len(firstTuple)
+>>> len(firstTuple)
 ```
 What is the key of the first tuple?
 ```
-&gt;&gt;&gt; firstTuple\[0\]
+>>> firstTuple\[0\]
 ```
 What is the value of the first tuple?
 ```
-&gt;&gt;&gt; firstTuple\[1\]
+>>> firstTuple\[1\]
 ```
 There is one little problem with the tuple. Can you spot it? How should
 we change the map and lambda functions above to address that?
@@ -502,14 +502,14 @@ join, reduce, map, and so on. You can read about the operations in the
 *RDD Spark Programming Guide*. One operation you can do is to sort by
 key:
 ```
-&gt;&gt;&gt; sorted=narcoticsCrimeTuples.sortByKey()
+>>> sorted=narcoticsCrimeTuples.sortByKey()
 ```
 If you print the first element in the sorted RDD and the original RDD,
 you will see they are different.
 ```
-&gt;&gt;&gt; sorted.first()
+>>> sorted.first()
 
-&gt;&gt;&gt; narcoticsCrimeTuples.first()
+>>> narcoticsCrimeTuples.first()
 ```
 ###What You Should Have Learned
 
@@ -667,60 +667,60 @@ data file or adapt the path in the example accordingly.
 ```
 $ pyspark
 
-&gt;&gt;&gt; from pyspark.sql import SQLContext
+>>> from pyspark.sql import SQLContext
 
-&gt;&gt;&gt; from pyspark.sql.types import \*
+>>> from pyspark.sql.types import \*
 ```
 Create the Spark SQL Context.
 ```
-&gt;&gt;&gt; sqlContext = SQLContext(sc)
+>>> sqlContext = SQLContext(sc)
 ```
 Read the weblog data into an RDD. You may need to adjust the path to the
 data based on where you stored them.
 ```
-&gt;&gt;&gt; lines =
+>>> lines =
 sc.textFile('file:///data/labs/w205-labs-exercises/data/weblog_lab.csv')
 ```
 Create a map of the data so that they can be structured into a table.
 ```
-&gt;&gt;&gt; parts = lines.map(lambda l: l.split('\\t'))
+>>> parts = lines.map(lambda l: l.split('\\t'))
 
-&gt;&gt;&gt; Web\_Session\_Log = parts.map(lambda p: (p\[0\],
+>>> Web\_Session\_Log = parts.map(lambda p: (p\[0\],
 p\[1\],p\[2\], p\[3\],p\[4\]))
 ```
 Create string with the name of the columns of your table.
 ```
-&gt;&gt;&gt; schemaString = 'DATETIME USERID SESSIONID PRODUCTID REFERERURL'
+>>> schemaString = 'DATETIME USERID SESSIONID PRODUCTID REFERERURL'
 ```
 Create a data structure of StructFields that can be used to create a
 table.
 ```
-&gt;&gt;&gt; fields = \[StructField(field\_name, StringType(), True) for
+>>> fields = \[StructField(field\_name, StringType(), True) for
 field\_name in schemaString.split()\]
 ```
 Combine the fields into a schema object.
 ```
-&gt;&gt;&gt; schema = StructType(fields)
+>>> schema = StructType(fields)
 ```
 Create a table based on a DataFrame using the data that was read and the
 structure representing the schema.
 ```
-&gt;&gt;&gt; schemaWebData =
+>>> schemaWebData =
 sqlContext.createDataFrame(Web\_Session\_Log, schema)
 ```
 Register the object as a table with a table name.
 ```
-&gt;&gt;&gt; schemaWebData.registerTempTable('Web\_Session\_Log')
+>>> schemaWebData.registerTempTable('Web\_Session\_Log')
 ```
 Query the table.
 ```
-&gt;&gt;&gt; results = sqlContext.sql('SELECT count(\*) FROM
+>>> results = sqlContext.sql('SELECT count(\*) FROM
 Web\_Session\_Log')
 ```
 Use the DataFrame operation show to print the content of the result of
 the query.
 ```
-&gt;&gt;&gt; results.show()
+>>> results.show()
 ```
 The following query can be used to query the number of rows related to
 eBay:
@@ -743,10 +743,10 @@ result.show() command above.
 
 Another query, with a screen shot.
 ```
-&gt;&gt;&gt; results = sqlContext.sql('SELECT \* FROM
+>>> results = sqlContext.sql('SELECT \* FROM
 Web\_Session\_Log')
 
-&gt;&gt;&gt; results.show()
+>>> results.show()
 ```
 See below for screenshot of what you should see.
 
