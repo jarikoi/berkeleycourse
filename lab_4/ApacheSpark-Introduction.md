@@ -163,7 +163,6 @@ compressed CSV file, so we name it appropriately. Next we uncompress it
 to get the original CSV file.
 ```
 $ cat x* > Crimes_-_2001_to_present.csv.gz
-
 $ gunzip Crimes_-_2001_to_present.csv.gz
 ```
 The result should be that you have the Crime data CSV file in your
@@ -230,20 +229,15 @@ You can also apply operations on RDDs. Create a Python variable with
 some value using the following command (this is plain old Python):
 ```
 >>> x = [1,2,3,4,5,6,7,8,9];
-
 >>> print x
-
 [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
 >>> len(x)
-
 9
 ```
 A Spark context is the “object” you use to refer to the Spark cluster.
 Type sc to verify you have one already in your Python shell:
 ```
 >>> sc
-
 <pyspark.context.SparkContext object at 0x1063b3410>
 ```
 So far you have used only Python statements and checked that you have a
@@ -251,9 +245,8 @@ Spark context. You can use the Spark context to create a Spark RDD from
 Python data using the command parallelize.
 ```
 >>> distData = sc.parallelize(x);
-
 >>> print distData;
-ParallelCollectionRDD\[0\] at parallelize at PythonRDD.scala:391
+ParallelCollectionRDD[0] at parallelize at PythonRDD.scala:391
 ```
 The Spark context parallelize action is used to take local programming
 collections and create RDDs from them. In this case, we created a RDD
@@ -266,7 +259,6 @@ actions in the programming guide. To count the elements, you use the
 count() action. Try the following:
 ```
 >>> nx=distData.count()
-
 >>> print nx
 9
 ```
@@ -281,7 +273,6 @@ log4j.properties.template file. To set the logging level to warnings
 console.
 ```
 # Set everything to be logged to the console
-
 log4j.rootCategory=WARN, console
 log4j.appender.console=org.apache.log4j.ConsoleAppender
 log4j.appender.console.target=System.err
@@ -310,7 +301,7 @@ in HDFS or the local file system. Make sure you cloned the data file
 using the directory `/data/mylab`). Now create an RDD from that file
 using the following action:
 ```
->>>crimedata=sc.textFile("file:///data/mylab/Crimes\_-\_2001\_to\_present.csv")
+>>>crimedata=sc.textFile("file:///data/mylab/Crimes_-_2001_to_present.csv")
 ```
 If you run the AIM, you can copy the data to HDFS and have pyspark get
 the file from there.
@@ -338,7 +329,7 @@ filter out the first row. An example of one of the many ways to do this
 follows:
 ```
 >>> noHeaderCrimedata = crimedata.zipWithIndex().filter(lambda
-(row,index): index &gt; 0).keys()
+(row,index): index > 0).keys()
 ```
 It is a quite a processing-heavy way of doing it, but as we mentioned,
 RDDs are immutable. You cannot just go in and remove a record. This is
@@ -355,14 +346,12 @@ Here is a more Python-like way of doing the same task that may be easier
 to understand. We first define a Python function in our Python Spark
 shell using the following line:
 ```
->>> def remove_header(itr_index, itr): return
-iter(list(itr)[1:]) if itr_index == 0 else itr
+>>> def remove_header(itr_index, itr): return iter(list(itr)[1:]) if itr_index == 0 else itr
 ```
 We then execute a mapPartitionWithIndex operation, passing that function
 as an argument.
 ```
->>> noHeaderCrimeData2 =
-crimedata.mapPartitionsWithIndex(remove_header)
+>>> noHeaderCrimeData2 = crimedata.mapPartitionsWithIndex(remove_header)
 ```
 Print the first line and the count to make sure they are correct.
 
@@ -383,10 +372,8 @@ We can do this using the filter operation and a lambda function that
 checks for the word “NARCOTICS” in each row. We will return only rows
 that included that word.
 ```
-narcoticsCrimes = noHeaderCrimedata.filter(lambda x: "NARCOTICS" in x)
-
+>>> narcoticsCrimes = noHeaderCrimedata.filter(lambda x: "NARCOTICS" in x)
 >>> narcoticsCrimes.count()
-
 663712
 ```
 It appears that 663,712 crimes are related to narcotics. Use take(n) to
@@ -475,7 +462,6 @@ If you print the first element in the sorted RDD and the original RDD,
 you will see they are different.
 ```
 >>> sorted.first()
-
 >>> narcoticsCrimeTuples.first()
 ```
 ### What You Should Have Learnt
@@ -508,7 +494,6 @@ Once started you can run some commands to ensure that it works. Show
 tables, create a table, and drop the table by running the next commands:
 ```
 spark-sql> show tables;
-
 spark-sql> create table dummy (somedata varchar(500));
 
 OK
@@ -516,7 +501,6 @@ OK
 Time taken: 0.369 seconds
 
 spark-sql>; show tables;
-
 dummy false
 
 Time taken: 0.053 seconds, Fetched 1 row(s)
@@ -574,8 +558,7 @@ the spark-sql shell, you can load the file from the file system into the
 table using the command below. If the file is located somewhere else,
 you need to modify the path to the file.
 ```
-spark-sql> LOAD DATA LOCAL INPATH "./weblog_lab.csv" INTO TABLE
-web_session_log;
+spark-sql> LOAD DATA LOCAL INPATH "./weblog_lab.csv" INTO TABLE web_session_log;
 ```
 Once the data are loaded you can count the number of rows using the
 following select statement:
@@ -662,7 +645,7 @@ sqlContext.createDataFrame(Web_Session_Log, schema)
 ```
 Register the object as a table with a table name.
 ```
->>> schemaWebData.registerTempTable('Web\_Session\_Log')
+>>> schemaWebData.registerTempTable('Web_Session_Log')
 ```
 Query the table.
 ```
