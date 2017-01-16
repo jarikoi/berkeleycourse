@@ -96,7 +96,6 @@ $ echo $SPARK_HOME
 Navigate to that directory, and examine the contents.
 ```
 $ cd $SPARK_HOME
-
 $ ls
 
 CHANGES.txt NOTICE README.md bin data ec2 lib python
@@ -112,18 +111,14 @@ lines that indicate that the Spark commands are in your shell execution
 path.
 ```
 export SPARK=/usr/lib/spark
-
 export SPARK_HOME=$SPARK
-
 export PATH=$SPARK/bin:$PATH
 ```
 You can confirm that your shell can find them by running the Unix/Linux
 that command.
 ```
 $ which spark-shell
-
 $ which pyspark
-
 $ which spark-sql
 ```
 If your shell cannot find any of those programs, you will likely need to
@@ -176,11 +171,8 @@ directory. You also still have the original split files. If you run ls
 it should look something like this:
 ```
 $ ls
-
 Crimes_-_2001_to_present.csv xac xaf
-
 xaa xad xag
-
 xab xae
 ```
 
@@ -190,11 +182,9 @@ file size or the number of rows in the file. The size may vary on
 different computers, but the number of lines should remain the same.
 ```
 $ du -s Crimes_-_2001_to_present.csv
-
 2688712 Crimes_-_2001_to_present.csv
 
 $ wc -l Crimes_-_2001_to_present.csv
-
 5862796 Crimes_-_2001_to_present.csv
 ```
 You could remove the split files using `rm`, but it is better to use the
@@ -207,7 +197,6 @@ At this point you should be able to see the Crime data file in your
 directory.
 ```
 $ ls
-
 Crimes_-_2001_to_present.csv
 ```
 Now you are good to go. In addition, you can also try some useful
@@ -240,11 +229,11 @@ In the pyspark shell you can use Python instructions and create RDDs.
 You can also apply operations on RDDs. Create a Python variable with
 some value using the following command (this is plain old Python):
 ```
->>> x = \[1,2,3,4,5,6,7,8,9\];
+>>> x = [1,2,3,4,5,6,7,8,9];
 
 >>> print x
 
-\[1, 2, 3, 4, 5, 6, 7, 8, 9\]
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 >>> len(x)
 
@@ -255,7 +244,7 @@ Type sc to verify you have one already in your Python shell:
 ```
 >>> sc
 
-&lt;pyspark.context.SparkContext object at 0x1063b3410&gt;
+<pyspark.context.SparkContext object at 0x1063b3410>
 ```
 So far you have used only Python statements and checked that you have a
 Spark context. You can use the Spark context to create a Spark RDD from
@@ -264,7 +253,6 @@ Python data using the command parallelize.
 >>> distData = sc.parallelize(x);
 
 >>> print distData;
-
 ParallelCollectionRDD\[0\] at parallelize at PythonRDD.scala:391
 ```
 The Spark context parallelize action is used to take local programming
@@ -280,7 +268,6 @@ count() action. Try the following:
 >>> nx=distData.count()
 
 >>> print nx
-
 9
 ```
 As you probably noticed, the default level of logging can be
@@ -293,14 +280,11 @@ log4j.properties.template file. To set the logging level to warnings
 (WARN), change INFO to WARN in the property `log4j.rootCategory=WARN`
 console.
 ```
-\# Set everything to be logged to the console
+# Set everything to be logged to the console
 
 log4j.rootCategory=WARN, console
-
 log4j.appender.console=org.apache.log4j.ConsoleAppender
-
 log4j.appender.console.target=System.err
-
 log4j.appender.console.layout=org.apache.log4j.PatternLayout
 ```
 Restart pyspark, and rerun the commands above. You should see much less
@@ -326,7 +310,7 @@ in HDFS or the local file system. Make sure you cloned the data file
 using the directory `/data/mylab`). Now create an RDD from that file
 using the following action:
 ```
-crimedata=sc.textFile("file:///data/mylab/Crimes\_-\_2001\_to\_present.csv")
+>>>crimedata=sc.textFile("file:///data/mylab/Crimes\_-\_2001\_to\_present.csv")
 ```
 If you run the AIM, you can copy the data to HDFS and have pyspark get
 the file from there.
@@ -334,9 +318,7 @@ the file from there.
 Print the number of lines in this RDD using the following command:
 ```
 >>> print crimedata.count()
-
 5862796
-
 >>>
 ```
 As you can see there are almost 6 million records, so it took a few seconds to count them.
@@ -367,21 +349,20 @@ Print the first line to verify that the header is gone, and count the
 lines to ensure the number seems correct.
 ```
 >>> noHeaderCrimedata.first()
-
 >>> noHeaderCrimedata.count()
 ```
 Here is a more Python-like way of doing the same task that may be easier
 to understand. We first define a Python function in our Python Spark
 shell using the following line:
 ```
->>> def remove\_header(itr\_index, itr): return
-iter(list(itr)\[1:\]) if itr\_index == 0 else itr
+>>> def remove_header(itr_index, itr): return
+iter(list(itr)[1:]) if itr_index == 0 else itr
 ```
 We then execute a mapPartitionWithIndex operation, passing that function
 as an argument.
 ```
 >>> noHeaderCrimeData2 =
-crimedata.mapPartitionsWithIndex(remove\_header)
+crimedata.mapPartitionsWithIndex(remove_header)
 ```
 Print the first line and the count to make sure they are correct.
 
@@ -421,8 +402,7 @@ operation splits each record as an array using the Python operation
 split. It then creates a new RDD where each row is an array of strings
 as opposed to one long string.
 ```
->>> narcoticsCrimeRecords = narcoticsCrimes.map(lambda r :
-r.split(","))
+>>> narcoticsCrimeRecords = narcoticsCrimes.map(lambda r : r.split(","))
 ```
 You can see the first array record using
 ```
@@ -450,8 +430,7 @@ of elements of various types.
 You can create a new RDD consisting of tuples using the following
 operation:
 ```
->>> narcoticsCrimeTuples = narcoticsCrimes.map(lambda x:
-(x.split(",")\[0\], x))
+>>> narcoticsCrimeTuples = narcoticsCrimes.map(lambda x:(x.split(",")\[0\], x))
 ```
 You can check that the number of tuples is the same as the number of
 records in the data.
@@ -476,11 +455,11 @@ How many elements do you have in the tuple?
 ```
 What is the key of the first tuple?
 ```
->>> firstTuple\[0\]
+>>> firstTuple[0]
 ```
 What is the value of the first tuple?
 ```
->>> firstTuple\[1\]
+>>> firstTuple[1]
 ```
 There is one little problem with the tuple. Can you spot it? How should
 we change the map and lambda functions above to address that?
@@ -528,26 +507,26 @@ $spark-sql
 Once started you can run some commands to ensure that it works. Show
 tables, create a table, and drop the table by running the next commands:
 ```
-spark-sql&gt; show tables;
+spark-sql> show tables;
 
-spark-sql&gt; create table dummy (somedata varchar(500));
+spark-sql> create table dummy (somedata varchar(500));
 
 OK
 
 Time taken: 0.369 seconds
 
-spark-sql&gt; show tables;
+spark-sql>; show tables;
 
 dummy false
 
 Time taken: 0.053 seconds, Fetched 1 row(s)
 
-spark-sql&gt; drop table dummy;
+spark-sql> drop table dummy;
 
-spark-sql&gt; show tables;
+spark-sql> show tables;
 ```
-### What You Should Have Learnt
 
+### What You Should Have Learnt
 
 You should understand the difference between using the Spark SQL CLI and
 using Spark SQL programmatically. You are able to start Spark SQL CLI
