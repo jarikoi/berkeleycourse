@@ -125,13 +125,13 @@ export PATH=$SPARK/bin:$PATH
 ```
 You can confirm that your shell can find them by running the Unix/Linux
 that command.
+```
+$ which spark-shell
 
-\$ which spark-shell
+$ which pyspark
 
-\$ which pyspark
-
-\$ which spark-sql
-
+$ which spark-sql
+```
 If your shell cannot find any of those programs, you will likely need to
 check your installation. If it can find the commands, it will return the
 location of the programs.
@@ -141,9 +141,9 @@ dataset; the other is a dataset with historic crime data from 2001 for
 the Chicago area. If you have time to play around with the dataset, it
 is interesting to explore types of crimes, density of crimes, and so
 forth. For this lab you can use any substantial data file as a
-replacement for “Crimes\_-\_2001\_to\_present.csv”, but you need to
+replacement for `Crimes_-_2001_to_present.csv`, but you need to
 modify the commands accordingly. You can download the
-“Crimes\_-\_2001\_to\_present.csv” file from GitHub. Because it is a
+`Crimes_-_2001_to_present.csv` file from GitHub. Because it is a
 large file, we had to compress and split the file when we uploaded it to
 GitHub. Therefore, you will need to merge the parts and uncompress the
 result.
@@ -160,62 +160,64 @@ Retrieve the files from this directory on GitHub:
 You can retrieve them by cloning the exercise repository, if you have
 already done so, us a git pull to update. A clone would look like the
 following.
-
+```
 git clone
 https://github.com/UC-Berkeley-I-School/w205-labs-exercises.git
-
-The files are in the data/Crimes\_-\_2001\_to\_present\_data directory.
+```
+The files are in the `data/Crimes_-_2001_to_present_data directory`.
 
 Once you have the files (there should be seven of them, all starting
-with the letter *x*), run the following commands (make sure you do not
-have other files starting with *x* in the directory). The first one will
+with the letter `x`), run the following commands (make sure you do not
+have other files starting with `x` in the directory). The first one will
 concatenate the split files into one file. The original file was a
 compressed CSV file, so we name it appropriately. Next we uncompress it
 to get the original CSV file.
+```
+$ cat x* &gt; Crimes_-_2001_to_present.csv.gz
 
-\$ cat x\* &gt; Crimes\_-\_2001\_to\_present.csv.gz
-
-\$ gunzip Crimes\_-\_2001\_to\_present.csv.gz
-
+$ gunzip Crimes_-_2001_to_present.csv.gz
+```
 The result should be that you have the Crime data CSV file in your
 directory. You also still have the original split files. If you run ls
 it should look something like this:
+```
+$ ls
 
-\$ ls
-
-Crimes\_-\_2001\_to\_present.csv xac xaf
+Crimes_-_2001_to_present.csv xac xaf
 
 xaa xad xag
 
 xab xae
+```
+
 
 You can check the correctness of the resulting files by checking the
 file size or the number of rows in the file. The size may vary on
 different computers, but the number of lines should remain the same.
+```
+$ du -s Crimes_-_2001_to_present.csv
 
-\$ du -s Crimes\_-\_2001\_to\_present.csv
+2688712 Crimes_-_2001_to_present.csv
 
-2688712 Crimes\_-\_2001\_to\_present.csv
+$ wc -l Crimes_-_2001_to_present.csv
 
-\$ wc -l Crimes\_-\_2001\_to\_present.csv
-
-5862796 Crimes\_-\_2001\_to\_present.csv
-
-You could remove the split files using rm, but it is better to use the
-–i option so that you do not accidentally remove other files in the
+5862796 Crimes_-_2001_to_present.csv
+```
+You could remove the split files using `rm`, but it is better to use the
+`–i` option so that you do not accidentally remove other files in the
 directory that you want to save.
 
-\$ rm -i x\*
+`$ rm -i x*`
 
 At this point you should be able to see the Crime data file in your
 directory.
+```
+$ ls
 
-\$ ls
-
-Crimes\_-\_2001\_to\_present.csv
-
+Crimes_-_2001_to_present.csv
+```
 Now you are good to go. In addition, you can also try some useful
-Linux/Unix commands such as du, wc, and cat.
+Linux/Unix commands such as `du`, `wc`, and `cat`.
 
 ###What You Should Have Learned
 
