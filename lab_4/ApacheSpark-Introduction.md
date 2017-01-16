@@ -1,8 +1,7 @@
 
 # MIDS W205 Lab 4       
-
-| *Lab*                | 4      | *Lab Title*         | An Introduction to Apache Spark and Spark SQL.   |
 |----------------------|--------|---------------------|--------------------------------------------------|
+| *Lab*                | 4      | *Lab Title*         | An Introduction to Apache Spark and Spark SQL.   |
 | *Related Modules(s)* | 6      | *Goal*              | Get you started on Spark, Pyspark, and Spark SQL |
 | *Last Updated*       | 1/7/17 | *Expected Duration* | 60-90 minutes                                    |
 
