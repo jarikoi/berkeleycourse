@@ -1,18 +1,17 @@
 
-#Lab 4       
+# Lab 4       
 
-#An Introduction to Apache Spark and Spark SQL.
+# An Introduction to Apache Spark and Spark SQL.
 
 - Related Module(s):  6
 - Goal:  Get you started on Spark, Pyspark, and Spark SQL
 - Last Updated:  1/7/16
 - Expected duration:  60-90 minutes
 
-##DISCLAIMER
+## DISCLAIMER
 Our labs and exercises are tested on AMI's provided for the course. We test labs on other platforms such as MacOS on a best effort basis only. If you run on other platforms such as MacOS it is your responsibility to determine environmental issues such as installs of non-standard tools etc. We will be helping out with environmental issues as time permits.
 
-##Introduction
--------------
+## Introduction
 
 <span id="h.i1wdscz5ztok" class="anchor"></span>Apache Spark is an open
 source distributed computing framework. Spark uses in-memory processing
@@ -40,9 +39,7 @@ commonly utilized in a programmatic way. There are also command-line
 interfaces (CLIs) that provide convenient ways of interactively using
 RDDs. In this lab we will use both.
 
-##Instructions, Resources, and Prerequisites
-
--------------
+## Instructions, Resources, and Prerequisites
 
 You can perform this lab on one of the course-provided AMIs, but you
 need to have Hadoop set up properly. Follow the instructions provided in
@@ -70,9 +67,7 @@ http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkC
 
 <span id="h.o59uwx6sscy1" class="anchor"></span>
 
-##Step 0. Check Installation and Prepare Data
-
--------------
+##S tep 0. Check Installation and Prepare Data
 
 In this section we will help you understand the basics of your Spark
 installation. We will also help you download and assemble a dataset we
@@ -218,16 +213,14 @@ Crimes_-_2001_to_present.csv
 Now you are good to go. In addition, you can also try some useful
 Linux/Unix commands such as `du`, `wc`, and `cat`.
 
-###What You Should Have Learned
+### What You Should Have Learnt
 
 
 You should have learned the basic installation of Spark. You have also
 verified that the Spark programs can be found by your interactive Linux
 (Unix) shell.
 
-##Step 1. Start pyspark
-
--------------
+## Step 1. Start pyspark
 
 First we will start a Spark shell so that we can access Spark and
 interactively process Spark commands. We will be using pyspark, which is
@@ -313,7 +306,7 @@ log4j.appender.console.layout=org.apache.log4j.PatternLayout
 Restart pyspark, and rerun the commands above. You should see much less
 output in the Spark shell.
 
-###What You Should Have Learned
+### What You Should Have Learnt
 
 
 You should understand how to start pyspark. You also learned that
@@ -323,9 +316,7 @@ pyspark less verbose by reducing the amount of logging displayed. If you
 have problems, you may consider increasing logging again to understand
 what is going on in your execution.
 
-##Step 2. Load a File and Count the Rows
-
--------------
+## Step 2. Load a File and Count the Rows
 
 Spark is commonly used to process large sets of data, and naturally we
 often read these data files from disk. The action textFile is an
@@ -394,7 +385,7 @@ crimedata.mapPartitionsWithIndex(remove\_header)
 ```
 Print the first line and the count to make sure they are correct.
 
-###What You Should Have Learned
+### What You Should Have Learnt
 
 
 You should understand how to create an RDD from a file and how apply
@@ -403,7 +394,6 @@ also illustrated that RDDs are immutable and that even to remove one row
 (the header) you need to create a new RDD.
 
 ##Step 3. Filter Records and Structures
--------------
 
 One obvious operation for Spark is to filter the data. Let’s filter out
 all crimes that seem to be related to `NARCOTICS`.
@@ -442,7 +432,7 @@ You can verify that you still have the same number of rows using
 ```
 >>> narcoticsCrimeRecords.count()
 ```
-###What You Should Have Learned
+### What You Should Have Learnt
 
 
 You should understand that RDDs are immutable. You can filter RDDs, but
@@ -452,7 +442,6 @@ value structures, which we discuss in the next section). But you can
 store any Python structure that seems useful in an RDD.
 
 ##Step 4. Key Values
--------------
 
 An important structure in Spark is called a key value pair. In Python
 these are represented as Python tuples. A tuple is an immutable sequence
@@ -510,7 +499,7 @@ you will see they are different.
 
 >>> narcoticsCrimeTuples.first()
 ```
-###What You Should Have Learned
+### What You Should Have Learnt
 
 
 Now you should understand the concept of key value tuples and how you
@@ -518,7 +507,6 @@ can create them. You have also tried one operation on RDDs using the key
 value structure.
 
 ##Step 5. Start Spark SQL 
--------------
 
 ***Important**: You can skip this step if you run on an AMI that does
 not have appropriate support for Spark SQL. If you have a later version
@@ -558,15 +546,14 @@ spark-sql&gt; drop table dummy;
 
 spark-sql&gt; show tables;
 ```
-###What You Should Have Learned
+### What You Should Have Learnt
 
 
 You should understand the difference between using the Spark SQL CLI and
 using Spark SQL programmatically. You are able to start Spark SQL CLI
 and issue some basic commands to see that it works.
 
-##Step 6. Spark SQL Table Loaded With Data From a CSV file 
--------------
+## Step 6. Spark SQL Table Loaded With Data From a CSV file 
 
 ***Important**: You can skip this step if you run on an AMI that does
 not have appropriate support for Spark SQL. If you have a later version
@@ -639,14 +626,13 @@ spark-sql&gt; select count(*) from web_session_log where refererurl ="http://www
 ```
 <span id="h.j0652kg86bem" class="anchor"><span id="h.h5kpreessbos" class="anchor"><span id="h.8sx4huvp00ht" class="anchor"></span></span></span>
 
-###What You Should Have Learned
+### What You Should Have Learnt
 
 In this section you should have learned how to create a table in the
 Spark SQL CLI and how to load data into the empty table. You also
 practiced some simple SQL commands on the loaded dataset.
 
-##Step 7. Accessing Spark SQL in Python Code
-==========================================
+## Step 7. Accessing Spark SQL in Python Code
 
 Spark SQL can be used from a program or directly from a shell such as
 pyspark. Using a shell requires that you create the appropriate Spark
@@ -798,17 +784,15 @@ The output may look something like the following screenshot.
 
 ![](media/image3.png){width="6.5in" height="5.118055555555555in"}
 
-###What You Should Have Learned
+### What You Should Have Learned
 
 You should have learned how to create a Python script that uses Spark
 SQL and how to run the script.<span id="h.4h3mp5s5v9gi"
 class="anchor"></span>
 
-##Step 8. Caching Tables and Uncaching Tables
+## Step 8. Caching Tables and Uncaching Tables
 
--------------
-
-###Caching Tables
+### Caching Tables
 
 
 This process is extremely useful when you are joining a tiny dataset
@@ -828,7 +812,6 @@ UNCACHE TABLE logs_last_month;
 Once a table is cached, you can use in your Spark queries.
 
 ##Submissions, summary
-====================
 
 There are three items that need to be submitted from this lab to be
 approved.
@@ -850,10 +833,8 @@ In Step 6:
 SUBMISSION 3: Submit the number returned in the DataFrame of the
 result.show() command.
 
-##Troubleshooting
-===============
-
-**Connection problem on laptop or Macbook**
+## Troubleshooting
+### Connection problem on laptop or Macbook
 
 If you get an exception similar to “ERROR SparkContext: Error
 initializing SparkContext. java.net.UnknownHostException:…”, ensure you
@@ -863,7 +844,7 @@ For example add the line “127.0.0.1 &lt;myhost&gt;”, where
 
 7
 
-**Hadoop connection problem on EC2 instance**
+### Hadoop connection problem on EC2 instance
 
 If you get an error that looks something like this on the AMI:
 ```
@@ -879,7 +860,7 @@ your Hadoop instance is likely not running. With the
 `ucb_w205_complete - ami-71cdb014` use the `start-hadoop.sh` and
 `stop-hadoop.sh` scripts to start and stop the Hadoop service.
 
-**AMI**
+### AMI
 
 If you are using the AMI, you need to attach an EBS volume.
 
@@ -920,14 +901,12 @@ sudo mount -t ext4 /dev/xvdh /data
 ```
 <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html>
 
-Error at ‘\\t’
---------------
+### Error at ‘\\t’
 
 Sometimes cutting and pasting changes the representation of characters.
 Edit the command in spark-sql and make sure you have ‘’ quotes.
 
-Local Spark Installation for spark-sql CLI
-------------------------------------------
+### Local Spark Installation for spark-sql CLI
 
 You create a new installation of Spark using the below instructions you
 will be able to run the CLI. The following if for the AMI, but you can
@@ -955,8 +934,8 @@ If you check which spark-sql you use you should see the following.
 You need to make sure Hadoop is started. Then start spark-sql and you
 should be able to do step-5 and step-6 of this lab.
 
-In sufficient memory
---------------------
+### In sufficient memory
+
 
 If you get an ERROR concerning insufficient memory you should probably
 make sure you get more memory for the node you are running the lab on.
