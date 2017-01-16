@@ -1,5 +1,5 @@
 
-# MIDS W205 Lab 4      
+# MIDS W205 : Lab 4      
 |                      |        |                     |                                                  |
 |----------------------|--------|---------------------|--------------------------------------------------|
 | *Lab*                | 4      | *Lab Title*         | An Introduction to Apache Spark and Spark SQL.   |
