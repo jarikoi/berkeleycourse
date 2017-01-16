@@ -580,7 +580,7 @@ web_session_log;
 Once the data are loaded you can count the number of rows using the
 following select statement:
 ```
-spark-sql&gt; select count(*) from web_session_log;
+spark-sql> select count(*) from web_session_log;
 ```
 You can check that this count seems reasonable by comparing it with the
 number of rows in the original file. You can get the number of files
@@ -591,11 +591,11 @@ $ wc -l weblog_lab.csv
 Using Spark SQL you can use a number of SQL commands to query your data.
 Let’s select all rows in the weblog that are related to eBay.
 ```
-spark-sql&gt; select * from web_session_log where refererurl = "http://www.ebay.com" ;
+spark-sql> select * from web_session_log where refererurl = "http://www.ebay.com" ;
 ```
 And now let’s count the number of rows that are related to eBay.
 ```
-spark-sql&gt; select count(*) from web_session_log where refererurl ="http://www.ebay.com" ;
+spark-sql> select count(*) from web_session_log where refererurl ="http://www.ebay.com" ;
 ```
 <span id="h.j0652kg86bem" class="anchor"><span id="h.h5kpreessbos" class="anchor"><span id="h.8sx4huvp00ht" class="anchor"></span></span></span>
 
@@ -624,10 +624,8 @@ pyspark shell. Make sure you run it in the directory where you store the
 data file or adapt the path in the example accordingly.
 ```
 $ pyspark
-
 >>> from pyspark.sql import SQLContext
-
->>> from pyspark.sql.types import \*
+>>> from pyspark.sql.types import *
 ```
 Create the Spark SQL Context.
 ```
@@ -636,15 +634,12 @@ Create the Spark SQL Context.
 Read the weblog data into an RDD. You may need to adjust the path to the
 data based on where you stored them.
 ```
->>> lines =
-sc.textFile('file:///data/labs/w205-labs-exercises/data/weblog_lab.csv')
+>>> lines = sc.textFile('file:///data/labs/w205-labs-exercises/data/weblog_lab.csv')
 ```
 Create a map of the data so that they can be structured into a table.
 ```
 >>> parts = lines.map(lambda l: l.split('\\t'))
-
->>> Web\_Session\_Log = parts.map(lambda p: (p\[0\],
-p\[1\],p\[2\], p\[3\],p\[4\]))
+>>> Web_Session_Log = parts.map(lambda p: (p[0],p[1],p[2], p[3],p[4]))
 ```
 Create string with the name of the columns of your table.
 ```
@@ -653,8 +648,7 @@ Create string with the name of the columns of your table.
 Create a data structure of StructFields that can be used to create a
 table.
 ```
->>> fields = \[StructField(field\_name, StringType(), True) for
-field\_name in schemaString.split()\]
+>>> fields = [StructField(field_name, StringType(), True) for field_name in schemaString.split()]
 ```
 Combine the fields into a schema object.
 ```
@@ -664,7 +658,7 @@ Create a table based on a DataFrame using the data that was read and the
 structure representing the schema.
 ```
 >>> schemaWebData =
-sqlContext.createDataFrame(Web\_Session\_Log, schema)
+sqlContext.createDataFrame(Web_Session_Log, schema)
 ```
 Register the object as a table with a table name.
 ```
@@ -672,8 +666,8 @@ Register the object as a table with a table name.
 ```
 Query the table.
 ```
->>> results = sqlContext.sql('SELECT count(\*) FROM
-Web\_Session\_Log')
+>>> results = sqlContext.sql('SELECT count(*) FROM
+Web_Session_Log')
 ```
 Use the DataFrame operation show to print the content of the result of
 the query.
@@ -683,8 +677,7 @@ the query.
 The following query can be used to query the number of rows related to
 eBay:
 ```
-select count(\*) from web\_session\_log where REFERERURL'=
-"http://www.ebay.com" ;
+select count(*) from web_session_log where 'REFERERURL'= "http://www.ebay.com" ;
 ```
 Note: The case sensitivity is sometime different, depending on where you
 run the command. Keep that in mind if you see certain errors.
@@ -701,8 +694,7 @@ result.show() command above.
 
 Another query, with a screen shot.
 ```
->>> results = sqlContext.sql('SELECT \* FROM
-Web\_Session\_Log')
+>>> results = sqlContext.sql('SELECT * FROM Web_Session_Log')
 
 >>> results.show()
 ```
@@ -716,13 +708,10 @@ content of mysql.py follows. You may need to adjust the location of data
 file based on where you stored it and if you opted to have it on HDFS.
 ```
 from pyspark import SparkContext
-
 from pyspark.sql import SQLContext
-
 from pyspark.sql.types import *
 
 sc = SparkContext("local", "weblog app")
-
 sqlContext = SQLContext(sc)
 
 lines =
@@ -731,20 +720,12 @@ sc.textFile('file:///data/labs/w205-labs-exercises/data//weblog_lab.csv')
 parts = lines.map(lambda l: l.split('\\t'))
 
 Web_Session_Log = parts.map(lambda p: (p[0], p[1],p[2],p[3],p[4]))
-
 schemaString = 'DATETIME USERID SESSIONID PRODUCTID REFERERURL'
-
-fields = [StructField(field_name, StringType(), True) for field_name
-in schemaString.split()]
-
+fields = [StructField(field_name, StringType(), True) for field_name in schemaString.split()]
 schema = StructType(fields)
-
 schemaWebData = sqlContext.createDataFrame(Web_Session_Log, schema)
-
 schemaWebData.registerTempTable('web_session_log')
-
 results = sqlContext.sql('SELECT * FROM web_session_log')
-
 results.show()
 ```
 You can now run the Python Spark SQL script using the command. You can
