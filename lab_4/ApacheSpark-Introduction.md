@@ -1,18 +1,18 @@
 
-##Lab #              4       
+#Lab 4       
 
-##An Introduction to Apache Spark and Spark SQL.
+#An Introduction to Apache Spark and Spark SQL.
 
 - Related Module(s):  6
 - Goal:  Get you started on Spark, Pyspark, and Spark SQL
 - Last Updated:  1/7/16
 - Expected duration:  60-90 minutes
 
-DISCLAIMER
+##DISCLAIMER
 ==========
-Our labs and exercises are tested on AMI's provided for the course. We test labs on other platforms such as MacOS on a best effort. If you run on other platforms such as MacOS it is your responsibility to determine environmental issues such as installs of non-standard tools etc. We will be helping out with environmental issues as time permits.
+Our labs and exercises are tested on AMI's provided for the course. We test labs on other platforms such as MacOS on a best effort basis only. If you run on other platforms such as MacOS it is your responsibility to determine environmental issues such as installs of non-standard tools etc. We will be helping out with environmental issues as time permits.
 
-#Introduction
+##Introduction
 ============
 
 <span id="h.i1wdscz5ztok" class="anchor"></span>Apache Spark is an open
@@ -41,7 +41,7 @@ commonly utilized in a programmatic way. There are also command-line
 interfaces (CLIs) that provide convenient ways of interactively using
 RDDs. In this lab we will use both.
 
-#Instructions, Resources, and Prerequisites
+##Instructions, Resources, and Prerequisites
 ==========================================
 
 You can perform this lab on one of the course-provided AMIs, but you
@@ -70,7 +70,7 @@ http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkC
 
 <span id="h.o59uwx6sscy1" class="anchor"></span>
 
-#Step 0. Check Installation and Prepare Data
+##Step 0. Check Installation and Prepare Data
 ===========================================
 
 In this section we will help you understand the basics of your Spark
@@ -222,7 +222,7 @@ You should have learned the basic installation of Spark. You have also
 verified that the Spark programs can be found by your interactive Linux
 (Unix) shell.
 
-#Step 1. Start pyspark
+##Step 1. Start pyspark
 =====================
 
 First we will start a Spark shell so that we can access Spark and
@@ -319,7 +319,7 @@ pyspark less verbose by reducing the amount of logging displayed. If you
 have problems, you may consider increasing logging again to understand
 what is going on in your execution.
 
-#Step 2. Load a File and Count the Rows
+##Step 2. Load a File and Count the Rows
 ======================================
 
 Spark is commonly used to process large sets of data, and naturally we
@@ -399,7 +399,7 @@ operations on the RDD. You used examples such as first and count. We
 also illustrated that RDDs are immutable and that even to remove one row
 (the header) you need to create a new RDD.
 
-#Step 3. Filter Records and Structures
+##Step 3. Filter Records and Structures
 =====================================
 
 One obvious operation for Spark is to filter the data. Let’s filter out
@@ -448,7 +448,7 @@ understand anything about the structure of the records (except for key
 value structures, which we discuss in the next section). But you can
 store any Python structure that seems useful in an RDD.
 
-#Step 4. Key Values
+##Step 4. Key Values
 ==================
 
 An important structure in Spark is called a key value pair. In Python
@@ -514,7 +514,7 @@ Now you should understand the concept of key value tuples and how you
 can create them. You have also tried one operation on RDDs using the key
 value structure.
 
-#Step 5. Start Spark SQL 
+##Step 5. Start Spark SQL 
 ========================
 
 ***Important**: You can skip this step if you run on an AMI that does
@@ -562,7 +562,7 @@ You should understand the difference between using the Spark SQL CLI and
 using Spark SQL programmatically. You are able to start Spark SQL CLI
 and issue some basic commands to see that it works.
 
-#Step 6. Spark SQL Table Loaded With Data From a CSV file 
+##Step 6. Spark SQL Table Loaded With Data From a CSV file 
 =========================================================
 
 ***Important**: You can skip this step if you run on an AMI that does
@@ -814,7 +814,7 @@ You should have learned how to create a Python script that uses Spark
 SQL and how to run the script.<span id="h.4h3mp5s5v9gi"
 class="anchor"></span>
 
-#Step 8. Caching Tables and Uncaching Tables
+##Step 8. Caching Tables and Uncaching Tables
 ===========================================
 
 Caching Tables
@@ -836,7 +836,7 @@ UNCACHE TABLE logs\_last\_month;
 
 Once a table is cached, you can use in your Spark queries.
 
-Submissions, summary
+##Submissions, summary
 ====================
 
 There are three items that need to be submitted from this lab to be
@@ -859,7 +859,7 @@ In Step 6:
 SUBMISSION 3: Submit the number returned in the DataFrame of the
 result.show() command.
 
-#Troubleshooting
+##Troubleshooting
 ===============
 
 **Connection problem on laptop or Macbook**
@@ -977,12 +977,12 @@ the following command to split the data set in 1 million row parts. The
 split command will create a number of splits. The xaa files is the first
 part of the original file. We want to use that as it contains the header
 information that we look at later in the lab.
+```
+$ split -l 1000000 Crimes_-_200\_to_present.csv
 
-\$ split -l 1000000 Crimes\_-\_2001\_to\_present.csv
+$ ls
 
-\$ ls
-
-Crimes\_-\_2001\_to\_present.csv xad
+Crimes_-_2001_to_present.csv xad
 
 xaa xae
 
@@ -990,7 +990,8 @@ xab xaf
 
 xac
 
-\$ mv xaa Crimes\_-\_2001\_to\_present\_1M-1.csv
+$ mv xaa Crimes_-_2001_to_present_1M-1.csv
+```
 
 You can now complete the pyspark sections on the lab using this data
 set. Be aware that some of the counts etc. mentioned in the lab may be
