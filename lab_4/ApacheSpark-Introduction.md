@@ -546,7 +546,7 @@ a table that has a schema that corresponds to the web\_session\_log
 data. Run the following create statement directly on the spark-sql shell
 prompt:
 ```
-create table Web\_Session\_Log
+create table web_session_Log
 (DATETIME varchar(500),
 USERID varchar(500),
 SESSIONID varchar(500),
@@ -561,18 +561,12 @@ data directory.
 Run the describe command to see that it was created correctly. If it was
 not, you may need to drop it and try again correcting any mistakes.
 ```
-spark-sql&gt; describe web\_session\_log;
-
+spark-sql> describe web_session_log;
 datetime varchar(500) NULL
-
 userid varchar(500) NULL
-
 sessionid varchar(500) NULL
-
 productid varchar(500) NULL
-
 refererurl varchar(500) NULL
-
 Time taken: 0.083 seconds, Fetched 5 row(s)
 ```
 Assuming you have the weblog data in the directory where you are running
@@ -580,7 +574,7 @@ the spark-sql shell, you can load the file from the file system into the
 table using the command below. If the file is located somewhere else,
 you need to modify the path to the file.
 ```
-spark-sql&gt; LOAD DATA LOCAL INPATH "./weblog_lab.csv" INTO TABLE
+spark-sql> LOAD DATA LOCAL INPATH "./weblog_lab.csv" INTO TABLE
 web_session_log;
 ```
 Once the data are loaded you can count the number of rows using the
