@@ -1,5 +1,6 @@
 
-# MIDS W205 Lab 4       
+# MIDS W205 Lab 4      
+|                      |        |                     |                                                  |
 |----------------------|--------|---------------------|--------------------------------------------------|
 | *Lab*                | 4      | *Lab Title*         | An Introduction to Apache Spark and Spark SQL.   |
 | *Related Modules(s)* | 6      | *Goal*              | Get you started on Spark, Pyspark, and Spark SQL |
