@@ -66,7 +66,7 @@ http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkC
 
 <span id="h.o59uwx6sscy1" class="anchor"></span>
 
-##S tep 0. Check Installation and Prepare Data
+##Step 0. Check Installation and Prepare Data
 
 In this section we will help you understand the basics of your Spark
 installation. We will also help you download and assemble a dataset we
@@ -362,7 +362,7 @@ operations on the RDD. You used examples such as first and count. We
 also illustrated that RDDs are immutable and that even to remove one row
 (the header) you need to create a new RDD.
 
-##Step 3. Filter Records and Structures
+## Step 3. Filter Records and Structures
 
 One obvious operation for Spark is to filter the data. Let’s filter out
 all crimes that seem to be related to `NARCOTICS`.
@@ -407,7 +407,7 @@ understand anything about the structure of the records (except for key
 value structures, which we discuss in the next section). But you can
 store any Python structure that seems useful in an RDD.
 
-##Step 4. Key Values
+## Step 4. Key Values
 
 An important structure in Spark is called a key value pair. In Python
 these are represented as Python tuples. A tuple is an immutable sequence
@@ -470,7 +470,7 @@ Now you should understand the concept of key value tuples and how you
 can create them. You have also tried one operation on RDDs using the key
 value structure.
 
-##Step 5. Start Spark SQL 
+## Step 5. Start Spark SQL 
 
 ***Important**: You can skip this step if you run on an AMI that does
 not have appropriate support for Spark SQL. If you have a later version
