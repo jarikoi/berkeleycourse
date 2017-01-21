@@ -297,7 +297,7 @@ often read these data files from disk. The action textFile is an
 operation on Spark contexts that creates a RDD from a file that resides
 in HDFS or the local file system. Make sure you cloned the data file
 `Crimes_-_2001_to_present.csv` in the lab directory (assuming you are
-using the directory `/data/mylab`). Now create an RDD from that file
+using the directory `/data/mylab`, if you have permission problems with this location use a directory in your home cata logue). Now create an RDD from that file
 using the following action:
 ```
 >>>crimedata=sc.textFile("file:///data/mylab/Crimes_-_2001_to_present.csv")
