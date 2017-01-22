@@ -416,7 +416,7 @@ of elements of various types.
 You can create a new RDD consisting of tuples using the following
 operation:
 ```
->>> narcoticsCrimeTuples = narcoticsCrimes.map(lambda x:(x.split(",")\[0\], x))
+>>> narcoticsCrimeTuples = narcoticsCrimes.map(lambda x:(x.split(",")[0], x))
 ```
 You can check that the number of tuples is the same as the number of
 records in the data.
