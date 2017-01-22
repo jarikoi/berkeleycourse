@@ -229,6 +229,20 @@ Add a few .txt files and try both of these commands again.
 
 ## Redirection
 
+## Security
+
+## File Privledges
+
+## Firewalls
+
+## SSH
+
+## Webservers
+
+## Version Control
+
+GitHub has put a lot of effort into building a tutorial that will let you use their platform effectively. Let's not recreate the wheel and use theirs [https://try.github.io/](https://try.github.io/)
+
 ## Debugging
 
 ## Accessing remotely
