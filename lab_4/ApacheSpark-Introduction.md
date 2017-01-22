@@ -66,7 +66,7 @@ http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkC
 
 <span id="h.o59uwx6sscy1" class="anchor"></span>
 
-##S tep 0. Check Installation and Prepare Data
+##Step 0. Check Installation and Prepare Data
 
 In this section we will help you understand the basics of your Spark
 installation. We will also help you download and assemble a dataset we
@@ -297,7 +297,7 @@ often read these data files from disk. The action textFile is an
 operation on Spark contexts that creates a RDD from a file that resides
 in HDFS or the local file system. Make sure you cloned the data file
 `Crimes_-_2001_to_present.csv` in the lab directory (assuming you are
-using the directory `/data/mylab`). Now create an RDD from that file
+using the directory `/data/mylab`, if you have permission problems with this location use a directory in your home cata logue). Now create an RDD from that file
 using the following action:
 ```
 >>>crimedata=sc.textFile("file:///data/mylab/Crimes_-_2001_to_present.csv")
@@ -350,7 +350,7 @@ shell using the following line:
 We then execute a mapPartitionWithIndex operation, passing that function
 as an argument.
 ```
->>> noHeaderCrimeData2 = crimedata.mapPartitionsWithIndex(remove_header)
+>>> noHeaderCrimedata2 = crimedata.mapPartitionsWithIndex(remove_header)
 ```
 Print the first line and the count to make sure they are correct.
 
@@ -362,7 +362,7 @@ operations on the RDD. You used examples such as first and count. We
 also illustrated that RDDs are immutable and that even to remove one row
 (the header) you need to create a new RDD.
 
-##Step 3. Filter Records and Structures
+## Step 3. Filter Records and Structures
 
 One obvious operation for Spark is to filter the data. Let’s filter out
 all crimes that seem to be related to `NARCOTICS`.
@@ -407,7 +407,7 @@ understand anything about the structure of the records (except for key
 value structures, which we discuss in the next section). But you can
 store any Python structure that seems useful in an RDD.
 
-##Step 4. Key Values
+## Step 4. Key Values
 
 An important structure in Spark is called a key value pair. In Python
 these are represented as Python tuples. A tuple is an immutable sequence
@@ -416,7 +416,7 @@ of elements of various types.
 You can create a new RDD consisting of tuples using the following
 operation:
 ```
->>> narcoticsCrimeTuples = narcoticsCrimes.map(lambda x:(x.split(",")\[0\], x))
+>>> narcoticsCrimeTuples = narcoticsCrimes.map(lambda x:(x.split(",")[0], x))
 ```
 You can check that the number of tuples is the same as the number of
 records in the data.
@@ -470,7 +470,7 @@ Now you should understand the concept of key value tuples and how you
 can create them. You have also tried one operation on RDDs using the key
 value structure.
 
-##Step 5. Start Spark SQL 
+## Step 5. Start Spark SQL 
 
 ***Important**: You can skip this step if you run on an AMI that does
 not have appropriate support for Spark SQL. If you have a later version
@@ -535,7 +535,7 @@ USERID varchar(500),
 SESSIONID varchar(500),
 PRODUCTID varchar(500),
 REFERERURL varchar(500))
-row format delimited fields terminated by ‘\\t’ stored as textfile;
+row format delimited fields terminated by '\t' stored as textfile;
 ```
 You can load files from the local files system or from HDFS. Let’s load
 weblog data available on GitHub and should have been cloned with the
@@ -620,7 +620,7 @@ data based on where you stored them.
 ```
 Create a map of the data so that they can be structured into a table.
 ```
->>> parts = lines.map(lambda l: l.split('\\t'))
+>>> parts = lines.map(lambda l: l.split('\t'))
 >>> Web_Session_Log = parts.map(lambda p: (p[0],p[1],p[2], p[3],p[4]))
 ```
 Create string with the name of the columns of your table.
@@ -639,8 +639,7 @@ Combine the fields into a schema object.
 Create a table based on a DataFrame using the data that was read and the
 structure representing the schema.
 ```
->>> schemaWebData =
-sqlContext.createDataFrame(Web_Session_Log, schema)
+>>> schemaWebData = sqlContext.createDataFrame(Web_Session_Log, schema)
 ```
 Register the object as a table with a table name.
 ```
@@ -648,8 +647,7 @@ Register the object as a table with a table name.
 ```
 Query the table.
 ```
->>> results = sqlContext.sql('SELECT count(*) FROM
-Web_Session_Log')
+>>> results = sqlContext.sql('SELECT count(*) FROM Web_Session_Log')
 ```
 Use the DataFrame operation show to print the content of the result of
 the query.
@@ -681,8 +679,9 @@ Another query, with a screen shot.
 >>> results.show()
 ```
 See below for screenshot of what you should see.
+![Select Result](/blob/master/images/lab_4/Picture7-1.png?raw=true)
 
-![](media/image2.png){width="6.5in" height="4.202083333333333in"}
+
 
 You can also run the program as a script. Let’s assume you create a
 script mysql.py, which you placed in /tmp with the data file. The
@@ -717,14 +716,13 @@ use pyspark to run the command, but the recommended way is to use
 $ spark-submit /tmp/mysql.py
 ```
 The output may look something like the following screenshot.
+![submit Result](/blob/master/images/lab_4/Picture7-2.png?raw=true)
 
-![](media/image3.png){width="6.5in" height="5.118055555555555in"}
 
 ### What You Should Have Learned
 
 You should have learned how to create a Python script that uses Spark
-SQL and how to run the script.<span id="h.4h3mp5s5v9gi"
-class="anchor"></span>
+SQL and how to run the script.
 
 ## Step 8. Caching Tables and Uncaching Tables
 
@@ -775,8 +773,8 @@ result.show() command.
 If you get an exception similar to “ERROR SparkContext: Error
 initializing SparkContext. java.net.UnknownHostException:…”, ensure you
 have the brand and model of your computer added to the /etc/hosts file.
-For example add the line “127.0.0.1 &lt;myhost&gt;”, where
-&lt;myhost&gt; is the name of your computer.
+For example add the line “127.0.0.1 <myhost>”, where
+<myhost> is the name of your computer.
 
 7
 
