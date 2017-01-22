@@ -620,7 +620,7 @@ data based on where you stored them.
 ```
 Create a map of the data so that they can be structured into a table.
 ```
->>> parts = lines.map(lambda l: l.split('\\t'))
+>>> parts = lines.map(lambda l: l.split('\t'))
 >>> Web_Session_Log = parts.map(lambda p: (p[0],p[1],p[2], p[3],p[4]))
 ```
 Create string with the name of the columns of your table.
@@ -639,8 +639,7 @@ Combine the fields into a schema object.
 Create a table based on a DataFrame using the data that was read and the
 structure representing the schema.
 ```
->>> schemaWebData =
-sqlContext.createDataFrame(Web_Session_Log, schema)
+>>> schemaWebData = sqlContext.createDataFrame(Web_Session_Log, schema)
 ```
 Register the object as a table with a table name.
 ```
@@ -648,8 +647,7 @@ Register the object as a table with a table name.
 ```
 Query the table.
 ```
->>> results = sqlContext.sql('SELECT count(*) FROM
-Web_Session_Log')
+>>> results = sqlContext.sql('SELECT count(*) FROM Web_Session_Log')
 ```
 Use the DataFrame operation show to print the content of the result of
 the query.
