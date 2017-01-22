@@ -76,11 +76,11 @@ limitations on file size, so we needed to split the dataset into
 manageable chunks to upload it. Your instructor may provide you with an
 alternative way of getting the same dataset.
 
-First, if an example starts with the “\$” prompt, it is run in the Linux
-shell. If it starts with the “>>>” prompt, it is run in pyspark
+First, if an example starts with the `$` prompt, it is run in the Linux
+shell. If it starts with the “>>>” prompt, it is run in `pyspark`
 shell.
 
-Echo your SPARK\_HOME environment variable to see where your Spark is
+Echo your `SPARK_HOME` environment variable to see where your Spark is
 installed.
 ```
 $ echo $SPARK_HOME
@@ -105,7 +105,7 @@ LICENSE R RELEASE conf derby.log examples old sbin
 If you look in bin you will see `spark-shell`, `pyspark`, and other tools
 for running and managing Spark.
 
-In your shell profile (often `.bash\_profile)`, you may see the following
+In your shell profile (often `.bash_profile)`, you may see the following
 lines that indicate that the Spark commands are in your shell execution
 path.
 ```
@@ -131,7 +131,7 @@ is interesting to explore types of crimes, density of crimes, and so
 forth. For this lab you can use any substantial data file as a
 replacement for `Crimes_-_2001_to_present.csv`, but you need to
 modify the commands accordingly. You can download the
-`Crimes_-_2001_to_present.csv` file from GitHub. Because it is a
+`Crimes_-_2001_to_present.csv` file from *GitHub*. Because it is a
 large file, we had to compress and split the file when we uploaded it to
 GitHub. Therefore, you will need to merge the parts and uncompress the
 result.
@@ -213,12 +213,12 @@ First we will start a Spark shell so that we can access Spark and
 interactively process Spark commands. We will be using pyspark, which is
 a Python-based shell for Spark.
 
-Assuming you have the Spark bin directory in your PATH environment
+Assuming you have the Spark bin directory in your `PATH` environment
 variable, you can start pyspark by issuing the following command:
 ```
 $pyspark
 ```
-Otherwise go to the /bin directory in the installation (\$SPARK\_HOME)
+Otherwise go to the /bin directory in the installation (`$SPARK_HOME`)
 folder and type the following:
 ```
 $./pyspark
@@ -241,18 +241,18 @@ Type sc to verify you have one already in your Python shell:
 ```
 So far you have used only Python statements and checked that you have a
 Spark context. You can use the Spark context to create a Spark RDD from
-Python data using the command parallelize.
+Python data using the command `parallelize`.
 ```
 >>> distData = sc.parallelize(x);
 >>> print distData;
 ParallelCollectionRDD[0] at parallelize at PythonRDD.scala:391
 ```
-The Spark context parallelize action is used to take local programming
+The Spark context `parallelize` action is used to take local programming
 collections and create RDDs from them. In this case, we created a RDD
 from a Python array.
 
-The resulting value of the distData variable is an RDD representation.
-Try running len(distData); what happens, and why? To count elements in
+The resulting value of the `distData` variable is an RDD representation.
+Try running `len(distData)`; what happens, and why? To count elements in
 an RDD you need to use RDD actions. You can find a list of available
 actions in the programming guide. To count the elements, you use the
 count() action. Try the following:
@@ -265,10 +265,10 @@ As you probably noticed, the default level of logging can be
 distracting. To reduce the volume of logging information, go to the
 `$SPARK_HOME/conf` directory. Sometimes this directory is stored in
 another location. If you are using one of our AMIs, look in the
-`/usr/lib/spark/conf/` directory. Create a log4j.properties file. If you
+`/usr/lib/spark/conf/` directory. Create a `log4j.properties` file. If you
 do not already have one, you can get one by copying the
-log4j.properties.template file. To set the logging level to warnings
-(WARN), change INFO to WARN in the property `log4j.rootCategory=WARN`
+`log4j.properties.template` file. To set the logging level to warnings
+`(WARN)`, change `INFO` to `WARN` in the property `log4j.rootCategory=WARN`
 console.
 ```
 # Set everything to be logged to the console
@@ -302,7 +302,7 @@ using the following action:
 ```
 >>>crimedata=sc.textFile("file:///data/mylab/Crimes_-_2001_to_present.csv")
 ```
-If you run the AIM, you can copy the data to HDFS and have pyspark get
+If you run the AIM, you can copy the data to HDFS and have `pyspark` get
 the file from there.
 
 Print the number of lines in this RDD using the following command:
@@ -346,7 +346,7 @@ shell using the following line:
 ```
 >>> def remove_header(itr_index, itr): return iter(list(itr)[1:]) if itr_index == 0 else itr
 ```
-We then execute a mapPartitionWithIndex operation, passing that function
+We then execute a `mapPartitionWithIndex` operation, passing that function
 as an argument.
 ```
 >>> noHeaderCrimedata2 = crimedata.mapPartitionsWithIndex(remove_header)
@@ -366,15 +366,15 @@ also illustrated that RDDs are immutable and that even to remove one row
 One obvious operation for Spark is to filter the data. Let’s filter out
 all crimes that seem to be related to `NARCOTICS`.
 
-We can do this using the filter operation and a lambda function that
-checks for the word “NARCOTICS” in each row. We will return only rows
+We can do this using the filter operation and a `lambda` function that
+checks for the word `NARCOTICS` in each row. We will return only rows
 that included that word.
 ```
 >>> narcoticsCrimes = noHeaderCrimedata.filter(lambda x: "NARCOTICS" in x)
 >>> narcoticsCrimes.count()
 663712
 ```
-It appears that 663,712 crimes are related to narcotics. Use take(n) to
+It appears that `663,712` crimes are related to narcotics. Use `take(n)` to
 check that the data seems good. For example:
 ```
 >>> narcoticsCrimes.take(20)
@@ -488,7 +488,7 @@ use Spark SQL programmatically, you need create a special Spark SQL
 context. With the Spark SQL CLI, the context is already there for you
 and you can use SQL commands.
 
-You start Beeline with the following command:
+You start *Beeline* with the following command:
 ```
 $spark-sql
 ```
@@ -528,8 +528,8 @@ per instructions on the troubleshooting section. Proceed to Step 7 to
 learn about Spark SQL API.*
 
 You can create a Spark SQL table. The following create statement creates
-a table that has a schema that corresponds to the web\_session\_log
-data. Run the following create statement directly on the spark-sql shell
+a table that has a schema that corresponds to the `web_session_log`
+data. Run the following create statement directly on the `spark-sql` shell
 prompt:
 ```
 create table web_session_Log
@@ -556,7 +556,7 @@ refererurl varchar(500) NULL
 Time taken: 0.083 seconds, Fetched 5 row(s)
 ```
 Assuming you have the weblog data in the directory where you are running
-the spark-sql shell, you can load the file from the file system into the
+the `spark-sql` shell, you can load the file from the file system into the
 table using the command below. If the file is located somewhere else,
 you need to modify the path to the file.
 ```
@@ -582,7 +582,6 @@ And now let’s count the number of rows that are related to eBay.
 ```
 spark-sql> select count(*) from web_session_log where refererurl ="http://www.ebay.com" ;
 ```
-<span id="h.j0652kg86bem" class="anchor"><span id="h.h5kpreessbos" class="anchor"><span id="h.8sx4huvp00ht" class="anchor"></span></span></span>
 
 ### What You Should Have Learnt
 
@@ -675,14 +674,14 @@ Another query, with a screen shot.
 
 >>> results.show()
 ```
-See below for screenshot of what you should see.
+See below for screenshot of what you should displayed.
 ![Select Result](/blob/master/images/lab_4/Picture7-1.png?raw=true)
 
 
 
 You can also run the program as a script. Let’s assume you create a
-script mysql.py, which you placed in /tmp with the data file. The
-content of mysql.py follows. You may need to adjust the location of data
+script `mysql.py`, which you placed in `/tmp` with the data file. The
+content of `mysql.py` follows. You may need to adjust the location of data
 file based on where you stored it and if you opted to have it on HDFS.
 ```
 from pyspark import SparkContext
