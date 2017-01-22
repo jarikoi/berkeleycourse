@@ -30,4 +30,3 @@ results = sqlContext.sql('select count(*) from Web_Session_Log where refererurl=
 The number of records should be: `3943`
 
 
-## Submission 3
