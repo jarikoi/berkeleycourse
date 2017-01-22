@@ -762,8 +762,6 @@ have the brand and model of your computer added to the /etc/hosts file.
 For example add the line “127.0.0.1 <myhost>”, where
 <myhost> is the name of your computer.
 
-7
-
 ### Hadoop connection problem on EC2 instance
 
 If you get an error that looks something like this on the AMI:
@@ -821,10 +819,10 @@ sudo mount -t ext4 /dev/xvdh /data
 ```
 <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html>
 
-### Error at ‘\\t’
+### Error at `\t`
 
 Sometimes cutting and pasting changes the representation of characters.
-Edit the command in spark-sql and make sure you have ‘’ quotes.
+Edit the command in `spark-sql` and make sure you have ‘’ quotes.
 
 ### Local Spark Installation for spark-sql CLI
 
@@ -844,7 +842,7 @@ export HADOOP_CONF_DIR=/etc/hadoop/conf
 I would also propose changing Log tracing to WARN in the conf/log4j
 file.
 
-If you check which spark-sql you use you should see the following.
+If you check which `spark-sql` you use you should see the following.
 ```
 # which spark-sql
 
@@ -857,7 +855,7 @@ should be able to do step-5 and step-6 of this lab.
 ### In sufficient memory
 
 
-If you get an ERROR concerning insufficient memory you should probably
+If you get an `ERROR` concerning insufficient memory you should probably
 make sure you get more memory for the node you are running the lab on.
 This is particularly important so that you can process somewhat
 realistic data sets for Exercises and Projects. To get through this lab,
@@ -865,7 +863,7 @@ however, you can reduce the data set. Lets assume you had issues with
 the Crime data set. This data set has close to 6 million rows. Lets say
 you can handle 1 million rows in memory on your node. You could then use
 the following command to split the data set in 1 million row parts. The
-split command will create a number of splits. The xaa files is the first
+split command will create a number of splits. The `xaa` files is the first
 part of the original file. We want to use that as it contains the header
 information that we look at later in the lab.
 ```
@@ -884,6 +882,6 @@ xac
 $ mv xaa Crimes_-_2001_to_present_1M-1.csv
 ```
 
-You can now complete the pyspark sections on the lab using this data
+You can now complete the `pyspark` sections on the lab using this data
 set. Be aware that some of the counts etc. mentioned in the lab may be
 incorrect with respect to this smaller data set.
