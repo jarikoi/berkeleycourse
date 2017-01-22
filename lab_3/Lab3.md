@@ -1,9 +1,10 @@
 #MIDS W205
 
-| **Lab #** | 3 | **Lab Title** | Defining Schema and Basic Queries with Hive and Spark |
-|---|---|---|---|
-| **Related Module(s)** | 1-4 | **Goal** | Understanding schema and query engines |
-| **Last Updated** | 1/25/16 | **Expected duration** | 40-60 minutes |
+|                      |        |                     |                                                  |
+|----------------------|--------|---------------------|--------------------------------------------------|
+| *Lab*                | 3     | *Lab Title*         | Defining Schema and Basic Queries with Hive and Spark   |
+| *Related Modules(s)* | 1-4     | *Goal*              | Understanding AWS / AMI concepts|
+| *Last Updated*       | 1/22/17 | *Expected Duration* | 40-60 minutes     
 
 ##Introduction:
 
@@ -31,31 +32,55 @@ a toy dataset regarding users and their weblogs. To download the data, do this:
 
 	a. Attach your EBS volume from Lab 2
 	b. Find the volume location, by typing `fdisk -l`
-	c. Mount the volume as follows: `mount -t ext4 /dev/<your   device>/data`
-   d. Start HDFS, Hadoop Yarn and Hive: `/root/start-hadoop.sh`
-   e. Start Postgres: `/data/start_postgres.sh`
-   f. Change to the w205 user: `su -  w205`
-   g. Make a new folder in HDFS for this lab: `hdfs dfs -mkdir /user/w205/lab_3`
-   h. Download the two datasets using wget. Type:
-   		- `wget https://s3.amazonaws.com/ucbdatasciencew205/lab_datasets/userdata_lab.csv`
-   		- `wget https://s3.amazonaws.com/ucbdatasciencew205/lab_datasets/weblog_lab.csv`
-   	i. Make an HDFS folder for each data set and place them in HDFS
-   		i. `hdfs dfs -mkdir /user/w205/lab_3/user_data`
-   		ii. `hdfs dfs -mkdir /user/w205/lab_3/weblog_data`
-   		iii. `hdfs dfs -put userdata_lab.csv /user/w205/lab_3/user_data`
-   		iv. `hdfs dfs -put weblog_lab.csv /user/w205/lab_3/weblog_data` 
+	c. Mount the volume as follows: `mount -t ext4 /dev/<your
+   device>/data`
+
+   d. Start HDFS, Hadoop Yarn and Hive: `/root/start-hadoop.sh`
+
+   e. Start Postgres: `/data/start_postgres.sh`
+
+   f. Change to the w205 user: `su -  w205`
+
+   g. Make a new folder in HDFS for this lab: `hdfs dfs -mkdir /user/w205/lab_3`
+
+   h. Download the two datasets using wget. Type:
+
+   		- `wget https://s3.amazonaws.com/ucbdatasciencew205/lab_datasets/userdata_lab.csv`
+
+   		- `wget https://s3.amazonaws.com/ucbdatasciencew205/lab_datasets/weblog_lab.csv`
+
+   	i. Make an HDFS folder for each data set and place them in HDFS
+
+   		i. `hdfs dfs -mkdir /user/w205/lab_3/user_data`
+
+   		ii. `hdfs dfs -mkdir /user/w205/lab_3/weblog_data`
+
+   		iii. `hdfs dfs -put userdata_lab.csv /user/w205/lab_3/user_data`
+
+   		iv. `hdfs dfs -put weblog_lab.csv /user/w205/lab_3/weblog_data`
+ 
 
 ##Step-2. Define Schema for The Data in Hive
 
 Now that the data is in HDFS, we'd like to define schema on it. We'll start by creating and
 querying a simple table. Then we'll add schema for both weblogs and users.
 
-First, enter the Hive CLI by typing: `hive`  
+First, enter the Hive CLI by typing: `hive`
+  
 We are now in the Hive interactive environment. We can use this environment to explore and integrate the data we've placed in HDFS. Let's start by defining a flat, undelimited schema over our weblogs. In the CLI, type:
 
 ```sql 
-CREATE EXTERNAL TABLE IF NOT EXISTS weblogs_flat(weblog string)ROW FORMAT DELIMITEDSTORED AS TEXTFILELOCATION '/user/w205/lab_3/weblog_data';
-```Now we can access the weblogs interactively. Type:```sql SELECT * FROM weblogs_flat LIMIT 10;
+CREATE EXTERNAL TABLE IF NOT EXISTS weblogs_flat
+(weblog string)
+ROW FORMAT DELIMITED
+STORED AS TEXTFILE
+LOCATION '/user/w205/lab_3/weblog_data';
+```
+
+Now we can access the weblogs interactively. Type:
+
+```sql 
+SELECT * FROM weblogs_flat LIMIT 10;
 ```
   
 You'll notice 10 weblogs return. We can filter out the header row with a query like this:
@@ -67,13 +92,25 @@ SELECT * FROM weblogs_flat WHERE weblog NOT LIKE 'date%' LIMIT 10;
 However, we can't select individual fields or filter our results with very much nuance. To do that, we need to add a more detailed schema. Define a new table in the CLI as follows:
 
 ```sql
-CREATE EXTERNAL TABLE IF NOT EXISTS weblogs_schema(datetime string,user_id string,session_id string,product_id string,referrer string)ROW FORMAT DELIMITEDFIELDS TERMINATED BY '\t'STORED AS TEXTFILELOCATION '/user/w205/lab_3/weblog_data';
+CREATE EXTERNAL TABLE IF NOT EXISTS weblogs_schema
+(datetime string,
+user_id string,
+session_id string,
+product_id string,
+referrer string)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE
+LOCATION '/user/w205/lab_3/weblog_data';
 ```  
 
 Now we can select out just fields we may be interested in. For example, we can count the 50 most frequently occurring user_ids as follows:
 
 ```sql
-SELECT user_id, COUNT(user_id) AS log_countFROM weblogs_schema GROUP BY user_idORDER BY log_count DESCLIMIT 50;
+SELECT user_id, COUNT(user_id) AS log_count
+FROM weblogs_schema GROUP BY user_id
+ORDER BY log_count DESC
+LIMIT 50;
 ``` 
 
 Additionally, define a table on our user information. Create a table as follows:
@@ -81,9 +118,18 @@ Additionally, define a table on our user information. Create a table as follows:
 ```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS user_info
 ( 
- datetime string, user_id string, first_name string, last_name string, location string
-) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/user/w205/lab_3/user_data'  
-```  
+ datetime string,
+ user_id string,
+ first_name string,
+ last_name string,
+ location string
+)
+ ROW FORMAT DELIMITED
+ FIELDS TERMINATED BY '\t'
+ STORED AS TEXTFILE
+ LOCATION '/user/w205/lab_3/user_data'  
+```
+  
 Exit the Hive CLI by typing: `exit;`
 
 ##Step-3. Setup Spark, Use the SparkSQL CLI
@@ -105,15 +151,26 @@ As we explore different manifestations of processing, we'll pay special attentio
 6. Run the aggregated query from the previous step. Compare the execution time:
 
 	```sql
-	SELECT  		user_id,		COUNT(user_id) AS log_count 
-	FROM weblogs_schema	GROUP BY user_id	ORDER BY log_count DESC	LIMIT 50;
-	```7. Convert the weblogs data to Parquet format: 
-	`CREATE TABLE weblogs_parquet AS SELECT * FROM weblogs_schema;` 
+	SELECT
+  		user_id,
+		COUNT(user_id) AS log_count 
+	FROM weblogs_schema
+	GROUP BY user_id
+	ORDER BY log_count DESC
+	LIMIT 50;
+	```
+
+7. Convert the weblogs data to Parquet format: 
+
+	`CREATE TABLE weblogs_parquet AS SELECT * FROM weblogs_schema;` 
 
 8. Run the aggregation on the new table and compare the execution time.
 
 	```sql
-	SELECT user_id, COUNT(user_id) AS log_count	FROM weblogs_parquet GROUP BY user_id	ORDER BY log_count DESC	LIMIT 50;
+	SELECT user_id, COUNT(user_id) AS log_count
+	FROM weblogs_parquet GROUP BY user_id
+	ORDER BY log_count DESC
+	LIMIT 50;
 	```	
 
 9. Exit the CLI. Type: `exit;`
