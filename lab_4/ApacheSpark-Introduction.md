@@ -679,8 +679,9 @@ Another query, with a screen shot.
 >>> results.show()
 ```
 See below for screenshot of what you should see.
+![Select Result](/blob/master/images/lab_4/Picture7-1.png?raw=true)
 
-![](media/image2.png){width="6.5in" height="4.202083333333333in"}
+
 
 You can also run the program as a script. Let’s assume you create a
 script mysql.py, which you placed in /tmp with the data file. The
@@ -715,14 +716,13 @@ use pyspark to run the command, but the recommended way is to use
 $ spark-submit /tmp/mysql.py
 ```
 The output may look something like the following screenshot.
+![submit Result](/blob/master/images/lab_4/Picture7-2.png?raw=true)
 
-![](media/image3.png){width="6.5in" height="5.118055555555555in"}
 
 ### What You Should Have Learned
 
 You should have learned how to create a Python script that uses Spark
-SQL and how to run the script.<span id="h.4h3mp5s5v9gi"
-class="anchor"></span>
+SQL and how to run the script.
 
 ## Step 8. Caching Tables and Uncaching Tables
 
@@ -773,8 +773,8 @@ result.show() command.
 If you get an exception similar to “ERROR SparkContext: Error
 initializing SparkContext. java.net.UnknownHostException:…”, ensure you
 have the brand and model of your computer added to the /etc/hosts file.
-For example add the line “127.0.0.1 &lt;myhost&gt;”, where
-&lt;myhost&gt; is the name of your computer.
+For example add the line “127.0.0.1 <myhost>”, where
+<myhost> is the name of your computer.
 
 7
 
