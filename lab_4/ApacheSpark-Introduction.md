@@ -449,9 +449,9 @@ What is the value of the first tuple?
 There is one little problem with the tuple. Can you spot it? How should
 we change the map and lambda functions above to address that?
 
-SUBMISSION 1:
+**SUBMISSION 1:**
 
-Create an RDD with tuples were the there is a key and a value. But in contrast to the example above the key is removed from the value portion of the key-value tuple. Submit the code and a print out of the first tuple.
+*Create an RDD with tuples were the there is a key and a value. But in contrast to the example above the key is removed from the value portion of the key-value tuple. Submit the code and a print out of the first tuple.*
 
 You can perform many operations once you have a key value tuple. You can
 join, reduce, map, and so on. You can read about the operations in the
@@ -660,20 +660,14 @@ the query.
 The following query can be used to query the number of rows related to
 eBay:
 ```
-select count(*) from web_session_log where 'REFERERURL'= "http://www.ebay.com" ;
+select count(*) from web_session_log where 'refereurl'= "http://www.ebay.com" ;
 ```
 Note: The case sensitivity is sometime different, depending on where you
 run the command. Keep that in mind if you see certain errors.
 
-Enhance the script to execute the above query, and answer Submission 2.
 
-SUBMISSION 2: Submit the number of rows returned by the select on eBay
-entries.
+**SUBMISSION 2:** *Submit the the code for executing the above query as a Spark SQL python call. Also submit the number of rows in the result*
 
-It should print that the result has one cell with some value.
-
-SUBMISSION 3: Submit the number returned in the DataFrame of the
-result.show() command above.
 
 Another query, with a screen shot.
 ```
@@ -744,27 +738,20 @@ UNCACHE TABLE logs_last_month;
 ```
 Once a table is cached, you can use in your Spark queries.
 
-##Submissions, summary
+##Submissions, Summary
 
-There are three items that need to be submitted from this lab to be
-approved.
+There are two items that need to be submitted from this lab to be approved.
 
 In Step 3:
 
-SUBMISSION 1: Submit the first 10 rows of the unsorted and the sorted
-RDD to show that you successfully created both. Also explain the issue
-with the tuple and how to possibly correct it in the map/lambda function
-that was used to create the tuples.
+**SUBMISSION 1:**
+
+*Create an RDD with tuples were the there is a key and a value. But in contrast to the example above the key is removed from the value portion of the key-value tuple. Submit the code and a print out of the first tuple.*
 
 In Step 5:
 
-SUBMISSION 2: Submit the number of rows returned by the select on eBay
-entries.
+**SUBMISSION 2:** *Submit the the code for executing the above query as a Spark SQL python call. Also submit the number of rows in the result*
 
-In Step 6:
-
-SUBMISSION 3: Submit the number returned in the DataFrame of the
-result.show() command.
 
 ## Troubleshooting
 ### Connection problem on laptop or Macbook
