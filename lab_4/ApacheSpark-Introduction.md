@@ -102,10 +102,10 @@ CHANGES.txt NOTICE README.md bin data ec2 lib python
 LICENSE R RELEASE conf derby.log examples old sbin
 ```
 
-If you look in bin you will see spark-shell, pyspark, and other tools
+If you look in bin you will see `spark-shell`, `pyspark`, and other tools
 for running and managing Spark.
 
-In your shell profile (often .bash\_profile), you may see the following
+In your shell profile (often `.bash\_profile)`, you may see the following
 lines that indicate that the Spark commands are in your shell execution
 path.
 ```
@@ -327,8 +327,7 @@ design. One way to remove the header is to create a new RDD and to
 filter out the first row. An example of one of the many ways to do this
 follows:
 ```
->>> noHeaderCrimedata = crimedata.zipWithIndex().filter(lambda
-(row,index): index > 0).keys()
+>>> noHeaderCrimedata = crimedata.zipWithIndex().filter(lambda (row,index): index > 0).keys()
 ```
 It is a quite a processing-heavy way of doing it, but as we mentioned,
 RDDs are immutable. You cannot just go in and remove a record. This is
@@ -449,6 +448,10 @@ What is the value of the first tuple?
 ```
 There is one little problem with the tuple. Can you spot it? How should
 we change the map and lambda functions above to address that?
+
+SUBMISSION 1:
+
+Create an RDD with tuples were the there is a key and a value. But in contrast to the example above the key is removed from the value portion of the key-value tuple. Submit the code and a print out of the first tuple.
 
 You can perform many operations once you have a key value tuple. You can
 join, reduce, map, and so on. You can read about the operations in the
@@ -691,15 +694,11 @@ file based on where you stored it and if you opted to have it on HDFS.
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql.types import *
-
 sc = SparkContext("local", "weblog app")
 sqlContext = SQLContext(sc)
 
-lines =
-sc.textFile('file:///data/labs/w205-labs-exercises/data//weblog_lab.csv')
-
-parts = lines.map(lambda l: l.split('\\t'))
-
+lines = sc.textFile('file:///data/labs/w205-labs-exercises/data//weblog_lab.csv')
+parts = lines.map(lambda l: l.split('\t'))
 Web_Session_Log = parts.map(lambda p: (p[0], p[1],p[2],p[3],p[4]))
 schemaString = 'DATETIME USERID SESSIONID PRODUCTID REFERERURL'
 fields = [StructField(field_name, StringType(), True) for field_name in schemaString.split()]
