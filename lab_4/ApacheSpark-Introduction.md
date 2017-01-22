@@ -535,7 +535,7 @@ USERID varchar(500),
 SESSIONID varchar(500),
 PRODUCTID varchar(500),
 REFERERURL varchar(500))
-row format delimited fields terminated by ‘\t’ stored as textfile;
+row format delimited fields terminated by '\t' stored as textfile;
 ```
 You can load files from the local files system or from HDFS. Let’s load
 weblog data available on GitHub and should have been cloned with the
