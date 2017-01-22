@@ -350,7 +350,7 @@ shell using the following line:
 We then execute a mapPartitionWithIndex operation, passing that function
 as an argument.
 ```
->>> noHeaderCrimeData2 = crimedata.mapPartitionsWithIndex(remove_header)
+>>> noHeaderCrimedata2 = crimedata.mapPartitionsWithIndex(remove_header)
 ```
 Print the first line and the count to make sure they are correct.
 
