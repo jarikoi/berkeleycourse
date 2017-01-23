@@ -1,4 +1,4 @@
-|                      |        |                     |                                                  |
+
 |----------------------|--------|---------------------|--------------------------------------------------|
 | *Lab*                | 6      | *Lab Title*         | Apache Storm Introduction |
 | *Related Modules(s)* |6      | *Goal*              | Get you started on Storm |
@@ -34,9 +34,11 @@ the local cluster.
 **Note: You need to use a different AMI for this Lab. Here is the
 information for the new AMI:**
 
-**AMI Name: UCB MIDS W205 EX2-FULL**
+|----------------------|---------------------------------|
+| *AMI Name*                 *UCB MIDS W205 EX2-FULL*         
+| *AMI ID* | *ami-d4dd4ec3*              | 
 
-**AMI ID: ami-d4dd4ec3**
+
 
 Here are the steps we will cover in this lab:
 ---------------------------------------------
@@ -58,13 +60,14 @@ Instructions, Resources, and Prerequisites
 In the following table you will find references to resources related to
 programs and components used and mention in subsequent sections.
 
-  []{#h.o59uwx6sscy1 .anchor}**Resource**                                         **What**
-  ------------------------------------------------------------------------------- --------------------------------------------------
-  http://storm.apache.org/documentation.html                                      Apache Storm documentation
-  http://streamparse.readthedocs.org/en/latest/quickstart.html                    Introduction to streamparse topology definitions
-  https://streamparse.readthedocs.org/en/latest/api.html                          Streamparse documentation
-  http://www.pixelmonkey.org/2014/05/04/streamparse                               Short description of streamparse
-  https://drive.google.com/file/d/0B6706xGNaPPyZ1l4bjFUMHJWdkk/view?usp=sharing   Instruction video referred to in this lab
+| **Resource** | **What**|
+|---|---|
+|[http://storm.apache.org/documentation.html]( http://storm.apache.org/documentation.html   ) | Apache Storm documentation) |
+| [http://streamparse.readthedocs.org/en/latest/quickstart.html](http://streamparse.readthedocs.org/en/latest/quickstart.html) | Introduction to streamparse topology definitions |
+| [ https://streamparse.readthedocs.org/en/latest/api.html ]( https://streamparse.readthedocs.org/en/latest/api.html ) | Streamparse documentation |
+| [http://www.pixelmonkey.org/2014/05/04/streamparse ](http://www.pixelmonkey.org/2014/05/04/streamparse ) | Short description of streamparse |
+| [ https://drive.google.com/file/d/0B6706xGNaPPyZ1l4bjFUMHJWdkk/view?usp=sharing]( https://drive.google.com/file/d/0B6706xGNaPPyZ1l4bjFUMHJWdkk/view?usp=sharing) | Instruction video referred to in this lab |
+
 
 Step 1: Environment and Tool Setup
 ==================================
