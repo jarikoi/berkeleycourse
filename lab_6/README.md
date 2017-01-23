@@ -1,9 +1,11 @@
-  **Lab \#**              6           **Lab Title**           Apache Storm Introduction
-  ----------------------- ----------- ----------------------- ---------------------------
-  **Related Module(s)**   6           **Goal**                Get you started on Storm
-  **Last Updated**        1/20/2017   **Expected duration**   90–120 minutes
+|                      |        |                     |                                                  |
+|----------------------|--------|---------------------|--------------------------------------------------|
+| *Lab*                | 6      | *Lab Title*         | Apache Storm Introduction |
+| *Related Modules(s)* |6      | *Goal*              | Get you started on Storm |
+| *Last Updated*       | 1/20/2017 | *Expected Duration* |  90–120 minutes        
 
-Introduction
+##Introduction:
+
 ============
 
 A Storm application is designed as a "topology" represented as a direct
