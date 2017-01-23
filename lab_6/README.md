@@ -1,4 +1,5 @@
 
+|                      |        |                     |                                                  |
 |----------------------|--------|---------------------|--------------------------------------------------|
 | *Lab*                | 6      | *Lab Title*         | Apache Storm Introduction |
 | *Related Modules(s)* |6      | *Goal*              | Get you started on Storm |
