@@ -26,13 +26,15 @@ You may have previous experience with SQL. However, many SQL engines have slight
 ##Step-1. Download Data and Place In HDFS
 
 We need some data in order to create schema and, ultimately, process. The data we'll consider is
-a toy dataset regarding users and their weblogs. To download the data, do this:
+a toy dataset regarding users and their weblogs. If you encounter any issues sometimes it may be pertinent to redo Lab 2 instead of trying to debug the issue as any number of small details could disrupt the system. Having an ephemeral infrastructure that you can rebuild quickly can lead to increased reliability of systems. To download the data, do this:
 
 1. Launch an instance of UCB W205 Spring 2016
 
-	a. Attach your EBS volume from Lab 2
-	b. Find the volume location, by typing `fdisk -l`
-	c. Mount the volume as follows: `mount -t ext4 /dev/<your
+   a. Attach your EBS volume from Lab 2
+
+   b. Find the volume location, by typing `fdisk -l`
+   
+   c. Mount the volume as follows: `mount -t ext4 /dev/<your
    device>/data`
 
    d. Start HDFS, Hadoop Yarn and Hive: `/root/start-hadoop.sh`
@@ -45,19 +47,19 @@ a toy dataset regarding users and their weblogs. To download the data, do this:
 
    h. Download the two datasets using wget. Type:
 
-   		- `wget https://s3.amazonaws.com/ucbdatasciencew205/lab_datasets/userdata_lab.csv`
+   		- wget https://s3.amazonaws.com/ucbdatasciencew205/lab_datasets/userdata_lab.csv
 
-   		- `wget https://s3.amazonaws.com/ucbdatasciencew205/lab_datasets/weblog_lab.csv`
+   		- wget https://s3.amazonaws.com/ucbdatasciencew205/lab_datasets/weblog_lab.csv
 
    	i. Make an HDFS folder for each data set and place them in HDFS
 
-   		i. `hdfs dfs -mkdir /user/w205/lab_3/user_data`
+   		i. hdfs dfs -mkdir /user/w205/lab_3/user_data
 
-   		ii. `hdfs dfs -mkdir /user/w205/lab_3/weblog_data`
+   		ii. hdfs dfs -mkdir /user/w205/lab_3/weblog_data
 
-   		iii. `hdfs dfs -put userdata_lab.csv /user/w205/lab_3/user_data`
+   		iii. hdfs dfs -put userdata_lab.csv /user/w205/lab_3/user_data
 
-   		iv. `hdfs dfs -put weblog_lab.csv /user/w205/lab_3/weblog_data`
+   		iv. hdfs dfs -put weblog_lab.csv /user/w205/lab_3/weblog_data
  
 
 ##Step-2. Define Schema for The Data in Hive
@@ -104,7 +106,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/lab_3/weblog_data';
 ```  
 
-Now we can select out just fields we may be interested in. For example, we can count the 50 most frequently occurring user_ids as follows:
+Note that '\t' is a tab character. Now we can select out just fields we may be interested in. For example, we can count the 50 most frequently occurring user_ids as follows:
 
 ```sql
 SELECT user_id, COUNT(user_id) AS log_count
@@ -113,7 +115,7 @@ ORDER BY log_count DESC
 LIMIT 50;
 ``` 
 
-Additionally, define a table on our user information. Create a table as follows:
+Let us additionally, define a table for our user information. Create a table as follows:
 
 ```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS user_info
