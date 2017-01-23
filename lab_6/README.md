@@ -35,8 +35,9 @@ the local cluster.
 **Note: You need to use a different AMI for this Lab. Here is the
 information for the new AMI:**
 
+|                      |                                 |
 |----------------------|---------------------------------|
-| *AMI Name*                 *UCB MIDS W205 EX2-FULL*         
+| *AMI Name*          |       *UCB MIDS W205 EX2-FULL*    |     
 | *AMI ID* | *ami-d4dd4ec3*              | 
 
 
