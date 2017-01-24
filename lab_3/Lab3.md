@@ -34,8 +34,7 @@ a toy dataset regarding users and their weblogs. If you encounter any issues som
 
    b. Find the volume location, by typing `fdisk -l`
    
-   c. Mount the volume as follows: `mount -t ext4 /dev/<your
-   device>/data`
+   c. Mount the volume as follows: `mount -t ext4 /dev/<your device>/data`
 
    d. Start HDFS, Hadoop Yarn and Hive: `/root/start-hadoop.sh`
 
