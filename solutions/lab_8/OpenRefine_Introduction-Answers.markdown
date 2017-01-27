@@ -10,14 +10,14 @@ Denote the row by r and column by c. We have n rows and m columns.
 
 d\[i,j\] denotes the value on row i and columns j.
 
--   𝑐𝑜𝑠𝑡 \[𝑖,𝑗\]=1 𝑖𝑓 𝑐\[𝑖\] !=𝑟\[𝑗\]
+-   * 𝑐𝑜𝑠𝑡 \[𝑖,𝑗\]=1 𝑖𝑓 𝑐\[𝑖\] !=𝑟\[𝑗\] *
 
--   𝑐𝑜𝑠𝑡 \[𝑖,𝑗\]=0 𝑖𝑓 𝑐\[𝑖\]==𝑟\[𝑗\]
+-   * 𝑐𝑜𝑠𝑡 \[𝑖,𝑗\]=0 𝑖𝑓 𝑐\[𝑖\]==𝑟\[𝑗\] *
 
--   d\[i,j\] is to be set to the minimum of: d\[i-1,j\]+1 or
-    d\[i,j-1\]+1 or d\[i-1, j-1\]+cost\[i,j\]
+-   `d[i,j]` is to be set to the minimum of: `d[i-1,j]+1` or
+    `d[i,j-1]+1` or `d[i-1, j-1]+cost[i,j]`
 
--   Distance is found in the resulting value d\[n,m\]
+-   Distance is found in the resulting value `d[n,m]`
 
 Answer on calculation.
 ```
