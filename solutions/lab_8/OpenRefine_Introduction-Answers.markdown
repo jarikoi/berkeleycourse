@@ -20,24 +20,26 @@ d\[i,j\] denotes the value on row i and columns j.
 -   Distance is found in the resulting value d\[n,m\]
 
 Answer on calculation.
+```
 
-D\[2,2\]=&gt;Cost=0,D\[1,1\]=0, D\[1,2\]=1, D\[2,1\]=1=&gt;0
+D[2,2]=>Cost=0,D[1,1]=0, D[1,2]=1, D[2,1]=1=&gt;0
 
-D\[3,2\]=&gt;D\[2,1\]=1+1, D\[2,2\]=0, D\[3,1\]=2=&gt;1
+D[3,2]=>D[2,1]=1+1, D[2,2]=0, D[3,1]=2=>1
 
-D\[4,2\]=&gt;D\[3,1\]=1+1, D\[3,2\]=0, D\[4,1\]=2=&gt;
+D[4,2]=>D[3,1]=1+1, D[3,2]=0, D[4,1]=2=>
 
-D\[5,2\]=&gt;D\[3,1\]=1+1, D\[3,2\]=0, D\[4,1\]=2=&gt;
+D[5,2]=>D[3,1]=1+1, D[3,2]=0, D[4,\]=2=&gt;
 
-D\[6,2\]=&gt;D\[3,1\]=1+1, D\[3,2\]=0, D\[4,1\]=2=&gt;
+D[6,2]=>D[3,1]=1+1, D[3,2]=0, D[4,1]=2=&gt;
 
-D\[7,2\]=&gt;D\[3,1\]=1+1, D\[3,2\]=0, D\[4,1\]=2=&gt;
+D[7,2]=>D[3,1]=1+1, D[3,2]=0, D[4,1]=2=&gt;
 
-D\[8,2\]=&gt;D\[3,1\]=1+1, D\[3,2\]=0, D\[4,1\]=2=&gt;
+D[8,2]=>D[3,1]=1+1, D[3,2]=0, D[4,1]=2=&gt;
 
-D\[9,2\]=&gt;D\[3,1\]=1+1, D\[3,2\]=0, D\[4,1\]=2=&gt;
+D[9,2]=>D[3,1]=1+1, D[3,2]=0, D[4,1]=2=&gt;
 
-D\[10,2\]=&gt;D\[3,1\]=1+1, D\[3,2\]=0, D\[4,1\]=2=&gt;
+D[10,2]=>;D[3,1]=1+1, D[3,2]=0, D[4,1]=2=&gt;
+```
 
            1   2   3   4   5   6   7   8   9   10
   ---- --- --- --- --- --- --- --- --- --- --- ----
@@ -52,16 +54,19 @@ D\[10,2\]=&gt;D\[3,1\]=1+1, D\[3,2\]=0, D\[4,1\]=2=&gt;
   8    E   7   6   5   5   4   3   2   2   2   3
   9    L   8   7   6   6   5   4   3   3   3   2
   10   L   9   8   7   7   6   5   4   4   4   3
+  
+  ```
 
-&gt;&gt;&gt; from Levenshtein import \*
+>>> from Levenshtein import \*
 
-&gt;&gt;&gt; distance("GUNBARELL","GUMBARREL")
-
-3
-
-&gt;&gt;&gt; distance("GUMBARREL","GUNBARELL")
+>>> distance("GUNBARELL","GUMBARREL")
 
 3
+
+>>> distance("GUMBARREL","GUNBARELL")
+
+3
+```
 
 SUBMISSION 3: submit a representation of the resulting matrix from the
 leveshtein edit distance calculation. The resulting value should be
