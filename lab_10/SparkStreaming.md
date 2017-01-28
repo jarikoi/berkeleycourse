@@ -3,7 +3,7 @@
 |                      |        |                     |                                                  |
 |----------------------|--------|---------------------|--------------------------------------------------|
 | *Lab*                | 10      | *Lab Title*         | An Introduction to Spark Streaming.   |
-| *Related Modules(s)* | 9      | *Goal*              | Gpark Streaming, filtering, counting, sliding window. |
+| *Related Modules(s)* | 9      | *Goal*              | Spark Streaming, filtering, counting, sliding window. |
 | *Last Updated*       | 1/27/17 | *Expected Duration* | 60-90 minutes                                    |
 
 
@@ -335,8 +335,8 @@ $ cp words /tmp/datastreams/w2
 
 $ cp words /tmp/datastreams/w3
 ```
-SUBMISSION 1: Provide a screenshot of the output from the Spark
-Streaming process.
+**SUBMISSION 1:** *Provide a screenshot of the output from the Spark
+Streaming process.*
 
 You can stop the Spark Streaming application by typing the following
 stop command in the pyspark shell.
@@ -555,8 +555,9 @@ streaming process by typing:
 ```
 >>>ssc.stop()
 ```
-SUBMISSION 2: Change the code so that you save the venue components to a
-text file. Submit you code.
+
+**SUBMISSION 2:** *Change the code so that you save the venue components to a
+text file. Submit you code.*
 
 ## Step-4. Hooking up to a simple stream.
 
@@ -681,8 +682,10 @@ You should see output similar to what is show in the screenshot below.
 
 > ![](media/image4.png){width="5.625in" height="4.8527646544181975in"}
 
-SUBMISSION 3: Provide a screenshot showing the running Spark Streaming
-application.
+**SUBMISSION 3:**  *Provide a screenshot showing the running Spark Streaming
+application.*
+
+
 
 ## Step-6. Sliding Window
 
@@ -772,12 +775,12 @@ Then start the stream processing application using the command:
 ```
 $spark-submit $HOME/venuecounter2.py localhost 9999
 ```
-SUBMISSION 4a: Provide a screenshot of the running Spark Streaming
+**SUBMISSION 4a:** *Provide a screenshot of the running Spark Streaming
 application that shows that the CountByWindow indeed provides an sum of
-the counts from the 3 latest batches. See example screenshot below.
+the counts from the 3 latest batches. See example screenshot below.*
 
-SUBMISSION 4b: Also explain what the difference is between having 10 sec
-batches with a 30 sec sliding window and a 30 second batch length.
+**SUBMISSION 4b:** *Also explain what the difference is between having 10 sec
+batches with a 30 sec sliding window and a 30 second batch length.*
 
 > ![](media/image6.png){width="4.5in" height="7.5038604549431325in"}
 
