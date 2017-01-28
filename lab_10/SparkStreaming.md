@@ -73,7 +73,7 @@ some of them. The full list is available in the programming guide.
     return a new DStream of (K, Long) pairs where the value of each key
     is its frequency in each RDD of the source DStream.
 
--   **join(otherStream, \[numTasks\]):** When called on two DStreams of
+-   **join(otherStream, [numTasks]):** When called on two DStreams of
     (K, V) and (K, W) pairs, return a new DStream of (K, (V, W)) pairs
     with all pairs of elements for each key.
 
@@ -128,7 +128,7 @@ Below we provide a sample of operations available on windows.
     associative so that it can be computed correctly in parallel.
 
 -   **reduceByKeyAndWindow(func, windowLength,
-    slideInterval, \[numTasks\])**: When called on a DStream of (K, V)
+    slideInterval, [numTasks])**: When called on a DStream of (K, V)
     pairs, returns a new DStream of (K, V) pairs where the values for
     each key are aggregated using the given reduce function func over
     batches in a sliding window. Note: By default, this uses Spark's
@@ -168,10 +168,10 @@ below table you can find links to useful and necessary resources.
 
 **Resource**                  | **What**    
 ------------------------------|------------------------------------------------
-http://spark.apache.org/docs/latest/streaming-programming-guide.html\#transformations-on-dstreams | Spark Streaming Programming Guide.
-  http://www.w3schools.com/json/json\_syntax.asp | Introduction to JSON data format. 
-  http://www.meetup.com/meetup\_api/ | Description of Meetup data API.
-  http://www.meetup.com/meetup\_api/docs/stream/2/rsvps/\#websockets |  Meetup websocket API. 
+http://spark.apache.org/docs/latest/streaming-programming-guide.html#transformations-on-dstreams | Spark Streaming Programming Guide.
+  http://www.w3schools.com/json/json_syntax.asp | Introduction to JSON data format. 
+  http://www.meetup.com/meetup_api/ | Description of Meetup data API.
+  http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets |  Meetup websocket API. 
   http://www.slideshare.net/spark-project/deep-divewithsparkstreaming-tathagatadassparkmeetup20130617 | Technical presentation on Spark Streaming.
   https://github.com/UC-Berkeley-I-School/w205-labs-exercises/blob/master/docs/Installing%20Cloudera%20Hadoop%20on%20UCB%20W205%20Base%20Image.pdf | Instructions for getting Hadoop set up on AMI.
   http://www.eecs.berkeley.edu/Pubs/TechRpts/2012/EECS-2012-259.pdf |  Spark Streaming Paper.
@@ -187,9 +187,9 @@ Update the repository from git hub. The Lab directory will contain a
 sub-directory called “somedata”. We will be using this data to
 illustrate a few things.
 
-First, if an example starts with the “\$” prompt, it is run in the
-terminal shell. If it starts with the “>>>” prompt, it is run
-in pyspark shell. If code is within a “box” you should consider it a
+First, if an example starts with the `“$”` prompt, it is run in the
+terminal shell. If it starts with the `“>>>”` prompt, it is run
+in pyspark shell. If code is within a *box you should consider it a
 code fragment for illustration purposes and not a command you are asked
 to execute.
 
@@ -202,13 +202,13 @@ look slightly different
 On a laptop or other Linux system without HDFS create a directory using
 this command:
 ```
-\$mkdir /tmp/datastreams
+$mkdir /tmp/datastreams
 ```
 
 If you are running on an AMI with HDFS running, create a directory using
 this command:
 ```
-\$sudo -u hdfs hdfs dfs -mkdir /tmp/datastreams
+$sudo -u hdfs hdfs dfs -mkdir /tmp/datastreams
 ```
 
 ## Step-1. Getting Started
@@ -217,7 +217,7 @@ this command:
 Start pyspark using (at least) 2 cores, and run the necessary import
 statements.
 ```
-\$MASTER=local\[2\] pyspark
+$MASTER=local[2] pyspark
 
 >>>from pyspark import SparkContext
 
@@ -227,12 +227,12 @@ statements.
 ```
 Pyspark already has a Spark context so we will not need to create one.
 But we want to make sure that pyspark uses multiple cores for parallel
-processing, so we provide a MASTER environment variable. If you were to
+processing, so we provide a `MASTER` environment variable. If you were to
 implement this as a program you would need to add a statement as show
 below. You will do this later in this lab when we use spark-submit.
-
-sc = SparkContext("local\[2\]", "MyApp")
-
+```
+sc = SparkContext("local[2]", "MyApp")
+```
 For the time being we are using the interactive shell to make it easier
 for you to experiment and retry. We will start by doing a very simple
 streaming operation by converting all incoming words to upper case. We
@@ -242,7 +242,7 @@ streaming data.
 
 You will be submitting files to this directory for processing by the
 application. For the purpose of this lab we previously named it
-/tmp/datastreams. You can use a name of your choosing, but make sure to
+`/tmp/datastreams`. You can use a name of your choosing, but make sure to
 use your path for the commands below.
 
 Create a streaming context using the following statement.
@@ -300,24 +300,24 @@ eldorade
 
 gatrorade
 ```
-If you are on Spark only system copy the file to the /tmp/datastreams
+If you are on Spark only system copy the file to the `/tmp/datastreams`
 local directory.
 ```
-\$cp words /tmp/datastreams/
+$cp words /tmp/datastreams/
 ```
 If you are using a system with HDSF running, copy using the following
 command:
 ```
-\$sudo -u hdfs hdfs dfs -put words /tmp/datastreams/
+$sudo -u hdfs hdfs dfs -put words /tmp/datastreams/
 ```
 *Note: If you have Spark Streaming reading from HDFS you may or may not
 encounter an exception saying something along the lines of “file not
-found” referring to a file ending with “\_COPYING\_”. It is because put
+found” referring to a file ending with `_COPYING_`. It is because put
 is not atomic. Put will create a temporary file while copying from the
 local file system which will later be removed. For the purpose of this
 lab Spark Streaming recovers and eventually picks up the right file. If
 you want to fix this issue, copy to other location in HDFS and then use
-“hdfs –mv” command to move the file into /tmp/datastreams. The mv
+`hdfs –mv` command to move the file into `/tmp/datastreams`. The mv
 command is in a atomic operation.*
 
 If you look in the streaming window you will see the result of the
@@ -326,14 +326,14 @@ words after the processing. Try copying the file to the directory again.
 What happens? If you instead copy to a new file you will see a different
 result.
 ```
-\$ cp words /tmp/datastreams/w1
+$ cp words /tmp/datastreams/w1
 ```
 You can continue copying to a different file and the will see that the
 spark process will pick the data up as it arrives in the directory.
 ```
-\$ cp words /tmp/datastreams/w2
+$ cp words /tmp/datastreams/w2
 
-\$ cp words /tmp/datastreams/w3
+$ cp words /tmp/datastreams/w3
 ```
 SUBMISSION 1: Provide a screenshot of the output from the Spark
 Streaming process.
@@ -351,14 +351,14 @@ logic based on some specific data and which eases debugging.
 
 
 Now lets do the same transformation but have the process listen to a
-streaming socket. You will need to restart pyspark. It will not allow
+streaming socket. You will need to restart `pyspark`. It will not allow
 you to create a new StreamingContext associated with the same Spark
 Context. After restart execute the import statements and the creation of
-the StreamingContext. Remember to provide the MASTER variable so that we
+the `StreamingContext`. Remember to provide the `MASTER` variable so that we
 use more than one core. On some platforms not doing this may block the
 streaming process from receiving data and processing at the same time.
 ```
-\$MASTER=local\[2\] pyspark
+$MASTER=local[2] pyspark
 
 >>>from pyspark import SparkContext
 
@@ -368,7 +368,7 @@ streaming process from receiving data and processing at the same time.
 ```
 Instead of reading from files in a directory we will listen to a socket.
 The process terminating the socket will be running on you local host and
-we will use the port number 9999.
+we will use the port number `9999`.
 ```
 >>>lines = ssc.socketTextStream("localhost", 9999)
 ```
@@ -386,24 +386,24 @@ connect to. But the process will continue to try to connect to the port.
 To create a port to which the streaming process can connect we will use
 the Unix nc command. The name nc stands for netcat. You can think about
 it as the Unix cat but for pushing data to a socket rather than a file.
-If you try this Lab on Windows, you can use the Windows netcat command
-in place of nc.
+If you try this Lab on Windows, you can use the Windows `netcat` command
+in place of `nc`.
 
-In a terminal window type the command below. The l option tells nc to
+In a terminal window type the command below. The `l` option tells `nc` to
 listen for incoming connections. This is the right behavior as we expect
-Spark Streaming to connect to the socket. The k command tells nc to
+Spark Streaming to connect to the socket. The `k` command tells `nc` to
 continue listening even if a connection is completed. This way you can
-have nc running and restart you spark streaming application without
-needing to restart nc.
+have `nc` running and restart you spark streaming application without
+needing to restart `nc`.
 ```
-\$nc -lk 9999
+$nc -lk 9999
 ```
 In the terminal window were you started nc, type some words. What
 happens on the streaming application side?
 
 The batch duration for our simple streaming application is one second.
 This is a short time when a human is providing the input. Lets change
-that to 30 seconds and see what happens. Restart pyspark and run the
+that to 30 seconds and see what happens. Restart `pyspark `and run the
 following commands.
 ```
 >>>from pyspark import SparkContext
@@ -451,31 +451,31 @@ multiple objects.
 "streetAddress": "21 2nd Street", "city": "New York", "state": "NY",
 "postalCode": "10021-3100" },
 
-"children": \[\],
+"children": [],
 
 "spouse": **null**
 
 }
 ```
-The following is an example of an rsvp JSON object. As you can see it
+The following is an example of an `rsvp` JSON object. As you can see it
 has sub-objects such as venue. And values such as visibility.
 ```
-{"venue":{"venue\_name":"Couchbase San
-Francisco","lon":-122.397354,"lat":37.790005,"venue\_id":21741962},"visibility":"public","response":"yes","guests":0,"member":{"member\_id":8301128,"photo":"http:\\/\\/photos3.meetupstatic.com\\/photos\\/member\\/9\\/0\\/a\\/8\\/thumb\_29557032.jpeg","member\_name":"Che
-Hsu"},"rsvp\_id":1577033972,"mtime":1446516373612,"event":{"event\_name":"Full
+{"venue":{"venue_name":"Couchbase San
+Francisco","lon":-122.397354,"lat":37.790005,"venue_id":21741962},"visibility":"public","response":"yes","guests":0,"member":{"member_id":8301128,"photo":"http://photos3.meetupstatic.com/photos/member/9/0/a/8/thumb_29557032.jpeg","member_name":"Che
+Hsu"},"rsvp_id":1577033972,"mtime":1446516373612,"event":{"event_name":"Full
 Stack Development with NoSQL & Node.js or
-GoLang","event\_id":"226259580","time":1446602400000,"event\_url":"http:\\/\\/www.meetup.com\\/The-San-Francisco-Couchbase-Meetup-Group\\/events\\/226259580\\/"},"group":{"group\_topics":\[{"urlkey":"java","topic\_name":"Java"},{"urlkey":"php","topic\_name":"PHP"},{"urlkey":"newtech","topic\_name":"New
-Technology"},{"urlkey":"ria","topic\_name":"Rich Internet
-Applications"},{"urlkey":"mobile-development","topic\_name":"Mobile
-Development"},{"urlkey":"nosql","topic\_name":"NoSQL"},{"urlkey":"databasepro","topic\_name":"Database
-Professionals"},{"urlkey":"database-development","topic\_name":"Database
-Development"},{"urlkey":"softwaredev","topic\_name":"Software
-Development"},{"urlkey":"web-development","topic\_name":"Web
-Development"},{"urlkey":"ia","topic\_name":"Information
-Architecture"}\],"group\_city":"San
-Francisco","group\_country":"us","group\_id":1693125,"group\_name":"The
+GoLang","event_id":"226259580","time":1446602400000,"event_url":"http://www.meetup.com/The-San-Francisco-Couchbase-Meetup-Group/events/226259580/"},"group":{"group_topics":[{"urlkey":"java","topic_name":"Java"},{"urlkey":"php","topic_name":"PHP"},{"urlkey":"newtech","topic_name":"New
+Technology"},{"urlkey":"ria","topic_name":"Rich Internet
+Applications"},{"urlkey":"mobile-development","topic_name":"Mobile
+Development"},{"urlkey":"nosql","topic_name":"NoSQL"},{"urlkey":"databasepro","topic_name":"Database
+Professionals"},{"urlkey":"database-development","topic_name":"Database
+Development"},{"urlkey":"softwaredev","topic_name":"Software
+Development"},{"urlkey":"web-development","topic_name":"Web
+Development"},{"urlkey":"ia","topic_name":"Information
+Architecture"}],"group_city":"San
+Francisco","group_country":"us","group_id":1693125,"group_name":"The
 San Francisco Couchbase
-Group","group\_lon":-122.42,"group\_urlname":"The-San-Francisco-Couchbase-Meetup-Group","group\_state":"CA","group\_lat":37.75}}
+Group","group_lon":-122.42,"group_urlname":"The-San-Francisco-Couchbase-Meetup-Group","group_state":"CA","group_lat":37.75}}
 ```
 Before we start receiving using a stream we want to make sure we can
 parse the data properly. Initially we just like to extract the venue
@@ -487,28 +487,28 @@ Connect to a socket directly using the curl command below. You should
 see rsvp events being printed in your terminal window as they arrive
 from the stream.
 ```
-\$curl -i http://stream.meetup.com/2/rsvps
+$curl -i http://stream.meetup.com/2/rsvps
 ```
 Before we parse the stream, lets read data from the file system and try
 out a few transformations. In the somedata directory you will have a few
-files called: meetup.data.1, meetup.data.2 and so forth. Each containing
+files called: `meetup.data.1`, `meetup.data.2` and so forth. Each containing
 200 previously received and saved rsvp events, except the last one that
 contains 162 rsvp events. The combined data in these files represents
 more that 1000 rsvp’s that we retrieved from the meetup api. We will use
-the by copying them to /tmp/datastreams so that a streaming application
+the by copying them to `/tmp/datastreams` so that a streaming application
 will pick them up.
 
 The statement below parses the incoming JSON objects. It takes each row
-(which is a JSON rsvp object) and tests if it has a venue object. If it
-does it sends the object to the json.loads function for parsing. Once
+(which is a JSON `rsvp` object) and tests if it has a venue object. If it
+does it sends the object to the `json.loads` function for parsing. Once
 the parsing is done it returns just the venue object.
 ```
-slines = lines.flatMap(lambda x: \[ j\['venue'\] for j in
-json.loads('\['+x+'\]') if 'venue' in j\] )
+slines = lines.flatMap(lambda x: [ j['venue'] for j in
+json.loads('['+x+']') if 'venue' in j] )
 ```
 Load the following spark streaming program:
 ```
-\$MASTER=local\[2\] pyspark
+$MASTER=local[2] pyspark
 
 >>>from pyspark import SparkContext
 
@@ -520,8 +520,8 @@ Load the following spark streaming program:
 
 >>>lines = ssc.textFileStream("file:///tmp/datastreams")
 
->>>slines = lines.flatMap(lambda x: \[ j\['venue'\] for j in
-json.loads('\['+x+'\]') if 'venue' in j\] )
+>>>slines = lines.flatMap(lambda x: [ j['venue'] for j in
+json.loads('['+x+']') if 'venue' in j] )
 
 >>>cnt=slines.count()
 
@@ -536,20 +536,20 @@ Finally, start the process.
 We are importing a json library. We are using this library to parse the
 json structure for an rsvp using the json.loads function. We then
 extract the venue element out of the structure and push that into a new
-RDD. We will print the total amount of rsvp events received in the
-batch, the number of events with a venue, and the top venues with
-pprint.
+RDD. We will print the total amount of `rsvp` events received in the
+batch, the number of events with a `venue`, and the top venues with
+`pprint`.
 
-We can test this by just copying the meetup.data.\* files into the
-/tmp/datastreams directory.
+We can test this by just copying the `meetup.data.*`` files into the
+`/tmp/datastreams` directory.
 ```
-\$cp meetup.data.1 /tmp/datastreams/
+$cp meetup.data.1 /tmp/datastreams/
 
-\$cp meetup.data.2 /tmp/datastreams/
+$cp meetup.data.2 /tmp/datastreams/
 
-\$cp meetup.data.3 /tmp/datastreams/
+$cp meetup.data.3 /tmp/datastreams/
 ```
-and so forth…Every time you copy a file it will be detected by Spark
+and so forth. Every time you copy a file it will be detected by Spark
 Streaming, picked up and included in the current batch. Stop the
 streaming process by typing:
 ```
@@ -577,8 +577,8 @@ ssc = StreamingContext(sc, 10)
 
 lines = ssc.socketTextStream("localhost", 9999)
 
-jslines = lines.flatMap(lambda x: \[ j\['venue'\] for j in
-json.loads('\['+x+'\]') if 'venue' in j\] )
+jslines = lines.flatMap(lambda x: [ j['venue'] for j in
+json.loads('['+x+']') if 'venue' in j] )
 
 lcnt=lines.count()
 
@@ -603,7 +603,7 @@ Streaming JSON parsing will not like that.*
 
 This command uses curl to grab the content from the Meetup websocket API
 and feed it into nc. The nc process will make the data available on the
-socket on port 9999 on localhost. The behavior of this stream can become
+socket on port `9999` on `localhost`. The behavior of this stream can become
 artificially bursty. This is due to that the Unix pipe command (|)
 buffer data before forwarding it. To more closely mimic the incoming
 rate of rsvp’s you can type the following on OSX.
@@ -631,7 +631,7 @@ Until now we have been running the command in a pyspark shell. Clearly
 one also needs to be able to submit and execute streaming jobs and
 standalone programs. Put the following commands into a file called
 venuecounter.py. For the purpose of this lab I will assume you put the
-script in \$HOME. If the location differs from that, change the code
+script in `$HOME`. If the location differs from that, change the code
 accordingly.
 ```
 from pyspark import SparkContext
@@ -640,14 +640,14 @@ from pyspark.streaming import StreamingContext
 
 import json
 
-sc = SparkContext("local\[2\]", "MyApp")
+sc = SparkContext("local[2]", "MyApp")
 
 ssc = StreamingContext(sc, 10)
 
 lines = ssc.socketTextStream("localhost", 9999)
 
-jslines = lines.flatMap(lambda x: \[ j\['venue'\] for j in
-json.loads('\['+x+'\]') if 'venue' in j\] )
+jslines = lines.flatMap(lambda x: [ j['venue'] for j in
+json.loads('['+x+']') if 'venue' in j] )
 
 lcnt=lines.count()
 
@@ -665,17 +665,17 @@ ssc.awaitTermination()
 ```
 Start the “poor mans stream” using either of the following command.
 ```
-\$curl -i http://stream.meetup.com/2/rsvps | nc -lk 9999
+$curl -i http://stream.meetup.com/2/rsvps | nc -lk 9999
 ```
 Or if you want to avoid the pipe buffering (OSX command) you can use the
 following.
 ```
-\$script -q /dev/null curl -i http://stream.meetup.com/2/rsvps 
+$script -q /dev/null curl -i http://stream.meetup.com/2/rsvps 
 | nc -lk 9999
 ```
 Run the script with the submit command:
 ```
-\$spark-submit \$HOME/venuecounter.py localhost 9999
+$spark-submit $HOME/venuecounter.py localhost 9999
 ```
 You should see output similar to what is show in the screenshot below.
 
@@ -688,14 +688,14 @@ application.
 
 
 For the purpose of illustrating the concept we will now create a simple
-sliding window. With this application we like to know how many rsvp’s we
-received in the last batch (10 seconds); the aggregated number of rsvp’s
-the last 30 seconds and the number of rsvp’s with a venue object in the
+sliding window. With this application we like to know how many `rsvp’s` we
+received in the last batch (10 seconds); the aggregated number of `rsvp’s`
+the last 30 seconds and the number of `rsvp’s` with a `venue` object in the
 last batch. To achieve this we will use windowing.
 
 Windowing allows us to perform certain transformations for a sliding
 window over a number of batches. Our batch size is 10 seconds. We will
-be calling the DStream transform
+be calling the `DStream` transform
 **countByWindow**(*windowLength*,*slideInterval*). We want to perform
 the count calculation of last 30 seconds so the windowLength argument
 will be 30. We want to perform the calculation every 10 seconds, so the
@@ -710,7 +710,7 @@ batch, the red box represents the sliding window of 30 seconds.
 
 In order to enable windowing we will need to turn on checkpointing. This
 is done by defining a checkpoint directory. I will assume you have
-created the checkpoint directory in /tmp/checkpointing, but you can
+created the checkpoint directory in `/tmp/checkpointing`, but you can
 change that as you prefer. The statement looks as follows.
 ```
 ssc.checkpoint("file:///tmp/checkpointing")
@@ -721,7 +721,7 @@ changing the statement to
 ssc.checkpoint("hdfs:///tmp/checkpointing")
 ```
 The final program looks as follows, save this in
-\$HOME/venuecounter2.py:
+`$HOME/venuecounter2.py`:
 ```
 from pyspark import SparkContext
 
@@ -729,7 +729,7 @@ from pyspark.streaming import StreamingContext
 
 import json
 
-sc = SparkContext("local\[2\]", "MyApp")
+sc = SparkContext("local[2]", "MyApp")
 
 ssc = StreamingContext(sc, 10)
 
@@ -739,8 +739,8 @@ lines = ssc.socketTextStream("localhost", 9999)
 
 wlcnt=lines.countByWindow(30,10)
 
-jslines = lines.flatMap(lambda x: \[ j\['venue'\] for j in
-json.loads('\['+x+'\]') if 'venue' in j\] )
+jslines = lines.flatMap(lambda x: [ j['venue'] for j in
+json.loads('['+x+']') if 'venue' in j] )
 
 lcnt=lines.count()
 
@@ -760,17 +760,17 @@ ssc.awaitTermination()
 
 Now start the stream using the command below.
 
-\$curl -i http://stream.meetup.com/2/rsvps | nc -lk 9999
+$curl -i http://stream.meetup.com/2/rsvps | nc -lk 9999
 ```
 Or if you want to avoid the pipe buffering (OSX command) you can use the
 following.
 ```
-\$script -q /dev/null curl -i http://stream.meetup.com/2/rsvps 
+$script -q /dev/null curl -i http://stream.meetup.com/2/rsvps 
 | nc -lk 9999
 ```
 Then start the stream processing application using the command:
 ```
-\$spark-submit \$HOME/venuecounter2.py localhost 9999
+$spark-submit $HOME/venuecounter2.py localhost 9999
 ```
 SUBMISSION 4a: Provide a screenshot of the running Spark Streaming
 application that shows that the CountByWindow indeed provides an sum of
@@ -796,17 +796,17 @@ If you like to install a new Spark 1.5 here are some instructions.
 
 -   Download Spark 1.5 from <http://spark.apache.org/downloads.html>
 ```
-\$gunzip spark-1.5.1-bin-hadoop2.6.tgz
+$gunzip spark-1.5.1-bin-hadoop2.6.tgz
 
-\$tar xvf spark-1.5.1-bin-hadoop2.6.tar
+$tar xvf spark-1.5.1-bin-hadoop2.6.tar
 
-\$ln -s ./spark-1.5.1-bin-hadoop2.6 /root/spark15
+$ln -s ./spark-1.5.1-bin-hadoop2.6 /root/spark15
 
-\$export SPARK\_HOME=/root/spark15
+$export SPARK_HOME=/root/spark15
 
-\$export PATH=\$SPARK\_HOME/bin:\$PATH
+$export PATH=$SPARK_HOME/bin:$PATH
 
-\$\# which pyspark
+$which pyspark
 
-\$/root/spark15/bin/pyspark
+$/root/spark15/bin/pyspark
 ```
