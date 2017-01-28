@@ -201,20 +201,22 @@ look slightly different
 
 On a laptop or other Linux system without HDFS create a directory using
 this command:
-
+```
 \$mkdir /tmp/datastreams
+```
 
 If you are running on an AMI with HDFS running, create a directory using
 this command:
-
+```
 \$sudo -u hdfs hdfs dfs -mkdir /tmp/datastreams
+```
 
 ## Step-1. Getting Started
 
 
 Start pyspark using (at least) 2 cores, and run the necessary import
 statements.
-
+```
 \$MASTER=local\[2\] pyspark
 
 >>>from pyspark import SparkContext
@@ -222,7 +224,7 @@ statements.
 >>>from pyspark.streaming import StreamingContext
 
 >>>sc
-
+```
 Pyspark already has a Spark context so we will not need to create one.
 But we want to make sure that pyspark uses multiple cores for parallel
 processing, so we provide a MASTER environment variable. If you were to
@@ -244,9 +246,9 @@ application. For the purpose of this lab we previously named it
 use your path for the commands below.
 
 Create a streaming context using the following statement.
-
+```
 >>>ssc = StreamingContext(sc, 1)
-
+```
 Tell the context to read data from files in a directory. This means it
 will be monitoring the directory for new files and read them as they
 arrive. All files in the directory must have the same format, and must
@@ -254,32 +256,32 @@ be created atomically. You can create them by moving or copying them
 there. You cannot open a file and incrementally add to it and expect
 that these updates will be read. If you are using the local file system
 type the following statement.
-
+```
 >>>lines= ssc.textFileStream("file:///tmp/datastreams")
-
+```
 If you are using HDFS use the following statement. The difference is in
 the URI.
-
+```
 >>>lines= ssc.textFileStream("hdfs:///tmp/datastreams")
-
+```
 Now lets do a simple transformation that converts all the words in a RDD
 to upper case.
-
+```
 >>>uclines = lines.map(lambda word: word.upper())
-
+```
 We will output the words by printing the top results.
-
+```
 >>>uclines.pprint()
-
+```
 Finally we start the process. After this command you should see an
 output confirming the processing of a new RDD. We have not moved any
 data to the directory yet, so each result will be empty.
-
+```
 >>>ssc.start()
-
+```
 Open a separate terminal window. Lets assume you have a simple file
 called words with the following content.
-
+```
 hej
 
 kalle
@@ -297,17 +299,17 @@ DOrado
 eldorade
 
 gatrorade
-
+```
 If you are on Spark only system copy the file to the /tmp/datastreams
 local directory.
-
+```
 \$cp words /tmp/datastreams/
-
+```
 If you are using a system with HDSF running, copy using the following
 command:
-
+```
 \$sudo -u hdfs hdfs dfs -put words /tmp/datastreams/
-
+```
 *Note: If you have Spark Streaming reading from HDFS you may or may not
 encounter an exception saying something along the lines of “file not
 found” referring to a file ending with “\_COPYING\_”. It is because put
@@ -323,24 +325,24 @@ processing. You will notice that the words were converted to upper case
 words after the processing. Try copying the file to the directory again.
 What happens? If you instead copy to a new file you will see a different
 result.
-
+```
 \$ cp words /tmp/datastreams/w1
-
+```
 You can continue copying to a different file and the will see that the
 spark process will pick the data up as it arrives in the directory.
-
+```
 \$ cp words /tmp/datastreams/w2
 
 \$ cp words /tmp/datastreams/w3
-
+```
 SUBMISSION 1: Provide a screenshot of the output from the Spark
 Streaming process.
 
 You can stop the Spark Streaming application by typing the following
 stop command in the pyspark shell.
-
+```
 >>>ssc.stop()
-
+```
 It is very useful to understand how to process files from during
 development of your processing logic. This way you can test different
 logic based on some specific data and which eases debugging.
@@ -355,7 +357,7 @@ Context. After restart execute the import statements and the creation of
 the StreamingContext. Remember to provide the MASTER variable so that we
 use more than one core. On some platforms not doing this may block the
 streaming process from receiving data and processing at the same time.
-
+```
 \$MASTER=local\[2\] pyspark
 
 >>>from pyspark import SparkContext
@@ -363,22 +365,22 @@ streaming process from receiving data and processing at the same time.
 >>>from pyspark.streaming import StreamingContext
 
 >>>ssc = StreamingContext(sc, 1)
-
+```
 Instead of reading from files in a directory we will listen to a socket.
 The process terminating the socket will be running on you local host and
 we will use the port number 9999.
-
+```
 >>>lines = ssc.socketTextStream("localhost", 9999)
-
+```
 Define the transformation and output statement as previously and start
 the process.
-
+```
 >>>uclines= lines.map(lambda word: word.upper())
 
 >>>uclines.pprint()
 
 >>>ssc.start()
-
+```
 You will see some errors from Spark since there is no active port to
 connect to. But the process will continue to try to connect to the port.
 To create a port to which the streaming process can connect we will use
@@ -393,9 +395,9 @@ Spark Streaming to connect to the socket. The k command tells nc to
 continue listening even if a connection is completed. This way you can
 have nc running and restart you spark streaming application without
 needing to restart nc.
-
+```
 \$nc -lk 9999
-
+```
 In the terminal window were you started nc, type some words. What
 happens on the streaming application side?
 
@@ -403,7 +405,7 @@ The batch duration for our simple streaming application is one second.
 This is a short time when a human is providing the input. Lets change
 that to 30 seconds and see what happens. Restart pyspark and run the
 following commands.
-
+```
 >>>from pyspark import SparkContext
 
 >>>from pyspark.streaming import StreamingContext
@@ -417,7 +419,7 @@ following commands.
 >>>uclines.pprint()
 
 >>>ssc.start()
-
+```
 Type some words in the nc terminal window. As you can see, spark is now
 batching things up in RDD representing 30 seconds of incoming data.
 
@@ -437,7 +439,7 @@ simple example. An object consists of name-value pairs or sub objects. A
 colon separates the components in a name value pair. An object is
 enclosed by curly brackets. A value can also be an array that contains
 multiple objects.
-
+```
 {
 
 "firstName": "John",
@@ -454,10 +456,10 @@ multiple objects.
 "spouse": **null**
 
 }
-
+```
 The following is an example of an rsvp JSON object. As you can see it
 has sub-objects such as venue. And values such as visibility.
-
+```
 {"venue":{"venue\_name":"Couchbase San
 Francisco","lon":-122.397354,"lat":37.790005,"venue\_id":21741962},"visibility":"public","response":"yes","guests":0,"member":{"member\_id":8301128,"photo":"http:\\/\\/photos3.meetupstatic.com\\/photos\\/member\\/9\\/0\\/a\\/8\\/thumb\_29557032.jpeg","member\_name":"Che
 Hsu"},"rsvp\_id":1577033972,"mtime":1446516373612,"event":{"event\_name":"Full
@@ -474,7 +476,7 @@ Architecture"}\],"group\_city":"San
 Francisco","group\_country":"us","group\_id":1693125,"group\_name":"The
 San Francisco Couchbase
 Group","group\_lon":-122.42,"group\_urlname":"The-San-Francisco-Couchbase-Meetup-Group","group\_state":"CA","group\_lat":37.75}}
-
+```
 Before we start receiving using a stream we want to make sure we can
 parse the data properly. Initially we just like to extract the venue
 from each incoming record. You can understand the rsvp stream call and
@@ -484,9 +486,9 @@ response formats by looking at the API definition of
 Connect to a socket directly using the curl command below. You should
 see rsvp events being printed in your terminal window as they arrive
 from the stream.
-
+```
 \$curl -i http://stream.meetup.com/2/rsvps
-
+```
 Before we parse the stream, lets read data from the file system and try
 out a few transformations. In the somedata directory you will have a few
 files called: meetup.data.1, meetup.data.2 and so forth. Each containing
