@@ -113,7 +113,7 @@ you to more easily compute the value you are seeking based on the last
 30 seconds of real-time data. The figure below from the programming
 guide depicts the concept of sliding windows.
 
-![Windowing](/blob/master/images/lab_3/Picture1.png?raw=true)
+![Windowing](/blob/master/images/lab_10/Picture3.png?raw=true)
 
 Below we provide a sample of operations available on windows.
 
