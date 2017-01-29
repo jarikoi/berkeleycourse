@@ -5,7 +5,7 @@ This is not to be shared with students, rather it is a help for instructors.
  Print only words with a length > 5 characters. Submit the pyspark code.
 
 Example solution:
-
+```
 >>> from pyspark import SparkContext
 >>> from pyspark.streaming import StreamingContext
 >>> ssc = StreamingContext(sc, 1)
@@ -13,3 +13,4 @@ Example solution:
 >>> uclines = lines.filter(lambda x : len(x) > 5)
 >>> uclines.pprint()
 >>> ssc.start()
+```
