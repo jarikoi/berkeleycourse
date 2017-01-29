@@ -710,7 +710,7 @@ wlcnt=lines.countByWindow(30,10)
 Using the below illustration each green box represents a 10 second
 batch, the red box represents the sliding window of 30 seconds.
 
-![DStreams and Windowing](/blob/master/images/lab_5/Picture1.png?raw=true)
+![DStreams and Windowing](/blob/master/images/lab_10/Picture5.png?raw=true)
 
 In order to enable windowing we will need to turn on checkpointing. This
 is done by defining a checkpoint directory. I will assume you have
