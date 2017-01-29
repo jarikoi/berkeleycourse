@@ -231,7 +231,7 @@ Pyspark already has a Spark context so we will not need to create one.
 But we want to make sure that pyspark uses multiple cores for parallel
 processing, so we provide a `MASTER` environment variable. If you were to
 implement this as a program you would need to add a statement as show
-below. You will do this later in this lab when we use spark-submit.
+below. You will do this later in this lab when we use `spark-submit`.
 ```
 sc = SparkContext("local[2]", "MyApp")
 ```
@@ -320,7 +320,8 @@ local file system which will later be removed. For the purpose of this
 lab Spark Streaming recovers and eventually picks up the right file. If
 you want to fix this issue, copy to other location in HDFS and then use
 `hdfs –mv` command to move the file into `/tmp/datastreams`. The mv
-command is in a atomic operation.*
+command is in a atomic operation. The same is true for most filesystems, to create 
+the file in one atomic operation, use 'mv'*
 
 If you look in the streaming window you will see the result of the
 processing. You will notice that the words were converted to upper case
@@ -337,8 +338,7 @@ $ cp words /tmp/datastreams/w2
 
 $ cp words /tmp/datastreams/w3
 ```
-**SUBMISSION 1:** *Provide a screenshot of the output from the Spark
-Streaming process.*
+**SUBMISSION 1:** *Print only words with a length > 5 characters. Submit the pyspark code*
 
 You can stop the Spark Streaming application by typing the following
 stop command in the pyspark shell.
