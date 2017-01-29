@@ -211,6 +211,7 @@ this command:
 ```
 $sudo -u hdfs hdfs dfs -mkdir /tmp/datastreams
 ```
+*Note: Remember that if you reboot a Linux system the '/tmp' directory is cleaned up. So you will need to recreate it and its content. If you like to avoid this you need to use another location for the 'datastreams' folder.*
 
 ## Step-1. Getting Started
 
