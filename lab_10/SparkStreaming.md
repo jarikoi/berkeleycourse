@@ -34,7 +34,8 @@ is that it builds on the core Spark RDD processing, and hence enables
 usage of multiple paradigms such as steam processing, batching and
 interactive queries on one platform.
 
-![](media/image1.png){width="6.5in" height="1.242361111111111in"}
+![Spark Streaming and Engine](/blob/master/images/lab_10/Picture1.png?raw=true)
+
 
 There are a few basic concepts that you need to understand in Spark
 Streaming: DStream, Transformations and Output Operations.
@@ -86,7 +87,7 @@ RDD’s also called *batches*. When you apply a stateless transformation
 you will create a new DStream of RDD’s with the data that resulted from
 each execution of the transformation.
 
-> ![](media/image2.png){width="5.25in" height="1.520592738407699in"}
+![DStream](/blob/master/images/lab_10/Picture2.png?raw=true)
 
 The above transformations are all state-less. This means that they
 create a new DStream and that they do not carry over any information
@@ -112,7 +113,7 @@ you to more easily compute the value you are seeking based on the last
 30 seconds of real-time data. The figure below from the programming
 guide depicts the concept of sliding windows.
 
-> ![](media/image3.png){width="6.5in" height="2.339583333333333in"}
+![Windowing](/blob/master/images/lab_3/Picture1.png?raw=true)
 
 Below we provide a sample of operations available on windows.
 
@@ -680,7 +681,7 @@ $spark-submit $HOME/venuecounter.py localhost 9999
 ```
 You should see output similar to what is show in the screenshot below.
 
-> ![](media/image4.png){width="5.625in" height="4.8527646544181975in"}
+![Screen Shot](/blob/master/images/lab_10/Picture4.png?raw=true)
 
 **SUBMISSION 3:**  *Provide a screenshot showing the running Spark Streaming
 application.*
@@ -709,7 +710,7 @@ wlcnt=lines.countByWindow(30,10)
 Using the below illustration each green box represents a 10 second
 batch, the red box represents the sliding window of 30 seconds.
 
-> ![](media/image5.png){width="5.75in" height="2.2668274278215224in"}
+![DStreams and Windowing](/blob/master/images/lab_5/Picture1.png?raw=true)
 
 In order to enable windowing we will need to turn on checkpointing. This
 is done by defining a checkpoint directory. I will assume you have
@@ -782,7 +783,7 @@ the counts from the 3 latest batches. See example screenshot below.*
 **SUBMISSION 4b:** *Also explain what the difference is between having 10 sec
 batches with a 30 sec sliding window and a 30 second batch length.*
 
-> ![](media/image6.png){width="4.5in" height="7.5038604549431325in"}
+![Screen Shot](/blob/master/images/lab_10/Picture6.png?raw=true)
 
 Troubleshooting
 ===============
