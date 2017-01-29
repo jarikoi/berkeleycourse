@@ -6,11 +6,11 @@ This is not to be shared with students, rather it is a help for instructors.
 
 Example solution:
 ```
->>> from pyspark import SparkContext
->>> from pyspark.streaming import StreamingContext
->>> ssc = StreamingContext(sc, 1)
->>> lines= ssc.textFileStream("file:///tmp/datastreams")
->>> uclines = lines.filter(lambda x : len(x) > 5)
->>> uclines.pprint()
->>> ssc.start()
+from pyspark import SparkContext
+from pyspark.streaming import StreamingContext
+ssc = StreamingContext(sc, 1)
+lines= ssc.textFileStream("file:///tmp/datastreams")
+uclines = lines.filter(lambda x : len(x) > 5)
+uclines.pprint()
+ssc.start()
 ```
