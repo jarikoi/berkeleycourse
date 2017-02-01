@@ -1,0 +1,35 @@
+Q1: What is the difference between EBS and S3?
+EFS is:
+1. A block storage.
+2. Store files in hierarchy with permissions just like traditional file system.
+3. Fast read and write speed.
+4. It has to be attached to a particular EC2 instance. Cannot be attached to multiple instances.
+5. It can only exists in a particular region.
+6. There are multiple types of EBS volumes to choose from.
+
+S3 is:
+1. An object store.
+2. Store object / file as a header associated with sequences of bytes.
+3. Slow speed but very high data durability.
+4. It can be universally accessible, and doesn't need to be attached to a particular EC2 instance.
+5. It can be accessed from any region.
+
+Q2: When would you consider a cloud infrastructure for your data science tasks?
+1. Collaboration: My teammates are in different regions. I want my project content to be universally accessible so people in different regions can collaborate on it.
+2. Cost: Using the service of cloud infrastructure is more economical than buying my own infrastructure.
+3. Scalability: The required computation power and storage of my project may be low at the beginning but it may grow very fast potentially. The cloud infrastructure is highly scalable so I can change its capacity easily.
+4. Dependability: If I don't have sufficient expertise in system management / operations, I should choose cloud infrastructure since its provider is specialized in this field and is much more dependable than myself.
+
+Q3: What is the difference between spot instances and reserved instances?
+Reserved instances:
+1.Customers pay for instances with fixed compute capacity at fixed price for long time.
+2.The price is cheaper than the spot instances for the same capacity.
+3.Recommended for application with steady state and predicted usage.
+
+Spot instances:
+1.Customer only purchase compute capacity when needed with no upfront commitment, and thus it is more flexible.
+2.Customer can specify the maximum hourly price rate to pay for the instance.
+3.Recommended for application with changing usage and may encounter urgent computing needs.
+
+Q4: List the names of four software packages installed on the UCB AMI
+Running "yum list" gives me hundreds of installed yum packages, including: zookeeper, zvbi, zip,  zmap.
