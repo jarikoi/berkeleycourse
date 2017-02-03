@@ -10,6 +10,8 @@
 ## DISCLAIMER
 Our labs and exercises are tested on AMI's provided for the course. We test labs on other platforms such as MacOS on a best effort basis only. If you run on other platforms such as MacOS it is your responsibility to determine environmental issues such as installs of non-standard tools etc. We will be helping out with environmental issues as time permits.
 
+*Note: We are mainly covering the DStream aspects of Spark Streaming. There is a new abstraction call Structured Streams, but that is still in Beta. The basic concepts are supported in newer versions of Spark Streaming.*
+
 ##Introduction
 
 Spark Streaming is an extension to Spark that enables processing of
@@ -25,7 +27,7 @@ and its main concepts. From other labs you are familiar with Storm.
 Spark Streaming differs from Storm in several respects. Firstly Spark
 Streaming divides an incoming stream into batches. Each batch is
 processed as one unit using the core Spark infrastructure. This is in
-contrast to Storm were data is processed as it comes in. Storm like
+contrast to Storm where data is processed as it comes in. Storm like
 computing is sometimes called *record-at-a-time* processing. Spark
 Streaming like computation is sometimes called a *micro batching*. Micro
 batching has both advantages and disadvantages compared to a
@@ -34,14 +36,15 @@ is that it builds on the core Spark RDD processing, and hence enables
 usage of multiple paradigms such as steam processing, batching and
 interactive queries on one platform.
 
-![](media/image1.png){width="6.5in" height="1.242361111111111in"}
+![Spark Streaming and Engine](/blob/master/images/lab_10/Picture1.png?raw=true)
+
 
 There are a few basic concepts that you need to understand in Spark
 Streaming: DStream, Transformations and Output Operations.
 
 Discretized Streams, or DStreams for short, is an architectural concept
 that essentially captures the fact that an incoming continuous stream is
-chunked in to discrete RDDs for Spark processing. DStreams allows many
+chunked into discrete RDDs for Spark processing. DStreams allows many
 of the transformations supported by RDD’s. Below you will find a list of
 some of them. The full list is available in the programming guide.
 
@@ -86,7 +89,7 @@ RDD’s also called *batches*. When you apply a stateless transformation
 you will create a new DStream of RDD’s with the data that resulted from
 each execution of the transformation.
 
-> ![](media/image2.png){width="5.25in" height="1.520592738407699in"}
+![DStream](/blob/master/images/lab_10/Picture2.png?raw=true)
 
 The above transformations are all state-less. This means that they
 create a new DStream and that they do not carry over any information
@@ -102,7 +105,7 @@ Spark Streaming provides a concept of *windowing*. This means that you
 can define a window that spans more than one RDD in a DStream. Spark
 Streaming would combine all the RDD’s in the window and allow you to
 apply a transformation on the data in the window. It can be useful in
-many types of real-time computations. Lets say you receive new Stock
+many types of real-time computations. Let's say you receive new Stock
 quotes every ten seconds. These quotes are captured from an incoming
 stream socket as Distinct RDDs. Your objective is to calculate some
 value based on the last 30-second window but with a maximum delay of 10
@@ -112,7 +115,7 @@ you to more easily compute the value you are seeking based on the last
 30 seconds of real-time data. The figure below from the programming
 guide depicts the concept of sliding windows.
 
-> ![](media/image3.png){width="6.5in" height="2.339583333333333in"}
+![Windowing](/blob/master/images/lab_10/Picture3.png?raw=true)
 
 Below we provide a sample of operations available on windows.
 
@@ -127,8 +130,7 @@ Below we provide a sample of operations available on windows.
     over a sliding interval using func. The function should be
     associative so that it can be computed correctly in parallel.
 
--   **reduceByKeyAndWindow(func, windowLength,
-    slideInterval, [numTasks])**: When called on a DStream of (K, V)
+-   **reduceByKeyAndWindow(func, windowLength, slideInterval, [numTasks])** :   When called on a DStream of (K, V)
     pairs, returns a new DStream of (K, V) pairs where the values for
     each key are aggregated using the given reduce function func over
     batches in a sliding window. Note: By default, this uses Spark's
@@ -173,7 +175,6 @@ http://spark.apache.org/docs/latest/streaming-programming-guide.html#transformat
   http://www.meetup.com/meetup_api/ | Description of Meetup data API.
   http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets |  Meetup websocket API. 
   http://www.slideshare.net/spark-project/deep-divewithsparkstreaming-tathagatadassparkmeetup20130617 | Technical presentation on Spark Streaming.
-  https://github.com/UC-Berkeley-I-School/w205-labs-exercises/blob/master/docs/Installing%20Cloudera%20Hadoop%20on%20UCB%20W205%20Base%20Image.pdf | Instructions for getting Hadoop set up on AMI.
   http://www.eecs.berkeley.edu/Pubs/TechRpts/2012/EECS-2012-259.pdf |  Spark Streaming Paper.
   https://spark.apache.org/docs/0.9.0/python-programming-guide.html | Python programming guide.
 
@@ -183,8 +184,8 @@ http://spark.apache.org/docs/latest/streaming-programming-guide.html#transformat
 ## Step-0. Pre-Requirements 
 
 
-Update the repository from git hub. The Lab directory will contain a
-sub-directory called “somedata”. We will be using this data to
+Update the repository from github. The Lab 10 directory will contain a
+sub-directory called `lab_10/somedata`. We will be using this data to
 illustrate a few things.
 
 First, if an example starts with the `“$”` prompt, it is run in the
@@ -210,6 +211,7 @@ this command:
 ```
 $sudo -u hdfs hdfs dfs -mkdir /tmp/datastreams
 ```
+*Note: Remember that if you reboot a Linux system the '/tmp' directory is cleaned up. So you will need to recreate it and its content. If you like to avoid this you need to use another location for the 'datastreams' folder.*
 
 ## Step-1. Getting Started
 
@@ -229,7 +231,7 @@ Pyspark already has a Spark context so we will not need to create one.
 But we want to make sure that pyspark uses multiple cores for parallel
 processing, so we provide a `MASTER` environment variable. If you were to
 implement this as a program you would need to add a statement as show
-below. You will do this later in this lab when we use spark-submit.
+below. You will do this later in this lab when we use `spark-submit`.
 ```
 sc = SparkContext("local[2]", "MyApp")
 ```
@@ -249,6 +251,9 @@ Create a streaming context using the following statement.
 ```
 >>>ssc = StreamingContext(sc, 1)
 ```
+
+The argument `1` specifies that stream should be chunked into batches om 1 second.
+
 Tell the context to read data from files in a directory. This means it
 will be monitoring the directory for new files and read them as they
 arrive. All files in the directory must have the same format, and must
@@ -279,29 +284,21 @@ data to the directory yet, so each result will be empty.
 ```
 >>>ssc.start()
 ```
-Open a separate terminal window. Lets assume you have a simple file
-called words with the following content.
+Open a separate terminal window. Let's assume you have a simple file
+called `words` with the following content.
 ```
 hej
-
 kalle
-
 kula
-
 nisse
-
 Hello
-
 coloraDO
-
 DOrado
-
 eldorade
-
 gatrorade
 ```
 If you are on Spark only system copy the file to the `/tmp/datastreams`
-local directory.
+local directory using 'cp' as examplified below.
 ```
 $cp words /tmp/datastreams/
 ```
@@ -318,7 +315,7 @@ local file system which will later be removed. For the purpose of this
 lab Spark Streaming recovers and eventually picks up the right file. If
 you want to fix this issue, copy to other location in HDFS and then use
 `hdfs –mv` command to move the file into `/tmp/datastreams`. The mv
-command is in a atomic operation.*
+command is in a atomic operation. The same is true for most filesystems, to create the file in one atomic operation, use 'mv'*
 
 If you look in the streaming window you will see the result of the
 processing. You will notice that the words were converted to upper case
@@ -335,8 +332,7 @@ $ cp words /tmp/datastreams/w2
 
 $ cp words /tmp/datastreams/w3
 ```
-**SUBMISSION 1:** *Provide a screenshot of the output from the Spark
-Streaming process.*
+**SUBMISSION 1:** *Print only words with a length > 5 characters. Submit the pyspark code*
 
 You can stop the Spark Streaming application by typing the following
 stop command in the pyspark shell.
@@ -384,7 +380,7 @@ the process.
 You will see some errors from Spark since there is no active port to
 connect to. But the process will continue to try to connect to the port.
 To create a port to which the streaming process can connect we will use
-the Unix nc command. The name nc stands for netcat. You can think about
+the Unix `nc` command. The name nc stands for netcat. You can think about
 it as the Unix cat but for pushing data to a socket rather than a file.
 If you try this Lab on Windows, you can use the Windows `netcat` command
 in place of `nc`.
@@ -398,7 +394,7 @@ needing to restart `nc`.
 ```
 $nc -lk 9999
 ```
-In the terminal window were you started nc, type some words. What
+In the terminal window were you started `nc`, type some words. What
 happens on the streaming application side?
 
 The batch duration for our simple streaming application is one second.
@@ -420,11 +416,10 @@ following commands.
 
 >>>ssc.start()
 ```
-Type some words in the nc terminal window. As you can see, spark is now
-batching things up in RDD representing 30 seconds of incoming data.
+Type some words in the `nc` terminal window. As you can see, spark is now
+batching things up in `RDD` representing 30 seconds of incoming data.
 
 ## Step-3. Parsing JSON data
-
 
 We will now parse a more complicated data structure. We will parse data
 feed from the [Meetup API.](http://www.meetup.com/meetup_api/)
@@ -441,20 +436,13 @@ enclosed by curly brackets. A value can also be an array that contains
 multiple objects.
 ```
 {
-
 "firstName": "John",
-
-"lastName": "Smith", "isAlive": **true**, "age": 25,
-
+"lastName": "Smith", "isAlive": true, "age": 25,
 "address": {
-
 "streetAddress": "21 2nd Street", "city": "New York", "state": "NY",
 "postalCode": "10021-3100" },
-
 "children": [],
-
-"spouse": **null**
-
+"spouse": null
 }
 ```
 The following is an example of an `rsvp` JSON object. As you can see it
@@ -478,8 +466,8 @@ San Francisco Couchbase
 Group","group_lon":-122.42,"group_urlname":"The-San-Francisco-Couchbase-Meetup-Group","group_state":"CA","group_lat":37.75}}
 ```
 Before we start receiving using a stream we want to make sure we can
-parse the data properly. Initially we just like to extract the venue
-from each incoming record. You can understand the rsvp stream call and
+parse the data properly. Initially we just like to extract the `venue`
+from each incoming record. You can understand the `rsvp` stream call and
 response formats by looking at the API definition of
 [rsvps](http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#http).
 
@@ -489,6 +477,8 @@ from the stream.
 ```
 $curl -i http://stream.meetup.com/2/rsvps
 ```
+*Note: Depending on the actually usage of the Meetup service you will see a difference in he velocity of incoming data.*
+
 Before we parse the stream, lets read data from the file system and try
 out a few transformations. In the somedata directory you will have a few
 files called: `meetup.data.1`, `meetup.data.2` and so forth. Each containing
@@ -680,7 +670,7 @@ $spark-submit $HOME/venuecounter.py localhost 9999
 ```
 You should see output similar to what is show in the screenshot below.
 
-> ![](media/image4.png){width="5.625in" height="4.8527646544181975in"}
+![Screen Shot](/blob/master/images/lab_10/Picture4.png?raw=true)
 
 **SUBMISSION 3:**  *Provide a screenshot showing the running Spark Streaming
 application.*
@@ -709,7 +699,7 @@ wlcnt=lines.countByWindow(30,10)
 Using the below illustration each green box represents a 10 second
 batch, the red box represents the sliding window of 30 seconds.
 
-> ![](media/image5.png){width="5.75in" height="2.2668274278215224in"}
+![DStreams and Windowing](/blob/master/images/lab_10/Picture5.png?raw=true)
 
 In order to enable windowing we will need to turn on checkpointing. This
 is done by defining a checkpoint directory. I will assume you have
@@ -782,7 +772,7 @@ the counts from the 3 latest batches. See example screenshot below.*
 **SUBMISSION 4b:** *Also explain what the difference is between having 10 sec
 batches with a 30 sec sliding window and a 30 second batch length.*
 
-> ![](media/image6.png){width="4.5in" height="7.5038604549431325in"}
+![Screen Shot](/blob/master/images/lab_10/Picture6.png?raw=true)
 
 Troubleshooting
 ===============
@@ -794,10 +784,10 @@ If you are running on a course AMI, make sure you have hadoop and spark
 set up properly. You can find instructions here:
 https://github.com/UC-Berkeley-I-School/w205-labs-exercises/blob/master/docs/Installing%20Cloudera%20Hadoop%20on%20UCB%20W205%20Base%20Image.pdf
 
-If you like to install a new Spark 1.5 here are some instructions.
+If you like to install a new Spark here are some instructions.
 ------------------------------------------------------------------
 
--   Download Spark 1.5 from <http://spark.apache.org/downloads.html>
+-   Download Spark 1.5 from <http://spark.apache.org/downloads.html> he example is Spark 1.5, but the process is similar for later versions such as 1.6 and 2.X.
 ```
 $gunzip spark-1.5.1-bin-hadoop2.6.tgz
 
