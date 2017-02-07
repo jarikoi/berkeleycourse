@@ -1,0 +1,118 @@
+1. MATCH p=(strange:Hero {name: 'DR. STRANGE/STEPHEN'})- [:APPEARED*0..2]-(doom:Hero {name: 'DR. DOOM/VICTOR VON'})
+    RETURN p, length(p)
+    ORDER BY length(p)
+    LIMIT 1
+
+╒══════════════════════════════╤═════════╕
+│p                             │length(p)│
+╞══════════════════════════════╪═════════╡
+│[{name: DR. STRANGE/STEPHEN, d│1        │
+│egree: 777}, {w: 8}, {name: DR│         │
+│. DOOM/VICTOR VON, degree: 441│         │
+│}]                            │         │
+└──────────────────────────────┴─────────┘
+
+2. MATCH p=(strange:Hero {name: 'DR. STRANGE/STEPHEN'})- [:APPEARED*0..2]-(doom:Hero {name: 'DR. DOOM/VICTOR VON'})
+    RETURN p, length(p)
+    ORDER BY length(p)
+    LIMIT 5
+
+╒══════════════════════════════╤═════════╕
+│p                             │length(p)│
+╞══════════════════════════════╪═════════╡
+│[{name: DR. STRANGE/STEPHEN, d│1        │
+│egree: 777}, {w: 8}, {name: DR│         │
+│. DOOM/VICTOR VON, degree: 441│         │
+│}]                            │         │
+├──────────────────────────────┼─────────┤
+│[{name: DR. STRANGE/STEPHEN, d│1        │
+│egree: 777}, {w: 12}, {name: D│         │
+│R. DOOM/VICTOR VON, degree: 44│         │
+│1}]                           │         │
+├──────────────────────────────┼─────────┤
+│[{name: DR. STRANGE/STEPHEN, d│2        │
+│egree: 777}, {w: 2}, {name: TH│         │
+│UNDERBALL/DR. ELIO, degree: 13│         │
+│8}, {w: 6}, {name: DR. DOOM/VI│         │
+│CTOR VON, degree: 441}]       │         │
+├──────────────────────────────┼─────────┤
+│[{name: DR. STRANGE/STEPHEN, d│2        │
+│egree: 777}, {w: 2}, {name: TH│         │
+│UNDERBALL/DR. ELIO, degree: 13│         │
+│8}, {w: 6}, {name: DR. DOOM/VI│         │
+│CTOR VON, degree: 441}]       │         │
+├──────────────────────────────┼─────────┤
+│[{name: DR. STRANGE/STEPHEN, d│2        │
+│egree: 777}, {w: 1}, {name: PA│         │
+│GE, KAREN, degree: 188}, {w: 1│         │
+│}, {name: DR. DOOM/VICTOR VON,│         │
+│ degree: 441}]                │         │
+└──────────────────────────────┴─────────┘
+
+3. MATCH (peter:Hero {name:'COLOSSUS II/PETER RA'})- [:APPEARED*2..2]-(friend_of_friend)
+   WHERE NOT (peter)-[:APPEARED]-(friend_of_friend)
+     AND friend_of_friend.name <> 'COLOSSUS II/PETER RA'
+  RETURN friend_of_friend.name, COUNT(*)
+   ORDER BY COUNT(*) DESC , friend_of_friend.name
+   LIMIT 5
+
+╒═════════════════════╤════════╕
+│friend_of_friend.name│COUNT(*)│
+╞═════════════════════╪════════╡
+│WONG                 │453     │
+├─────────────────────┼────────┤
+│MOONSTONE II/KARLA S │370     │
+├─────────────────────┼────────┤
+│CARTER, PEGGY        │367     │
+├─────────────────────┼────────┤
+│POWER MAN/ERIK JOSTE │350     │
+├─────────────────────┼────────┤
+│KINGPIN/WILSON FISK  │342     │
+└─────────────────────┴────────┘
+
+4. MATCH (tony:Hero {name:'IRON MAN/TONY STARK'})- [a:APPEARED*2..2]-(friend_of_friend)
+   WHERE NOT (tony)-[:APPEARED]-(friend_of_friend)
+     AND friend_of_friend.name <> 'IRON MAN/TONY STARK'
+  RETURN friend_of_friend
+   LIMIT 10
+
+╒══════════════════════════════╤════════════════╕
+│friend_of_friend              │a               │
+╞══════════════════════════════╪════════════════╡
+│{name: BARTOS, degree: 16}    │[{w: 2}, {w: 1}]│
+├──────────────────────────────┼────────────────┤
+│{name: MIMIC/CALVIN RANKIN, de│[{w: 2}, {w: 1}]│
+│gree: 89}                     │                │
+├──────────────────────────────┼────────────────┤
+│{name: MANAT, degree: 17}     │[{w: 2}, {w: 1}]│
+├──────────────────────────────┼────────────────┤
+│{name: SINTARIIS, degree: 5}  │[{w: 2}, {w: 1}]│
+├──────────────────────────────┼────────────────┤
+│{name: DIBDEB, degree: 15}    │[{w: 2}, {w: 1}]│
+├──────────────────────────────┼────────────────┤
+│{name: RASPUTIN, MIKHAIL, degr│[{w: 2}, {w: 2}]│
+│ee: 54}                       │                │
+├──────────────────────────────┼────────────────┤
+│{name: P'KAR, degree: 14}     │[{w: 2}, {w: 1}]│
+├──────────────────────────────┼────────────────┤
+│{name: LIVING MONOLITH/AHME, d│[{w: 2}, {w: 3}]│
+│egree: 61}                    │                │
+├──────────────────────────────┼────────────────┤
+│{name: WIBBOW, degree: 20}    │[{w: 2}, {w: 1}]│
+├──────────────────────────────┼────────────────┤
+│{name: ALBERIK, degree: 8}    │[{w: 2}, {w: 1}]│
+└──────────────────────────────┴────────────────┘
+
+5. MATCH (tony:Hero {name:'IRON MAN/TONY STARK'}) -[e:APPEARED]->
+(other) <-[f:APPEARED]- (donald:Hero {name:'THOR/DR. DONALD BLAK'})
+RETURN other
+ORDER BY e.w + f.w DESC
+LIMIT 9
+
+In order to answer the question we need to know something about the original members of the Avengers.
+Since Tony Stark and Thor were among the founders I started with them and looked for connectedness. 
+The above query led me to: Vision, Scarlet Witch and Captain America (in addition to Iron Man and Thor).
+(This is not accurate since the Hulk, Ant-Man and Wasp were the other original members).
+Next, according to the query, joined Wasp, Hawk, Ant-man, Wonder Man and the Thing (from the Fantastic 4)
+The team is always fully interconnected (judging by the number of connections).
+To get the 10th member I had to manually remove Jarvis who I not a super hero.

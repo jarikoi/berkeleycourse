@@ -1,0 +1,14 @@
+1. List the HDFS contents of /user
+	1. mapred	/user/history
+	2. hive		/user/hive
+	3. hue		/user/hue
+	4. jenkins	/user/jenkins
+	5. oozie	/user/oozie
+	6. root		/user/root
+	7. hdfs		/user/spark
+	8. w205		/user/w205
+
+2. Inspect output of HDFS admin report
+	1. How many live datanodes are there? 1
+	2. How many non-DFS storage is used? 5.10 GB
+	3. How much DFS storage is used? 136.86 MB (0.14%)

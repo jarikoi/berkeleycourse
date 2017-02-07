@@ -1,0 +1,80 @@
+Q1: What is the output of \dt?
+
+              List of relations
+ Schema |       Name       | Type  |  Owner
+--------+------------------+-------+----------
+ public | actor            | table | postgres
+ public | address          | table | postgres
+ public | category         | table | postgres
+ public | city             | table | postgres
+ public | country          | table | postgres
+ public | customer         | table | postgres
+ public | film             | table | postgres
+ public | film_actor       | table | postgres
+ public | film_category    | table | postgres
+ public | inventory        | table | postgres
+ public | language         | table | postgres
+ public | payment          | table | postgres
+ public | payment_p2007_01 | table | postgres
+ public | payment_p2007_02 | table | postgres
+ public | payment_p2007_03 | table | postgres
+ public | payment_p2007_04 | table | postgres
+ public | payment_p2007_05 | table | postgres
+ public | payment_p2007_06 | table | postgres
+ public | rental           | table | postgres
+ public | staff            | table | postgres
+ public | store            | table | postgres
+(21 rows)
+
+Q2: What is the schema for the customer table?
+
+                                          Table "public.customer"
+   Column    |            Type             |                           Modifiers
+-------------+-----------------------------+----------------------------------------------------------------
+ customer_id | integer                     | not null default nextval('customer_customer_id_seq'::regclass)
+ store_id    | smallint                    | not null
+ first_name  | character varying(45)       | not null
+ last_name   | character varying(45)       | not null
+ email       | character varying(50)       |
+ address_id  | smallint                    | not null
+ activebool  | boolean                     | not null default true
+ create_date | date                        | not null default ('now'::text)::date
+ last_update | timestamp without time zone | default now()
+ active      | integer                     |
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customer_id)
+    "idx_fk_address_id" btree (address_id)
+    "idx_fk_store_id" btree (store_id)
+    "idx_last_name" btree (last_name)
+Foreign-key constraints:
+    "customer_address_id_fkey" FOREIGN KEY (address_id) REFERENCES address(address_id) ON UPDATE CASCADE ON DELETE RESTRICT
+    "customer_store_id_fkey" FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON DELETE RESTRICT
+Referenced by:
+    TABLE "payment" CONSTRAINT "payment_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE ON DELETE RESTRICT
+    TABLE "payment_p2007_01" CONSTRAINT "payment_p2007_01_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    TABLE "payment_p2007_02" CONSTRAINT "payment_p2007_02_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    TABLE "payment_p2007_03" CONSTRAINT "payment_p2007_03_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    TABLE "payment_p2007_04" CONSTRAINT "payment_p2007_04_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    TABLE "payment_p2007_05" CONSTRAINT "payment_p2007_05_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    TABLE "payment_p2007_06" CONSTRAINT "payment_p2007_06_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    TABLE "rental" CONSTRAINT "rental_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE ON DELETE RESTRICT
+Triggers:
+    last_updated BEFORE UPDATE ON customer FOR EACH ROW EXECUTE PROCEDURE last_updated()
+
+Q3: What similarities do you see in the explain plains for these 3 queries?
+They all perform sequential scans on the rows of a single table. 
+
+Q4: What is the difference between the plans for the Partitioned table and the union
+query? Why do you think this difference exists?
+The first query has a higher cost (~20%). It also performs one extra hash aggregation on the result of the two queries. The reason it that it doesn't have 
+any prior knowledge about what data might be retrieved from the two queries and needs to eliminate duplicates whereas the query on the partitioned tables 
+knows that results from the two tables can not everlap due to the partition scheme. Using a UNION ALL instead of a UNION would have eliminated the extra 
+HashAggregate.
+
+Q5: What join algorithm is used for the inner join?
+A hash join is used. First the customer table is being scaned sequentially, then a hash table is built on customer_id. The hash table is used to lookup 
+the matching customer_id for each row found in each partition of the payment table (O(m+n)).
+
+
+
+ 

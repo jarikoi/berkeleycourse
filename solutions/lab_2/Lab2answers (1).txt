@@ -1,0 +1,49 @@
+Lab #2 submissions:
+1. Content of HDFS /user
+Found 8 items
+drwxr-xr-x   - mapred  supergroup          0 2016-09-11 21:35 /user/history
+drwxrwxrwx   - hive    supergroup          0 2016-09-11 21:36 /user/hive
+drwxrwxrwx   - hue     supergroup          0 2016-09-11 21:37 /user/hue
+drwxrwxrwx   - jenkins supergroup          0 2016-09-11 21:35 /user/jenkins
+drwxrwxrwx   - oozie   supergroup          0 2016-09-11 21:37 /user/oozie
+drwxrwxrwx   - root    supergroup          0 2016-09-11 21:36 /user/root
+drwxr-xr-x   - hdfs    supergroup          0 2016-09-11 21:39 /user/spark
+drwxr-xr-x   - w205    supergroup          0 2016-09-11 21:43 /user/w205
+
+2. 
+Configured Capacity: 105555197952 (98.31 GB)
+Present Capacity: 100081315840 (93.21 GB)
+DFS Remaining: 99937800192 (93.07 GB)
+DFS Used: 143515648 (136.87 MB)
+DFS Used%: 0.14%
+Under replicated blocks: 0
+Blocks with corrupt replicas: 0
+Missing blocks: 0
+Missing blocks (with replication factor 1): 0
+
+-------------------------------------------------
+Live datanodes (1):
+
+Name: 127.0.0.1:50010 (localhost)
+Hostname: ip-172-31-8-56.ec2.internal
+Decommission Status : Normal
+Configured Capacity: 105555197952 (98.31 GB)
+DFS Used: 143515648 (136.87 MB)
+Non DFS Used: 5473882112 (5.10 GB)
+DFS Remaining: 99937800192 (93.07 GB)
+DFS Used%: 0.14%
+DFS Remaining%: 94.68%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 2
+Last contact: Sun Sep 11 21:57:48 UTC 2016
+
+Q1: How many live datanodes are there? 
+A1: One 
+Q2: How much non-DFS storage is used? 
+Q2: 5.10 GB
+Q3: How much DFS storage is used? 
+A3: 136.87 MB

@@ -1,0 +1,12 @@
+Q1: What is the difference between EBS and S3? 
+A1: EBS is block storage, it is attached to the VM and functions like a local disk drive.
+    S3 allows clients to store and retrieve objects or files using a web API from anywhere. From that perspective it is more like a NAS.  
+
+Q2: When would you consider a cloud infrastructure for your data science tasks? 
+A2: When I want to start at a low cost and I am not sure if and how much I will need to grow.
+
+Q3: What is the difference between spot instances and reserved instances?
+A3: Spot instances are leftover capacity in EC2 on which users can bid. Reserved instances are instances that are always available to run and are thus reserved. Spot instances are bid for and are typically significantly cheaper (50%-90% less) than reserved ones.
+
+Q4: List the names of four software packages installed on the UCB AM
+A4: Python, Yarn, Hadoop, Storm, Map-reduce

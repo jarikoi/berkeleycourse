@@ -1,0 +1,26 @@
+1.
+Hive:
+	Time taken: 120.329 seconds, Fetched: 50 row(s)
+SparkSQL:
+	Time taken: 32.162 seconds, Fetched 50 row(s)
+SpartSQL on parquet:
+	Time taken: 7.352 seconds, Fetched 50 row(s)
+2.
+Hive launched 2 jobs
+It doesn't look like SparkSQL launches any jobs
+3.
+Query: 
+	SELECT location, count(location) AS log_count 
+	  FROM weblogs_parquet 
+	  JOIN user_info
+	    ON user_info.user_id = web_parquet.user_id
+	 GROUP BY location 
+	 ORDER BY log_count DESC LIMIT 5;
+Result:
+	La Fayette      49
+	Leeds   	47
+	Blountsville    46
+	Hayden  	45
+	Hamilton        45
+
+
