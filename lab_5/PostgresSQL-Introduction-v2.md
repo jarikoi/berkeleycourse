@@ -1,9 +1,11 @@
-# MIDS W205
 
-| **Lab #** | 5 | **Lab Title** | Working with Relational Databases |
-|---|---|---|---|
-| **Related Module(s)** | 5 | **Goal** | Get you introduced to a RDBMS (PostgreSQL) |
-| **Last Updated** | 1/6/17 | **Expected duration** | 60 min |
+# MIDS W205 : Lab 5      
+|                      |        |                     |                                                  |
+|----------------------|--------|---------------------|--------------------------------------------------|
+| *Lab*                | 5      | *Lab Title*         | Working with Relational Databases   |
+| *Related Modules(s)* | 5      | *Goal*              | Get you introduced to a RDBMS (PostgreSQL) |
+| *Last Updated*       | 1/7/17 | *Expected Duration* | 60 minutes                                    |
+
 
 
 ## Introduction, Resources
