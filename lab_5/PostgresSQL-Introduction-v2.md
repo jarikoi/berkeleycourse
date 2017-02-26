@@ -32,16 +32,19 @@ We need to setup an EC2 instance and make sure that PostgreSQL is up and running
 2. Attach your EBS volume from Lab 2. Note that PostgreSQL should be installed after you finish step 3.4 of Lab 2
   
 3. Check whether PostgreSQL is up and running: 
-  ```bash
+
+  ```
   ps auxw | grep postgres
   ```
   
 4. If not, change your current path to /data directory
-  ```bash
+
+  ```
   cd /data
   ``` 
 and start Postgres 
-  ```bash
+
+  ```
   start_postgres.sh
   ```
 
@@ -50,60 +53,70 @@ and start Postgres
 1. We need some data in order to create a database, schema and, ultimately, query. The data we'll consider is a toy dataset called "DVD rental".
   
 2. Navigate to the /data directory on your AWS instance and download the Pagila data as follows:
-  ```bash
-  wget -O pagila.zip http://pgfoundry.org/frs/download.php/1719/pagila-0.10.1.zip
+
+  ```
+  wget -O pangila.zip "https://ftp.postgresql.org/pub/projects/pgFoundry/dbsamples/pagila/pagila/pagila-0.10.1.zip"
   ```
 
 3. Unzip the data: 
-  ```bash 
+
+  ``` 
   unzip pagila.zip
   ```
 
 4. Connecting to the PostgreSQL instance:
   Log into postgres as the postgres user: 
-  ```bash
+
+  ```
   psql -U postgres
   ```
 
 5. Create a database:
-  ```bash
+
+  ```
   create database dvdrental;
   ```
 
 6. Connect to the database:
-  ```bash
+
+  ```
   \c dvdrental
   ```
 
 7. Import the data:
 Load the data using the `\i` command. Starting a line with `\i` runs `.sql` scripts in Postgres.
-  ```bash
+
+  ```
   \i pagila-0.10.1/pagila-schema.sql
   \i pagila-0.10.1/pagila-insert-data.sql
   \i pagila-0.10.1/pagila-data.sql
   ```
+  **Note:** *This data set may contain some duplicate keys. For purposes of this lab, you can safely ignore any primary key violations during import.*
+  
 8. Check to see if it worked:
 
-  At this point the data should be loaded. 
-  Examine the database schema by typing:
-  ```bash
+  At this point the data should be loaded. Examine the database schema by typing:
+
+  ```
   \dt
   ```
   
   Examine the schema of a table using the `\d` command
-  ```bash
+
+  ```
   \d <table name>
   ```
 
-> Question 1: What is the output of \dt?
+> ***Question 1: What is the output of \dt?***
 
-> Question 2: What is the schema for the customer table?
+> ***Question 2: What is the schema for the customer table?***
 
 
 ## Step 3. Running Queries and Understanding EXPLAIN plans
 
 We want to understand not only what queries we can issue against data, but also how that query maps to an execution plan. For each of the following sections, run the queries provided, and generate their explain plans using: 
-  ```bash
+
+  ```
   EXPLAIN <sql query here>
   ```
 
@@ -114,6 +127,7 @@ Run the following simple queries, then generate their explain plans.
   ```sql
   SELECT customer_id, first_name, last_name FROM customer;
   ```
+
 1. **Projection and Selection #1:**
 
   ```sql
@@ -134,12 +148,13 @@ Run the following simple queries, then generate their explain plans.
   FROM payment
   WHERE amount BETWEEN 5 AND 9;
   ```
-  > Question 3: What similarities do you see in the explain plains for these 3 queries?
+  > ***Question 3: What similarities do you see in the explain plains for these 3 queries?***
 
 4. **Merging Data: UNIONs:**
   Run the following 2 statements: 
 
   Union of 2 tables:
+
   ```sql
   SELECT u.customer_id,
          sum(u.amount)
@@ -151,7 +166,9 @@ Run the following simple queries, then generate their explain plans.
   WHERE u.payment_date <= '2007-02-01 00:00:00'::TIMESTAMP WITHOUT time ZONE
   GROUP BY u.customer_id ;
   ```
+
   Partition a Table:
+
   ```sql
   SELECT customer_id,
   sum(amount)
@@ -159,9 +176,11 @@ Run the following simple queries, then generate their explain plans.
   WHERE payment_date <= '2007-02-01 00:00:00'::TIMESTAMP WITHOUT time ZONE
   GROUP BY customer_id ;
   ```
-  > Question 4: What is the difference between the plans for the Partitioned table and the union query? Why do you think this difference exists?
+
+  > ***Question 4: What is the difference between the plans for the Partitioned table and the union query? Why do you think this difference exists?***
 
 5. **Merging Data: JOINs:**
+
   ```sql
   SELECT customer.customer_id,
          first_name,
@@ -172,10 +191,11 @@ Run the following simple queries, then generate their explain plans.
   FROM customer
   INNER JOIN payment ON payment.customer_id = customer.customer_id;
   ```
-> Question 5: What join algorithm is used for the inner join?
+
+  > ***Question 5: What join algorithm is used for the inner join?***
 
 6. Finally, disconnect from postgres:
-  ```bash
+  ```
   \q
   ```
 
