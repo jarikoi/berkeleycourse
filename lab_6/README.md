@@ -64,7 +64,7 @@ programs and components used and mention in subsequent sections.
 
 | **Resource** | **What**|
 |---|---|
-|[http://storm.apache.org/documentation.html]( http://storm.apache.org/documentation.html   ) | Apache Storm documentation) |
+|[http://storm.apache.org/releases/1.0.3/index.html](http://storm.apache.org/releases/1.0.3/index.html) | Apache Storm documentation) |
 | [http://streamparse.readthedocs.org/en/latest/quickstart.html](http://streamparse.readthedocs.org/en/latest/quickstart.html) | Introduction to streamparse topology definitions |
 | [ https://streamparse.readthedocs.org/en/latest/api.html ]( https://streamparse.readthedocs.org/en/latest/api.html ) | Streamparse documentation |
 | [http://www.pixelmonkey.org/2014/05/04/streamparse ](http://www.pixelmonkey.org/2014/05/04/streamparse ) | Short description of streamparse |
@@ -83,15 +83,21 @@ a word-count Storm application.
 
 The following command creates an installation of the wordcount example.
 
-\$sparse quickstart wordcount
+```
+$ sparse quickstart wordcount
+```
 
 Assuming you know the structure of topology definitions and the actual
 spout and bolt as explained in Async videos, run the word-count example
 use the following commands:
 
-\$cd wordcount
+```
+$ cd wordcount
+```
 
-\$sparse run
+```
+$ sparse run
+```
 
 Step 2: Implementation of a Tweet Word-Count Topology
 =====================================================
@@ -101,14 +107,15 @@ spout* and *two bolts* that parse the tweets and *one* *bolt* that
 counts the number of a given word in a tweet stream.
 
 ![Macintosh
-HD:Users:Nourian:Desktop:w205:2015-Fall-2015:week9:Lab9-topology-2.png](./media/image1.png){width="4.486111111111111in"
-height="3.246907261592301in"}
+HD:Users:Nourian:Desktop:w205:2015-Fall-2015:week9:Lab9-topology-2.png](./media/image1.png)
 
 Figure 1: Task Topology
 
 Create a project by running the following command:
 
-\$sparse quickstart tweetcount
+```
+$sparse quickstart tweetcount
+```
 
 This command provides a basic wordcount topology example, as seen in
 Step 1. You can modify this topology according to Figure 1 by modifying
@@ -132,43 +139,32 @@ filename &lt;filename&gt; and the second the class name
 &lt;classname&gt;. The following snippet is only an outline and not a
 fully functional example:
 
-(:use \[streamparse.specs\])
+```
+(ns tweetcount
+	(:use     [streamparse.specs])
+	(:gen-class))
 
-(:gen-class))
-
-(defn tweetcount \[options\]
-
-\[
-
-;; spout configuration
-
-{"X-spout" (python-spout-spec
-
-options
-
-"spouts.&lt;filename&gt;.&lt;classname&gt;"
-
-\[&lt;emitted name&gt;\]
-
-) }
-
-;; bolt configuration 1
-
-{"Y-bolt"
-
-…
-
-;; bolt configuration 2
-
-"Z-bolt"
-
-…
-
-}
-
-\]
-
+(defn tweetcount [options]
+  [
+	;; spout configuration
+	{"X-spout" (python-spout-spec
+    	options
+		"spouts.<filename>.<classname>"
+		[<emitted name>]
+		)
+	}
+	;; Bolts
+	{
+    	;; bolt configuration 1
+    	"Y-bolt"
+    		...
+    	;; bolt configuration 2
+    	"Z-bolt"
+    		...
+    }
+  ]
 )
+```
 
 Code Base
 ---------
@@ -182,55 +178,37 @@ your bolts folder in tweetcount/src/.
 Create a file called sentences.py using the following sample code. This
 is the spout code that will continuously generate tweet-like data.
 
-from \_\_future\_\_ import absolute\_import,print\_function,
-unicode\_literals
-
+```
+from __future__ import absolute_import, print_function, unicode_literals
 import itertools
-
 from streamparse.spout import Spout
 
 class Sentences(Spout):
+	def initialize(self, stormconf, context):
+		self.sentences = [
+			"She advised him to take a long holiday, so he immediately quit work and took a trip around the world",
+			"I was very glad to get a present from her",
+			"He will be here in half an hour",
+			"She saw him eating a sandwich"
+		]
+		self.sentences = itertools.cycle(self.sentences)
 
-def initialize(self, stormconf, context):
+	def next_tuple(self):
+		sentence = next(self.sentences)
+		self.emit([sentence])
 
-self.sentences = \[
+	def ack(self, tup_id):
+		pass # if a tuple is processed properly, do nothing
 
-"She advised him to take a long holiday, so he
-
-immediately quit work and took a trip around the world",
-
-"I was very glad to get a present from her",
-
-"He will be here in half an hour",
-
-"She saw him eating a sandwich",
-
-\]
-
-self.sentences = itertools.cycle(self.sentences)
-
-def next\_tuple(self):
-
-sentence = next(self.sentences)
-
-self.emit(\[sentence\])
-
-def ack(self, tup\_id):
-
-pass \# if a tuple is processed properly, do nothing
-
-def fail(self, tup\_id):
-
-pass \# if a tuple fails to process, do nothing
+	def fail(self, tup_id):
+		pass # if a tuple fails to process, do nothing
+```
 
 This Storm spout has the following methods:
 
 -   initialize: Initializes the storm spout and generates the data.
-
 -   next\_tuple: Passes the events to bolts one by one.
-
 -   ack: Acknowledges the event delivery success.
-
 -   fail: If event fails to deliver to bolts, this method will be
     called.
 
@@ -243,62 +221,38 @@ out specific formats, and pass it to the next bolt of the topology,
 called tweetcount. Create a file called parse.py using the following
 sample code:
 
-from \_\_future\_\_ import absolute\_import,
-print\_function,unicode\_literals
-
+```
+from __future__ import absolute_import, print_function, unicode_literals
 import re
-
 from streamparse.bolt import Bolt
 
-def ascii\_string(s):
-
-return all(ord(c) &lt; 128 for c in s)
+def ascii_string(s):
+	return all(ord(c) < 128 for c in s)
 
 class ParseTweet(Bolt):
-
-def process(self, tup):
-
-tweet = tup.values\[0\] \# extract the tweet
-
-\# Split the tweet into words
-
-words = tweet.split()
-
-valid\_words = \[\]
-
-for word in words:
-
-if word.startswith("\#"): continue
-
-\# Filter the user mentions
-
-if word.startswith("@"): continue
-
-\# Filter out retweet tags
-
-if word.startswith("RT"): continue
-
-\# Filter out the urls
-
-if word.startswith("http"): continue
-
-\# Strip leading and lagging punctuations
-
-aword = word.strip("\\"?&gt;&lt;,'.:;)")
-
-\# now check if the word contains only ascii
-
-if len(aword) &gt; 0 and ascii\_string(word):
-
-valid\_words.append(\[aword\])
-
-if not valid\_words: return
-
-\# Emit all the words
-
-self.emit\_many(valid\_words)
-
-\# tuple acknowledgment is handled automatically.
+	def process(self, tup):
+		tweet = tup.values[0] # extract the tweet
+		# Split the tweet into words
+		words = tweet.split()
+		valid_words = []
+		for word in words:
+			if word.startswith("#"): continue
+			# Filter the user mentions
+			if word.startswith("@"): continue
+			# Filter out retweet tags
+			if word.startswith("RT"): continue
+			# Filter out the urls
+			if word.startswith("http"): continue
+			# Strip leading and lagging punctuations
+			aword = word.strip("\"?><,'.:;)")
+			# now check if the word contains only ascii
+			if len(aword) > 0 and ascii_string(word):
+				valid_words.append([aword])
+		if not valid_words: return
+		# Emit all the words
+		self.emit_many(valid_words)
+		# tuple acknowledgment is handled automatically.
+```
 
 ParseTweet(bolt) will filter out input data that represents URLs, user
 mentions, hash tags, and so on and will emit each word to the
@@ -317,41 +271,29 @@ the count of a given input word, and print the result into a log with
 the format self.log('%s: %d' % (word, self.counts\[word\])). Create a
 file named tweetcounter.py using the following sample code:
 
-from \_\_future\_\_ import absolute\_import, print\_function,
-
-unicode\_literals
-
+```
+from __future__ import absolute_import, print_function, unicode_literals
 from collections import Counter
-
 from streamparse.bolt import Bolt
 
 class TweetCounter(Bolt):
+	def initialize(self, conf, ctx):
+		self.counts = Counter()
 
-def initialize(self, conf, ctx):
-
-self.counts = Counter()
-
-def process(self, tup):
-
-word = tup.values\[0\]
-
-\# Increment the local count
-
-self.counts\[word\] += 1
-
-self.emit(\[word, self.counts\[word\]\])
-
-\# Log the count - just to see the topology running
-
-self.log('%s: %d' % (word, self.counts\[word\]))
+	def process(self, tup):
+		word = tup.values[0]
+		# Increment the local count
+		self.counts[word] += 1
+		self.emit([word, self.counts[word]])
+		# Log the count - just to see the topology running
+		self.log('%s: %d' % (word, self.counts[word]))
+```
 
 TweetCounter bolt methods:
 
 -   initialize: Initializes the bolt method with required variable
     initialization.
-
 -   process: Actual programming logic is applied in this method.
-
 -   Tuple acknowledgment is handled automatically.
 
 Now you can put both parse.py and tweetcounter.py into your bolts/
@@ -363,9 +305,10 @@ Run the Storm Application
 The final step is to run your application. You need to go inside
 tweetcount folder and run:
 
-\$cd tweetcount
-
-\$sparse run
+```
+$ cd tweetcount
+$ sparse run
+```
 
 Submission
 ==========
