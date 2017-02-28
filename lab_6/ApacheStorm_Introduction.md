@@ -106,8 +106,7 @@ In this step, your task is to use the following topology to create *one
 spout* and *two bolts* that parse the tweets and *one* *bolt* that
 counts the number of a given word in a tweet stream.
 
-![Macintosh
-HD:Users:Nourian:Desktop:w205:2015-Fall-2015:week9:Lab9-topology-2.png](./media/image1.png)
+![Topology](/blob/master/images/lab_6/image1.png?raw=true)
 
 Figure 1: Task Topology
 
