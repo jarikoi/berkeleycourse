@@ -1,17 +1,33 @@
-## MIDS W205
+# MIDS W205 : Lab 7      
+|                      |        |                     |                                                  |
+|----------------------|--------|---------------------|--------------------------------------------------|
+| *Lab*                | 7      | *Lab Title*         | Introduction to Using Tableau With Hive          |
+| *Related Modules(s)* | 8      | *Goal*              | Introduction to Using Tableau With Hive          |
+| *Last Updated*       | 3/2/17 | *Expected Duration* | 30-40 minutes                                    |
 
-BI Tableau Visualization Using Hive Warehouse Introduction
+
+## DISCLAIMER
+Our labs and exercises are tested on AMI's provided for the course. We test labs on other platforms such as MacOS on a best effort basis only. If you run on other platforms such as MacOS it is your responsibility to determine environmental issues such as installs of non-standard tools etc. We will be helping out with environmental issues as time permits.
+
+
+## Introduction
+
 Tableau is one of the world’s fastest-growing business intelligence companies. Tableau offers to quickly analyze, visualize, and share information. As with most BI tools, Tableau can use Apache Hive (via ODBC connection) as the de facto standard for SQL access in Hadoop.
+
 We will cover the following topics in this lab:
-● Creating a Hive table and running a sample query on Hive
-● Installing Tableau and ODBC driver for connecting to Hive
-● Configuring and connecting to Hadoop Hive from Tableau using ODBC driver
-● Build visualization on Weblog Clickstream Analytics using Tableau
-Step 0: Running the Required Services
+ 1. Creating a Hive table and running a sample query on Hive
+ 2. Installing Tableau and ODBC driver for connecting to Hive
+ 3. Configuring and connecting to Hadoop Hive from Tableau using ODBC driver
+ 4. Build visualization on Weblog Clickstream Analytics using Tableau
+
+
+## Step 0: Running the Required Services
+
 The following steps launch the required services and prepare your instance for the next steps.
-1- Make sure port 10000 is open on your instance. To do this, edit your instance security group and add a TCP port 10000 accessible from anywhere in the Inbound section.
-2- SSH to your instance and do not forget to mount /data
-3- cd /data
+
+1. Make sure port 10000 is open on your instance. To do this, edit your instance security group and add a TCP port 10000 accessible from anywhere in the Inbound section.
+2. SSH to your instance and do not forget to mount /data
+3. cd /data
 4-StartHadoop: ./start_hadoop.sh
 5- Start Postgres for hive meta data: ./start_postgres.sh
 6- Start Hive Metastore: sudo -u w205 /data/start_metastore.sh
