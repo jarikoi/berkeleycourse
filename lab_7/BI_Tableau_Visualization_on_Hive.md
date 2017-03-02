@@ -112,30 +112,32 @@ Once the product is downloaded, you can install it by double-clicking the instal
 
 To install the ODBC driver for Hive:
 For both HiveServer and HiveServer2, you must install the Cloudera, Hortonworks, MapR, or Amazon EMR ODBC driver from the Drivers page. Ensure that the version of the driver you download matches the bit version of your operating system.
+
 ● Cloudera (Hive): Cloudera ODBC Driver for Apache Hive 2.5.x, 32-bit or 64-bit
 o For use with Tableau Server 8.0.0–8.0.7; for 8.1.0–8.1.3, use version 2.5.0.1000. o For use with Tableau Server 8.0.8 and later; for 8.1.4 and later, use driver version
 2.5.0.1001 or later.
 o Cloudera drivers can be found here.
+
 ● Hortonworks: Hortonworks Hive ODBC Driver 1.2.x (32-bit or 64-bit)
+
 ● MapR: MapR_odbc_2.1.0_x86.exe or later, or MapR_odbc_2.1.0_x64.exe or later
+
 ● Amazon EMR: HiveODBC.zip or ImpalaODBC.zip
 Note: If you have a different version of the driver installed, uninstall that driver before installing the version provided on the Cloudera website.
-4
     
 
 ## Step 4: Configuring and Connecting to Hadoop Hive From Tableau Using ODBC Driver (Windows Only)
 
-After installing the appropriate ODBC driver, you need to configure the ODBC System DSN on Windows. Download the driver for the appropriate version of Tableau Desktop (x86 or x64), and install it. Go to Control Panel -> System & Security -> Administrative Tools -> ODBC Data sources (32-bit or 64-bit).
-Open the ODBC data source, go to the System DSN tab, and configure it by applying Host (Hadoop server name), Port (10000), Database(default), HiveServer Type (HiveServer2), and the authentication panel, then enter the username and password credentials (if you configured security settings on server authentication).
+After installing the appropriate ODBC driver, you need to configure the ODBC System DSN on Windows. Download the driver for the appropriate version of Tableau Desktop (x86 or x64), and install it. Go to `Control Panel -> System & Security -> Administrative Tools -> ODBC Data sources (32-bit or 64-bit)`.
+Open the ODBC data source, go to the System DSN tab, and configure it by applying `Host` (Hadoop server name), `Port` (10000), `Database` (default), `HiveServer Type` (HiveServer2), and the authentication panel, then enter the username and password credentials (if you configured security settings on server authentication).
 Click Test to check the connectivity of Tableau to the Hadoop server. If the connection is successful, a success message is displayed. Otherwise, an error message is displayed.
-5
+
  
 ## Step 5: Connect Tableau to HiveServer/HiveServer2 Using ODBC Driver
 
 Open Tableau Desktop Pro from its quick-launch option.
-Next, go to Data -> New Data Source tab, and click Cloudera Hadoop to connect to the Hadoop server.
+Next, go to `Data -> New Data Source` tab, and click Cloudera Hadoop to connect to the Hadoop server.
 The Cloudera Hadoop connection pane opens. Enter the Hadoop server credentials to connect. To connect to the HiveServer, the default port number should be 10000, the Type should be HiveServer2, and the username needs to be provided.
-  6
 
 
 ## Step 6: Build Visualizations on Weblog, Clickstream Analytics Using Tableau
