@@ -26,51 +26,59 @@ We will cover the following topics in this lab:
 The following steps launch the required services and prepare your instance for the next steps.
 
 1. Make sure port 10000 is open on your instance. To do this, edit your instance security group and add a TCP port 10000 accessible from anywhere in the Inbound section.
-2. SSH to your instance and do not forget to mount /data
-3. cd /data
-4-StartHadoop: ./start_hadoop.sh
-5- Start Postgres for hive meta data: ./start_postgres.sh
-6- Start Hive Metastore: sudo -u w205 /data/start_metastore.sh
-Step 1: Creating Hive Table and Running a Sample Query on Hive
+
+2. SSH to your instance and do not forget to mount /data (see lab 2, steps 2-3 if you need a reminder).
+
+3. `cd /data`
+
+4. StartHadoop: `./start_hadoop.sh`
+
+5. Start Postgres for hive meta data: `./start_postgres.sh`
+
+6. Start Hive Metastore: 
+    sudo -u w205 
+    /data/start_metastore.sh
+
+## Step 1: Creating Hive Table and Running a Sample Query on Hive
+    
+You likely have the weblog data set from lab 4.  If not, you can re-dowload it with 
+
+    cd 
+    git clone https://github.com/UC-Berkeley-I-School/w205-spring-17-labs-exercises.git
+
+Open hive:
+    
+    hive
+    
 The following code creates a table—Web_Session_Log—from the weblog data introduced in previous labs. While this lab uses Tableau to explore the weblog data, feel free to proceed with any table you want.
-1
-Lab #
-7
-Lab Title
-Introduction to Using Tableau With Hive
-Related Module(s)
-6
- Goal
- Introduction to Using Tableau With Hive
-Last Updated
-10/14/15
- Expected Duration
- 
- 30–40 minutes
- 
-     CREATE TABLE Web_Session_Log(
-          DATETIME varchar(500), USERID varchar(500),
-          SESSIONID varchar(500),PRODUCTID varchar(500),
-          REFERERURL varchar(500)
-     )
-     ROW FORMAT DELIMITED FIELDS TERMINATED BY “\t”
-     STORED AS textfile
-     tblproperties("skip.header.line.count"="1");
+
+    CREATE TABLE Web_Session_Log(
+         DATETIME varchar(500), USERID varchar(500),
+         SESSIONID varchar(500),PRODUCTID varchar(500),
+         REFERERURL varchar(500)
+    )
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY "\t"
+    STORED AS textfile
+    tblproperties("skip.header.line.count"="1");
 Load Data into the Table:
 From HDFS:
-     LOAD DATA INFILE ‘/mnt/weblog/weblog.csv’
-     INTO TABLE Web_Session_Log;
+
+    LOAD DATA INFILE 'hdfs:///mnt/weblog/weblog.csv'
+    INTO TABLE Web_Session_Log;
 From Local File System:
-     LOAD DATA LOCAL INPATH ‘/mnt/weblog/weblog.csv’
-     INTO TABLE Web_Session_Log;
+
+    LOAD DATA LOCAL INPATH '/home/w205/w205-spring-17-labs-exercises/data/weblog_lab.csv'
+    INTO TABLE Web_Session_Log;
 Sample Hive Query
 This is a query to find out which REFERERURL has been referred and for how many times.
-     SELECT REFERERURL, count(*)
-     FROM Web_Session_Log
-     GROUP BY REFERERURL;
-Please see below for the exact code:
-2
- Step 2: Starting a Hive Thrift Server for Remote Hive Access
+
+    SELECT REFERERURL, count(*)
+    FROM Web_Session_Log
+    GROUP BY REFERERURL;
+
+
+## Step 2: Starting a Hive Thrift Server for Remote Hive Access
+
 HiveServer2 is a server interface that allows remote clients to execute queries against Hive. In Tableau, we will be able to extract data from our Web_Session_Log table by sending requests through HiveServer2.
 How to start:
      hive –service hiveserver2
@@ -86,7 +94,10 @@ hive –service hiveserver
 without username and password:
      jdbc:hive2://ec2-54-157-182-212.compute-
      1.amazonaws.com:10000/default
-Step 3: Installing Tableau and ODBC Driver for Connecting to Hive
+
+
+## Step 3: Installing Tableau and ODBC Driver for Connecting to Hive
+
 Hive is a data warehouse technology for working with data in your Hadoop cluster using a combination of traditional SQL expressions and advanced Hadoop-specific data analysis and transformation operations. Tableau works with Hadoop using Hive to provide a user experience that requires no programming.
 In this lab, we will connect Tableau Desktop Pro with the HiveServer in order to access the Hive table Web_Session_Log, which we created earlier.
 To install Tableau on your desktop (Tableau Desktop Pro Edition):
@@ -104,18 +115,24 @@ o Cloudera drivers can be found here.
 Note: If you have a different version of the driver installed, uninstall that driver before installing the version provided on the Cloudera website.
 4
     
-Step 4: Configuring and Connecting to Hadoop Hive From Tableau Using ODBC Driver (Windows Only)
+
+## Step 4: Configuring and Connecting to Hadoop Hive From Tableau Using ODBC Driver (Windows Only)
+
 After installing the appropriate ODBC driver, you need to configure the ODBC System DSN on Windows. Download the driver for the appropriate version of Tableau Desktop (x86 or x64), and install it. Go to Control Panel -> System & Security -> Administrative Tools -> ODBC Data sources (32-bit or 64-bit).
 Open the ODBC data source, go to the System DSN tab, and configure it by applying Host (Hadoop server name), Port (10000), Database(default), HiveServer Type (HiveServer2), and the authentication panel, then enter the username and password credentials (if you configured security settings on server authentication).
 Click Test to check the connectivity of Tableau to the Hadoop server. If the connection is successful, a success message is displayed. Otherwise, an error message is displayed.
 5
  
- Step 5: Connect Tableau to HiveServer/HiveServer2 Using ODBC Driver
+## Step 5: Connect Tableau to HiveServer/HiveServer2 Using ODBC Driver
+
 Open Tableau Desktop Pro from its quick-launch option.
 Next, go to Data -> New Data Source tab, and click Cloudera Hadoop to connect to the Hadoop server.
 The Cloudera Hadoop connection pane opens. Enter the Hadoop server credentials to connect. To connect to the HiveServer, the default port number should be 10000, the Type should be HiveServer2, and the username needs to be provided.
   6
- Step 6: Build Visualizations on Weblog, Clickstream Analytics Using Tableau
+
+
+## Step 6: Build Visualizations on Weblog, Clickstream Analytics Using Tableau
+
 After the data source connection is made successfully, you can connect to the Hive table. Click Extract to get data locally and store Tableau in memory reduce latency because Hive is based on a batch-processing mechanism. Switch back to Tableau. Under the Data Connection pane, enter the schema name, enter default, and click the Search icon on the right side of the textbox. Next, enter the table name Web_Session_Log in the Table name textbox, click the Search icon on the right side of the textbox, and select and drag the table to the upper-right side of the Tableau window, as shown in the following screenshot.
 7
  Now you can extract the data locally on an in-memory Tableau dataset to avoid unnecessary server latency.
