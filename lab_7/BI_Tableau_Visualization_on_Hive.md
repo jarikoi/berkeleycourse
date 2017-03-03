@@ -228,4 +228,4 @@ You can also publish the workbook on Tableau Server if you have those credential
 The Tableau ***weblog-hive-clickstream analytics workbook*** is printed in PDF format.
 ![Image21](images/lab7im21.png)
 
-Task: Submit the printed PDF ***weblog-hive-clickstream analytics*** workbook
+Task: Submit the printed PDF ***weblog-hive-clickstream analytics*** workbook.
