@@ -38,8 +38,13 @@ The following steps launch the required services and prepare your instance for t
 6. Start Hive Metastore: 
     sudo -u w205 
     /data/start_metastore.sh
+    
 
 ## Step 1: Creating Hive Table and Running a Sample Query on Hive
+    
+Switch to user w205.
+
+    su - w205
     
 You likely have the weblog data set from lab 4.  If not, you can re-dowload it with 
 
@@ -111,7 +116,7 @@ You can download Tableau Desktop Pro directly from Tableau’s website. Select t
 Once the product is downloaded, you can install it by double-clicking the installer package.
 ![Image1](images/lab7im01.png)
 
-To install the ODBC driver for Hive:
+To install the ODBC driver for Hive (onto your local machine, where Tableau is):
 For both HiveServer and HiveServer2, you must install the Cloudera, Hortonworks, MapR, or Amazon EMR ODBC driver from the Drivers page. Ensure that the version of the driver you download matches the bit version of your operating system.
 
 ● Cloudera (Hive): Cloudera ODBC Driver for Apache Hive 2.5.x, 32-bit or 64-bit
@@ -138,7 +143,28 @@ Click **Test** to check the connectivity of Tableau to the Hadoop server. If the
 
 ![Image3](images/lab7im03.png)
 
- 
+#  An optional, alternate, way to test the Hiveserver2 is running. 
+Launch another terminal connection to your EC2 instance.  No need to mount a drive or start the servers because they should be started already. 
+
+    /usr/lib/hive/bin/beeline
+When a beeline prompt comes up:
+
+    !connect jdbc:hive2://localhost:10000 
+    SHOW TABLES;
+    
+You should get a with at least `least web_session_log` that looks like this:
+'''
++------------------+--+
+|     tab_name     |
++------------------+--+
+| user_info        |
+| web_session_log  |
+| weblogs_flat     |
+| weblogs_parquet  |
+| weblogs_schema   |
++------------------+--+
+'''
+
 ## Step 5: Connect Tableau to HiveServer/HiveServer2 Using ODBC Driver
 
 Open Tableau Desktop Pro from its quick-launch option.
@@ -149,7 +175,8 @@ Next, go to `Data -> New Data Source` tab, and click **Cloudera Hadoop** to conn
 
 ![Image5](images/lab7im05.png)
 
-The Cloudera Hadoop connection pane opens. Enter the Hadoop server credentials to connect. To connect to the HiveServer, the default port number should be 10000, the Type should be HiveServer2, and the username needs to be provided.
+The Cloudera Hadoop connection pane opens. Enter the Hadoop server credentials to connect. To connect to the HiveServer, the default port number should be 10000, the Type should be HiveServer2, and the username needs to be provided.  The username may be *root* or *w205* depending on which user launched the hiveserver2.
+
 ![Image6](images/lab7im06.png)
 
 ## Step 6: Build Visualizations on Weblog, Clickstream Analytics Using Tableau
