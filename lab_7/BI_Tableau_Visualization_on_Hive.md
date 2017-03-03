@@ -117,7 +117,7 @@ Once the product is downloaded, you can install it by double-clicking the instal
 ![Image1](images/lab7im01.png)
 
 To install the ODBC driver for Hive (onto your local machine, where Tableau is):
-For both HiveServer and HiveServer2, you must install the Cloudera, Hortonworks, MapR, or Amazon EMR ODBC driver from the Drivers page. Ensure that the version of the driver you download matches the bit version of your operating system.
+For both HiveServer and HiveServer2, you must install the Cloudera, Hortonworks, MapR, or Amazon EMR ODBC driver from the Drivers page. Ensure that the version of the driver you download matches the bit version of your operating system.  Think back to Lab 1 to figure out which hadoop distribution or hive version `yum` (hint) has installed.  
 
 ● Cloudera (Hive): Cloudera ODBC Driver for Apache Hive 2.5.x, 32-bit or 64-bit
 o For use with Tableau Server 8.0.0–8.0.7; for 8.1.0–8.1.3, use version 2.5.0.1000. o For use with Tableau Server 8.0.8 and later; for 8.1.4 and later, use driver version
@@ -184,7 +184,7 @@ The Cloudera Hadoop connection pane opens. Enter the Hadoop server credentials t
 After the data source connection is made successfully, you can connect to the Hive table. Click **Extract** to get data **locally and store Tableau in memory** reduce latency because Hive is based on a batch-processing mechanism. Switch back to Tableau. Under the Data Connection pane, enter the schema name, enter **default**, and click the **Search** icon on the right side of the textbox. Next, enter the table name `Web_Session_Log` in the Table name textbox, click the **Search** icon on the right side of the textbox, and select and drag the table to the upper-right side of the Tableau window, as shown in the following screenshot.
 ![Image7](images/lab7im07.png)
 
-Now you can extract the data locally on an in-memory Tableau dataset to avoid unnecessary server latency.
+Now you can extract the data locally on an in-memory Tableau dataset to avoid unnecessary server latency.  *In the future, beware of very large hive tables if your data does not fit in your desktop's memory.*
 ![Image8](images/lab7im08.png)
 
 Click `Automatic update` to refresh the dataset. It should look like the following screen:
