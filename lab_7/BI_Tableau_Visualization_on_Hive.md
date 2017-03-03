@@ -153,7 +153,7 @@ When a beeline prompt comes up:
     SHOW TABLES;
     
 You should get a with at least `least web_session_log` that looks like this:
-'''
+```
 +------------------+--+
 |     tab_name     |
 +------------------+--+
@@ -163,7 +163,7 @@ You should get a with at least `least web_session_log` that looks like this:
 | weblogs_parquet  |
 | weblogs_schema   |
 +------------------+--+
-'''
+```
 
 ## Step 5: Connect Tableau to HiveServer/HiveServer2 Using ODBC Driver
 
