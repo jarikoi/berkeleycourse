@@ -109,6 +109,7 @@ To install Tableau on your desktop (Tableau Desktop Pro Edition):
 You can download Tableau Desktop Pro directly from Tableau’s website. Select the Windows or Mac version based on your operating system (32-bit or 64-bit).  At the time of this writing students get a free liscence for a year for educational work (https://www.tableau.com/academic/students).
 
 Once the product is downloaded, you can install it by double-clicking the installer package.
+![Image1](images/lab7im01.png)
 
 To install the ODBC driver for Hive:
 For both HiveServer and HiveServer2, you must install the Cloudera, Hortonworks, MapR, or Amazon EMR ODBC driver from the Drivers page. Ensure that the version of the driver you download matches the bit version of your operating system.
@@ -130,45 +131,74 @@ Note: If you have a different version of the driver installed, uninstall that dr
 
 After installing the appropriate ODBC driver, you need to configure the ODBC System DSN on Windows. Download the driver for the appropriate version of Tableau Desktop (x86 or x64), and install it. Go to `Control Panel -> System & Security -> Administrative Tools -> ODBC Data sources (32-bit or 64-bit)`.
 Open the ODBC data source, go to the System DSN tab, and configure it by applying `Host` (Hadoop server name), `Port` (10000), `Database` (default), `HiveServer Type` (HiveServer2), and the authentication panel, then enter the username and password credentials (if you configured security settings on server authentication).
-Click Test to check the connectivity of Tableau to the Hadoop server. If the connection is successful, a success message is displayed. Otherwise, an error message is displayed.
+
+![Image2](images/lab7im02.png)
+
+Click **Test** to check the connectivity of Tableau to the Hadoop server. If the connection is successful, a success message is displayed. Otherwise, an error message is displayed.
+
+![Image3](images/lab7im03.png)
 
  
 ## Step 5: Connect Tableau to HiveServer/HiveServer2 Using ODBC Driver
 
 Open Tableau Desktop Pro from its quick-launch option.
-Next, go to `Data -> New Data Source` tab, and click Cloudera Hadoop to connect to the Hadoop server.
-The Cloudera Hadoop connection pane opens. Enter the Hadoop server credentials to connect. To connect to the HiveServer, the default port number should be 10000, the Type should be HiveServer2, and the username needs to be provided.
 
+![Image4](images/lab7im04.png)
+
+Next, go to `Data -> New Data Source` tab, and click **Cloudera Hadoop** to connect to the Hadoop server.
+
+![Image5](images/lab7im05.png)
+
+The Cloudera Hadoop connection pane opens. Enter the Hadoop server credentials to connect. To connect to the HiveServer, the default port number should be 10000, the Type should be HiveServer2, and the username needs to be provided.
+![Image6](images/lab7im06.png)
 
 ## Step 6: Build Visualizations on Weblog, Clickstream Analytics Using Tableau
 
-After the data source connection is made successfully, you can connect to the Hive table. Click *Extract* to get data **locally and store Tableau in memory** reduce latency because Hive is based on a batch-processing mechanism. Switch back to Tableau. Under the Data Connection pane, enter the schema name, enter default, and click the Search icon on the right side of the textbox. Next, enter the table name `Web_Session_Log` in the Table name textbox, click the Search icon on the right side of the textbox, and select and drag the table to the upper-right side of the Tableau window, as shown in the following screenshot.
+After the data source connection is made successfully, you can connect to the Hive table. Click **Extract** to get data **locally and store Tableau in memory** reduce latency because Hive is based on a batch-processing mechanism. Switch back to Tableau. Under the Data Connection pane, enter the schema name, enter **default**, and click the **Search** icon on the right side of the textbox. Next, enter the table name `Web_Session_Log` in the Table name textbox, click the **Search** icon on the right side of the textbox, and select and drag the table to the upper-right side of the Tableau window, as shown in the following screenshot.
+![Image7](images/lab7im07.png)
 
 Now you can extract the data locally on an in-memory Tableau dataset to avoid unnecessary server latency.
-Click `Automatic` update to refresh the dataset. It should look like the following screen:
+![Image8](images/lab7im08.png)
+
+Click `Automatic update` to refresh the dataset. It should look like the following screen:
+![Image9](images/lab7im09.png)
+
 Click the `Worksheet` tab, and select `New Worksheet` to start building visualizations.
 On the new worksheet tab, on the `Data` pane, drag the `web_session_log.sessionid` field to the `Measures` pane.
-Next, drag the field to the `Rows` shelf. Hover over the field to expand the drop-down menu. Change the aggregation method (under `Measure`) from `Sum` to `Count (Distinct)`.
+![Image10](images/lab7im10.png)
 
+Next, drag the field to the `Rows` shelf. Hover over the field to expand the drop-down menu. Change the aggregation method (under `Measure`) from `Sum` to `Count (Distinct)`.
+![Image11](images/lab7im11.png)
    
 Drag the `web_session_log.refererurl` field to the `Column` shelf, then right-click the value to create a filter to visualize the top five referring URLs. Select `Filter`, and click the `Condition` tab to get URLs based on `web_session_log.sessionids` beyond a certain value (e.g. `web_session_log.sessionid >= 3,996`) to drill down to the top five referring URLs.
+![Image12](images/lab7im12.png)
+
 After you define the settings, change the chart type in the `Show Me` pane on the right side of the window.
+![Image13](images/lab7im13.png)
 
 Select the bubbles chart type. You will see the graph, “Top 5 Referring URLs,” as follows:
+![Image14](images/lab7im14.png)
+
 Next, create a new worksheet and name it **Top Referring URLs over last 10 years**. Drag `web_session_log.sessionid` to the `Rows` shelf.
 On the `Data` pane, right-click on the datetime field, and change its data type to Date and Time. Then, drag it to the `Columns` shelf. Drag the `Referer URL` field to the `Color` section of the `Marks` pane. In the Show Me section, select the lines chart type.
-
+![Image15](images/lab7im15.png)
 
 Go to a new worksheet tab, and name it **Top 10 users who used top 10 products**. On this worksheet tab, drag the sessionid field to the Rows shelf and the `userid` field to the Columns shelf. Filter the users based on the maximum session count. You need to filter the userid data based on condition of the `sessionid` value. Drag the `productID` field to the color field in the Marks pane to differentiate between products. You may select the simple stacked-bar chart type.
+![Image16](images/lab7im16.png)
 
 Once, you build such few graphs, click the Dashboard tab on top of the Tableau window
+![Image17](images/lab7im17.png)
 
 Select **New Dashboard** to start implementing the **weblog-clickstream** analytics dashboard. On the new dashboard page, drag the existing implemented worksheet graphs to the right pane.
+![Image18](images/lab7im18.png)
 
 When you drag and drop the implemented graphs on the exiting worksheet, you will see the Weblog Clickstream analytics dashboard on Tableau Desktop, as shown in the following screenshot:
+![Image19](images/lab7im19.png)
 
 You can also publish the workbook on Tableau Server if you have those credentials. Always save the workbook on your local drive using the `File -> Export` as Packaged workbook option. You can also print the entire workbook or selected worksheets in PDF format as required.
+![Image20](images/lab7im20.png)
 
 The Tableau ***weblog-hive-clickstream analytics workbook*** is printed in PDF format.
-  
+![Image21](images/lab7im21.png)
+
 Task: Submit the printed PDF ***weblog-hive-clickstream analytics*** workbook
