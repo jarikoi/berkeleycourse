@@ -45,7 +45,7 @@ The following steps launch the required services and prepare your instance for t
 Switch to user w205.
 
     su - w205
-    
+   
 You likely have the weblog data set from lab 4.  If not, you can re-dowload it with 
 
     cd 
@@ -65,15 +65,19 @@ The following code creates a table—Web_Session_Log—from the weblog data intr
     ROW FORMAT DELIMITED FIELDS TERMINATED BY "\t"
     STORED AS textfile
     tblproperties("skip.header.line.count"="1");
+    
 Load Data into the Table:
+
 From HDFS:
 
     LOAD DATA INFILE 'hdfs:///mnt/weblog/weblog.csv'
     INTO TABLE Web_Session_Log;
+    
 From Local File System:
 
     LOAD DATA LOCAL INPATH '/home/w205/w205-spring-17-labs-exercises/data/weblog_lab.csv'
     INTO TABLE Web_Session_Log;
+    
 Sample Hive Query
 This is a query to find out which REFERERURL has been referred and for how many times.
 
@@ -81,23 +85,26 @@ This is a query to find out which REFERERURL has been referred and for how many 
     FROM Web_Session_Log
     GROUP BY REFERERURL;
 
-
 ## Step 2: Starting a Hive Thrift Server for Remote Hive Access
 
-HiveServer2 is a server interface that allows remote clients to execute queries against Hive. In Tableau, we will be able to extract data from our Web_Session_Log table by sending requests through HiveServer2.
+**HiveServer2** is a server interface that allows remote clients to execute queries against Hive. In Tableau, we will be able to extract data from our Web_Session_Log table by sending requests through HiveServer2.
 How to start:
     
-    hive –service hiveserver2
-or
-
-    hive –service hiveserver –help
-    hive –service hiveserver
+    hive –-service hiveserver2 &
+    << wait for the startup messages to finish and then hit the enter key to get the command prompt back >>
+    
+There is an older hiveserver, but it is not recommended and the latest version of the Cloudera ODBC drive does not seem to support it. 
 (Note that as of Hive 1.0.0, HiveServer was removed in favor of HiveServer2. It is recommended you use HiveServer2.)
+Here are the older commmands:
 
-Here is a connection string for your reference:
+    hive –-service hiveserver –help
+    hive –-service hiveserver
+
+Tableau uses ODBC and does not use JDBC. In case you want to use other software products which use JDBC, here are JDBC connection strings for your reference:
+
 with username and password:
 
-    jdbc:hive2://myhost.example.com:21050/test_db;user=fred;password=xyz123
+    jdbc:hive2://myhost.example.com:10000/test_db;user=fred;password=xyz123
 
 without username and password:
 
@@ -181,20 +188,24 @@ The Cloudera Hadoop connection pane opens. Enter the Hadoop server credentials t
 
 ## Step 6: Build Visualizations on Weblog, Clickstream Analytics Using Tableau
 
-After the data source connection is made successfully, you can connect to the Hive table. Click **Extract** to get data **locally and store Tableau in memory** reduce latency because Hive is based on a batch-processing mechanism. Switch back to Tableau. Under the Data Connection pane, enter the schema name, enter **default**, and click the **Search** icon on the right side of the textbox. Next, enter the table name `Web_Session_Log` in the Table name textbox, click the **Search** icon on the right side of the textbox, and select and drag the table to the upper-right side of the Tableau window, as shown in the following screenshot.
+After the data source connection is made successfully, you can connect to the Hive table. Click **Extract** to store the schema in local memory. Switch back to Tableau. Under the Data Connection pane, enter the schema name, enter **default**, and click the **Search** icon on the right side of the textbox. Next, enter the table name `Web_Session_Log` in the Table name textbox, click the **Search** icon on the right side of the textbox, and select and drag the table to the upper-right side of the Tableau window, as shown in the following screenshot.
 ![Image7](images/lab7im07.png)
 
-Now you can extract the data locally on an in-memory Tableau dataset to avoid unnecessary server latency.  *In the future, beware of very large hive tables if your data does not fit in your desktop's memory.*
+Click **Extract** to extract the data locally on an in-memory Tableau dataset to avoid unnecessary server latency.  *In the future, beware of very large hive tables if your data does not fit in your desktop's memory.* 
 ![Image8](images/lab7im08.png)
 
 Click `Automatic update` to refresh the dataset. It should look like the following screen:
 ![Image9](images/lab7im09.png)
 
-Click the `Worksheet` tab, and select `New Worksheet` to start building visualizations.
+Tableau automatically creates your first worksheet named `Sheet 1`. Click on `Sheet 1` to start building visualizations.  If you chose to extract your data in the previous step, Tableau will prompt you to save it into a .tde (Tableau Data Extract) file.  This is recommended to keep your data separate from code.  Also, if you choose to upload your data visualizations to the Tableau Public server, you will need to have data stored in this format for the upload to work correctly.
+
+Note: if you are only using 1 table, Tableau 10 does not show the table name in <table_name>.<column_name> as previous versions displayed.
+
 On the new worksheet tab, on the `Data` pane, drag the `web_session_log.sessionid` field to the `Measures` pane.
 ![Image10](images/lab7im10.png)
 
 Next, drag the field to the `Rows` shelf. Hover over the field to expand the drop-down menu. Change the aggregation method (under `Measure`) from `Sum` to `Count (Distinct)`.
+Note: Tableau 10 seems to correctly change the aggregation method for you, unlike previous versions.
 ![Image11](images/lab7im11.png)
    
 Drag the `web_session_log.refererurl` field to the `Column` shelf, then right-click the value to create a filter to visualize the top five referring URLs. Select `Filter`, and click the `Condition` tab to get URLs based on `web_session_log.sessionids` beyond a certain value (e.g. `web_session_log.sessionid >= 3,996`) to drill down to the top five referring URLs.
@@ -211,6 +222,7 @@ On the `Data` pane, right-click on the datetime field, and change its data type 
 ![Image15](images/lab7im15.png)
 
 Go to a new worksheet tab, and name it **Top 10 users who used top 10 products**. On this worksheet tab, drag the sessionid field to the Rows shelf and the `userid` field to the Columns shelf. Filter the users based on the maximum session count. You need to filter the userid data based on condition of the `sessionid` value. Drag the `productID` field to the color field in the Marks pane to differentiate between products. You may select the simple stacked-bar chart type.
+Note: depending on the data set, it may be possible that there is not a "top 10 products".  Check your data, if necessary, using SQL in Hive to verify if it seems this is the case.
 ![Image16](images/lab7im16.png)
 
 Once, you build such few graphs, click the Dashboard tab on top of the Tableau window
