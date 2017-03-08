@@ -37,3 +37,7 @@
 [http://gcmd.nasa.gov/records/GNIS.html](http://gcmd.nasa.gov/records/GNIS.html)
 
 [http://www.ncdc.noaa.gov/data-access/quick-links](http://www.ncdc.noaa.gov/data-access/quick-links)
+
+This quora answers the same question and is a living list:
+https://www.quora.com/Where-can-I-find-large-datasets-open-to-the-public
+
