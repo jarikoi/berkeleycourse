@@ -90,15 +90,15 @@ This is a query to find out which REFERERURL has been referred and for how many 
 **HiveServer2** is a server interface that allows remote clients to execute queries against Hive. In Tableau, we will be able to extract data from our Web_Session_Log table by sending requests through HiveServer2.
 How to start:
     
-    hive –-service hiveserver2 &
+    hive --service hiveserver2 &
     << wait for the startup messages to finish and then hit the enter key to get the command prompt back >>
     
 There is an older hiveserver, but it is not recommended and the latest version of the Cloudera ODBC drive does not seem to support it. 
 (Note that as of Hive 1.0.0, HiveServer was removed in favor of HiveServer2. It is recommended you use HiveServer2.)
 Here are the older commmands:
 
-    hive –-service hiveserver –help
-    hive –-service hiveserver
+    hive --service hiveserver –help
+    hive --service hiveserver
 
 Tableau uses ODBC and does not use JDBC. In case you want to use other software products which use JDBC, here are JDBC connection strings for your reference:
 
