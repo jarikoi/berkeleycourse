@@ -34,10 +34,9 @@ batching has both advantages and disadvantages compared to a
 *record-at-a-time* streaming solution. One advantage of Spark Streaming
 is that it builds on the core Spark RDD processing, and hence enables
 usage of multiple paradigms such as steam processing, batching and
-interactive queries on one platform.
+interactive queries on one platform. A disadvantage is that processing latency of individual records may be poor, as the system collects a batch before processing is done. In contrast,  a *record-at-a-time* system processes records as they arrive.
 
 ![Spark Streaming and Engine](/blob/master/images/lab_10/Picture1.png?raw=true)
-
 
 There are a few basic concepts that you need to understand in Spark
 Streaming: DStream, Transformations and Output Operations.
@@ -314,8 +313,8 @@ is not atomic. Put will create a temporary file while copying from the
 local file system which will later be removed. For the purpose of this
 lab Spark Streaming recovers and eventually picks up the right file. If
 you want to fix this issue, copy to other location in HDFS and then use
-`hdfs –mv` command to move the file into `/tmp/datastreams`. The mv
-command is in a atomic operation. The same is true for most filesystems, to create the file in one atomic operation, use 'mv'*
+`hdfs –mv` command to move the file into `/tmp/datastreams`. The `mv`
+command is a atomic operation. The same is true for most filesystems, to create the file in one atomic operation, use `mv`*
 
 If you look in the streaming window you will see the result of the
 processing. You will notice that the words were converted to upper case
@@ -348,7 +347,7 @@ logic based on some specific data and which eases debugging.
 
 Now lets do the same transformation but have the process listen to a
 streaming socket. You will need to restart `pyspark`. It will not allow
-you to create a new StreamingContext associated with the same Spark
+you to create a new `StreamingContext` associated with the same Spark
 Context. After restart execute the import statements and the creation of
 the `StreamingContext`. Remember to provide the `MASTER` variable so that we
 use more than one core. On some platforms not doing this may block the
@@ -380,9 +379,8 @@ the process.
 You will see some errors from Spark since there is no active port to
 connect to. But the process will continue to try to connect to the port.
 To create a port to which the streaming process can connect we will use
-the Unix `nc` command. The name nc stands for netcat. You can think about
-it as the Unix cat but for pushing data to a socket rather than a file.
-If you try this Lab on Windows, you can use the Windows `netcat` command
+the Unix `nc` command. The name `nc` stands for *netcat*. You can think about
+it as the Unix `cat` command but for pushing data to a socket rather than a file. If you try this Lab on Windows, you can use the Windows `netcat` command
 in place of `nc`.
 
 In a terminal window type the command below. The `l` option tells `nc` to
@@ -394,7 +392,7 @@ needing to restart `nc`.
 ```
 $nc -lk 9999
 ```
-In the terminal window were you started `nc`, type some words. What
+Type some random words inti the terminal window where you started `nc`. What
 happens on the streaming application side?
 
 The batch duration for our simple streaming application is one second.
@@ -417,7 +415,7 @@ following commands.
 >>>ssc.start()
 ```
 Type some words in the `nc` terminal window. As you can see, spark is now
-batching things up in `RDD` representing 30 seconds of incoming data.
+batching things up in a *DStream* `RDD` representing 30 seconds of incoming data.
 
 ## Step-3. Parsing JSON data
 
@@ -588,16 +586,16 @@ In a separate terminal window run the command below.
 curl -i http://stream.meetup.com/2/rsvps | nc -lk 9999
 ```
 *Note: you may encounter a parsing error when you first start parsing
-the stream. This is because a websocket stream sends a HTTP header
-before it send the data. This is obviously not JSON and the Spark
-Streaming JSON parsing will not like that.*
+the stream. This is because a websocket stream sends a `HTTP` header
+before it send the data. This is obviously not `JSON` and the Spark
+Streaming `JSON` parsing will not like that.*
 
-This command uses curl to grab the content from the Meetup websocket API
-and feed it into nc. The nc process will make the data available on the
+This command uses `curl` to retrieve the content from the Meetup websocket API
+and feed it into `nc`. The `nc` process will make the data available on the
 socket on port `9999` on `localhost`. The behavior of this stream can become
 artificially bursty. This is due to that the Unix pipe command (|)
 buffer data before forwarding it. To more closely mimic the incoming
-rate of rsvp’s you can type the following on OSX.
+rate of rsvp’s you can type the following on OSX. 
 ```
 script -q /dev/null curl -i http://stream.meetup.com/2/rsvps 
 | nc -lk 9999
@@ -609,7 +607,7 @@ script –q -c/dev/null curl 
 -i http://stream.meetup.com/2/rsvps  | nc -lk 9999
 ```
 You would probably not see that much difference on the spark streaming
-end since it is batching the incoming events up anyways. But you can see
+end since it is batching the incoming events anyways. But you can see
 in the logging that the spark streaming process receives a more
 continuous stream of data. This is because the sending process forwards
 them directly as they arrive, rather than letting the pipe program
@@ -617,11 +615,10 @@ buffer them.
 
 ## Step-5. Running with spark-submit
 
-
-Until now we have been running the command in a pyspark shell. Clearly
-one also needs to be able to submit and execute streaming jobs and
-standalone programs. Put the following commands into a file called
-venuecounter.py. For the purpose of this lab I will assume you put the
+Until now we have been running the command in a `pyspark` shell. Clearly
+one also needs to be able to submit and execute streaming jobs as
+standalone programs. Insert the commands below into a file called
+`venuecounter.py`. For the purpose of this lab we will assume you put the
 script in `$HOME`. If the location differs from that, change the code
 accordingly.
 ```
@@ -672,8 +669,7 @@ You should see output similar to what is show in the screenshot below.
 
 ![Screen Shot](/blob/master/images/lab_10/Picture4.png?raw=true)
 
-**SUBMISSION 3:**  *Provide a screenshot showing the running Spark Streaming
-application.*
+**SUBMISSION 3:**  *In a previous module in this class you learnt about streams, bustiness and kafka. Describe how you would solve a situation where (1) you have a very busty stream where you spark streaming process may not always be able to keep up with the data it receives, meaning it the time it takes to process takes longer than the batch interval. (2) Like other programs stream processing programs need to be updated. Describe the implications of updating this simple processing program. What side effects can it have? How could you potentially handle them?.*
 
 
 
