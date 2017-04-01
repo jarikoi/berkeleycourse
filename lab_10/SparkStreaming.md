@@ -12,7 +12,7 @@ Our labs and exercises are tested on AMI's provided for the course. We test labs
 
 *Note: We are mainly covering the DStream aspects of Spark Streaming. There is a new abstraction call Structured Streams, but that is still in Beta. The basic concepts are supported in newer versions of Spark Streaming.*
 
-##Introduction
+## Introduction
 
 Spark Streaming is an extension to Spark that enables processing of
 streaming data. By streaming data processing we mean that data arrives
