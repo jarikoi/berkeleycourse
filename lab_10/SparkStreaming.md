@@ -4,7 +4,7 @@
 |----------------------|--------|---------------------|--------------------------------------------------|
 | *Lab*                | 10      | *Lab Title*         | An Introduction to Spark Streaming.   |
 | *Related Modules(s)* | 9      | *Goal*              | Spark Streaming, filtering, counting, sliding window. |
-| *Last Updated*       | 1/27/17 | *Expected Duration* | 60-90 minutes                                    |
+| *Last Updated*       | 3/27/17 | *Expected Duration* | 60-90 minutes                                    |
 
 
 ## DISCLAIMER
@@ -686,9 +686,9 @@ Windowing allows us to perform certain transformations for a sliding
 window over a number of batches. Our batch size is 10 seconds. We will
 be calling the `DStream` transform
 **countByWindow**(*windowLength*,*slideInterval*). We want to perform
-the count calculation of last 30 seconds so the windowLength argument
+the count calculation of last 30 seconds so the `windowLength` argument
 will be 30. We want to perform the calculation every 10 seconds, so the
-slideInterval will be set to 10.
+`slideInterval` will be set to 10.
 ```
 wlcnt=lines.countByWindow(30,10)
 ```
@@ -697,7 +697,7 @@ batch, the red box represents the sliding window of 30 seconds.
 
 ![DStreams and Windowing](/blob/master/images/lab_10/Picture5.png?raw=true)
 
-In order to enable windowing we will need to turn on checkpointing. This
+In order to enable windowing we will need to turn on `checkpointing`. This
 is done by defining a checkpoint directory. I will assume you have
 created the checkpoint directory in `/tmp/checkpointing`, but you can
 change that as you prefer. The statement looks as follows.
