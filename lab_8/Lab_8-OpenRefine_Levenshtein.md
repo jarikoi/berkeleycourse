@@ -368,7 +368,7 @@ If you use the Levenshtein function to check the result, you will see the follow
 
 So we can trust that we performed the manual calculation correctly.
 
-### Calculation: "gumbarrel" vs. "gunbarrell"
+### Calculation: "gumbarrel" vs. "gunbarell"
 
 Now calculate the edit distance between the words "gumbarrel" and "gunbarell." After you are done, use the Python Levenshtein function to check your result.
 
