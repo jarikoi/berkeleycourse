@@ -100,7 +100,7 @@ First, we need to clean up our database and load the new data.
 
     In this example, we are finding friends of friends of 'SPIDER-MAN/PETER PAR'
  
- (note: as some students have pointed out, the edges in this dataset are actually appearances rather than frienship links, and that heros and villians appear together. For the purposes of this lab, appearance links should be regarded as friends links.)
+     (note: as some students have pointed out, the edges in this dataset are actually appearances rather than frienship links, and that heros and villians appear together. For the purposes of this lab, appearance links should be regarded as friends links.)
   ```
   MATCH (peter:Hero { name: 'SPIDER-MAN/PETER PAR' })-[:APPEARED*2..2]-(friend_of_friend)
   WHERE NOT (peter)-[:APPEARED]-(friend_of_friend)
@@ -156,17 +156,18 @@ Modify the above templates to find answers to the following questions.  Submit t
 
 5.	Visually discover how the Avengers grew over time from 5 to 10 members, who was added to the team, and verify connectivity.
 
-    We will assume the avengers started out with 'IRON MAN/TONY STARK' and 'THOR/DR. DONALD BLAK'.  We will start out with a modification of the "Finding Teammates" query above.  In the RETURN clause, we will add tony and donald so they show up in the results.  We will first limit our results to 5.  The query below should be your first query: 
+    We will assume the avengers started out with 'IRON MAN/TONY STARK' and 'THOR/DR. DONALD BLAK'.  We will start out with a modification of the "Finding Teammates" query above.  In the RETURN clause, we will add tony and donald so they show up in the results.  We will first limit our results to 5 members, so we will use LIMIT 3.  We will re-run the query up to and including 10 members (LIMIT 8). The query below should be your first query: 
     
   ```
   MATCH (tony:Hero {name:'IRON MAN/TONY STARK'}) -[e:APPEARED]-> (other) <-[f:APPEARED]- (donald:Hero {name:'THOR/DR. DONALD BLAK'})
   RETURN tony, donald, other
   ORDER BY e.w DESC, f.w DESC
-  LIMIT 5
+  LIMIT 3
   ```
-    Run this query with the LIMIT of 5.  
-    
-    Edit and re-run this same query with a LIMIT of 6, 7, 8, 9, and 10.
-    
-    Please provide each run of the query (6 total runs):
-    The query, a list of member for this run, a statement as to whether or not the graph is fully connected, and the an image of the graph visualization
+  
+  Run this query with the LIMIT of 3 to return 5 members.  
+  
+  Edit and re-run this same query with a LIMIT 4 (6 members), LIMIT 5 (7 members), LIMIT 6 (8 members), LIMIT 7 (9 members), LIMIT 8 (10 members).
+  
+  Please provide _each_ run of the query (6 total runs):
+  The query, a list of member for this run, a statement as to whether or not the graph is fully connected, and the an image of the graph visualization
