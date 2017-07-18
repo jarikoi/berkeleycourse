@@ -169,5 +169,5 @@ Modify the above templates to find answers to the following questions.  Submit t
   
   Edit and re-run this same query with a LIMIT 4 (6 members), LIMIT 5 (7 members), LIMIT 6 (8 members), LIMIT 7 (9 members), LIMIT 8 (10 members).
   
-  Please provide _each_ run of the query (6 total runs):
+  Please provide for _each_ run of the query (6 total runs):
   The query, a list of member for this run, a statement as to whether or not the graph is fully connected, and the an image of the graph visualization
